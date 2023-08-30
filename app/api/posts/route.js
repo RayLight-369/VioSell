@@ -4,37 +4,37 @@ export const GET = async (req, res) => {
   
   try {
 
-    // const data = await getData({
-    //   table: "posts"
-    // });
+    const data = await getData({
+      table: "posts"
+    });
 
-    const data = {
-      data: [{
-        title: "Title of the Post",
-        description: "Description of the Post",
-        tags: "#tag1 #tag2",
-        userID: 2,
-        id: 1
-      },{
-        title: "Title of the Post",
-        description: "Description of the Post",
-        tags: "#tag1 #tag2",
-        userID: 2,
-        id: 1
-      },{
-        title: "Title of the Post",
-        description: "Description of the Post",
-        tags: "#tag1 #tag2",
-        userID: 2,
-        id: 1
-      },{
-        title: "Title of the Post",
-        description: "Description of the Post",
-        tags: "#tag1 #tag2",
-        userID: 2,
-        id: 1
-      }]
-    }
+    // const data = {
+    //   data: [{
+    //     title: "Title of the Post",
+    //     description: "Description of the Post",
+    //     tags: "#tag1 #tag2",
+    //     userID: 2,
+    //     id: 1
+    //   },{
+    //     title: "Title of the Post",
+    //     description: "Description of the Post",
+    //     tags: "#tag1 #tag2",
+    //     userID: 2,
+    //     id: 1
+    //   },{
+    //     title: "Title of the Post",
+    //     description: "Description of the Post",
+    //     tags: "#tag1 #tag2",
+    //     userID: 2,
+    //     id: 1
+    //   },{
+    //     title: "Title of the Post",
+    //     description: "Description of the Post",
+    //     tags: "#tag1 #tag2",
+    //     userID: 2,
+    //     id: 1
+    //   }]
+    // }
   
     const posts = data.data;
 

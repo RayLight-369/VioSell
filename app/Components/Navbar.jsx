@@ -47,7 +47,7 @@ const Navbar = () => {
         <div className="links">
           
           <Link href={ "/" }>Home</Link>
-          <Link href={ "/" }>Posts</Link>
+          <Link href={ "/posts" }>Posts</Link>
           
         </div>
         { session?.user ? (

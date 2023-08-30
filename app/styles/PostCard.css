@@ -12,7 +12,7 @@ div.post-card{
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  left: 110px;
+  left: 95px;
   box-shadow: 9px 8px 10px rgba(0, 0, 0, 0.3 );
   cursor: pointer;
   transition: 200ms;
@@ -69,6 +69,10 @@ div.post-card div.info div.title-desc p.title{
   font-size: 1.5em;
   font-family: aharoni;
   color: #222;
+}
+
+div.post-card div.info div.title-desc p.desc{
+  white-space: pre-wrap;
 }
 
 div.post-card div.tags{
