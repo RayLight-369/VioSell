@@ -1,0 +1,109 @@
+/* Navbar container */
+#navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Navigation links */
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.links li {
+  margin-right: 20px;
+}
+
+.links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #ff6347;
+  /* Change color on hover (coral) */
+}
+
+/* User profile section */
+.profile {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.dropdown.active {
+  display: flex;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+.dropdown a:hover {
+  color: #ff6347;
+  /* Change color on hover (coral) */
+}
+
+/* Sign-out button */
+.signout {
+  background-color: #ff6347;
+  /* Coral */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.signout:hover {
+  background-color: #e0523d;
+  /* Slightly darker coral on hover */
+}

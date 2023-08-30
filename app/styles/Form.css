@@ -1,0 +1,113 @@
+::placeholder{
+  font-family: Quicksand;
+}
+
+
+section#create-post{
+  width: calc(100% - 30px - 30px); /* FROM LEFT AND RIGHT */
+  position: relative;
+  left: 30px;
+  top: 110px;
+  /* background: #111; BTW LOOKS GOOD */
+}
+
+section#create-post h1.title{
+  text-transform: capitalize;
+  font-family: Righteous;
+  font-size: 3em;
+  display: inline-block;
+  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section#create-post p.desc{
+  position: relative;
+  top: 18px;
+  font-size: 0.8em;
+  width: 72%;
+  line-height: 1.7;
+  /* font-family: Aharoni; */
+  font-family: "Quicksand";
+  font-weight: 600;
+  color: #646464;
+}
+
+section#create-post form.form{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50px;
+  gap: 10px;
+  max-width: 70%;
+  min-width: 350px;
+  /* background: rgba(255, 123, 0, 0.187); */
+  background: rgba(204, 204, 204, 0.352);
+  border-radius: 5px;
+}
+
+form.form label{
+  display: flex;
+  flex-direction: column;
+  padding: 14px 17px;
+  font-family: "Quicksand";
+  font-weight: bolder;
+}
+
+form.form label > span{
+  display: inline-block;
+  padding-bottom: 8px;
+  font-size: 0.9em;
+}
+
+form.form label > *:not(span){
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+label textarea{
+  font-family: "Quicksand";
+  min-height: 250px;
+  max-height: 350px;
+  min-width: 100%;
+  max-width: calc(100% + 29px);
+  white-space: pre-line;
+}
+
+label.tags span span{
+  color: #757575;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 0.89em;
+}
+
+form.form div.submit{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-end;
+  position: relative;
+  right: 20px;
+}
+
+form.form div.submit a{
+  text-decoration: none;
+  /* background: #f8f8f8; */
+  padding: 8px 12px;
+  color: #333;
+  font-size: 0.8em;
+  /* box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2); */
+}
+
+form.form div.submit button{
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #000;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+}
