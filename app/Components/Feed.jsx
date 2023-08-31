@@ -19,7 +19,7 @@ const PostCardList = ({ data, handleTagClick }) => {
   )
 }
 
-const Feed = () => {
+const Feed = ({ type }) => {
 
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -31,7 +31,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
 
-      const response = await fetch("api/posts");
+      const response = await fetch(`api/posts?type=${type}`);
       const data = await response.json();
       setPosts(data);
       console.log(data)

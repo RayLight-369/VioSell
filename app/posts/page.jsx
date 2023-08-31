@@ -5,7 +5,7 @@ import "../PageCss/posts.css"
 
 const page = () => {
   return (
-    <Feed />
+    <Feed type={"all"} />
   )
 }
 

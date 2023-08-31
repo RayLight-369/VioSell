@@ -16,12 +16,14 @@ const CreatePost = () => {
   const createPost = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    const date = new Date();
 
     try {
       const response = await fetch("/api/posts/new", {
         method: "POST",
         body: JSON.stringify({
           ...post,
+          created_at: `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`,
           userID: session.user.id
         })
       })

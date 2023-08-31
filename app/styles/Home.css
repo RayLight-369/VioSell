@@ -32,7 +32,8 @@ section#main p.desc{
   width: 60%;
   line-height: 1.4;
   font-size: 0.9em;
-  color: #444;
+  font-family: quicksand, inter, Arial, Helvetica, sans-serif;
+  color: #222;
   text-align: center;
   position: relative;
   top: 20px;

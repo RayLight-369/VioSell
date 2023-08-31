@@ -13,6 +13,7 @@ const Home = () => {
         <p className="desc">Your premier online marketplace, offering a curated platform where you can confidently present your objects, connect with buyers, and unlock the potential for thriving sales.</p>
       </section>
       <Feed
+        type={"featured"}
       />
     </>
   )

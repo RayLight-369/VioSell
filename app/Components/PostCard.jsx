@@ -14,7 +14,7 @@ const PostCard = ({ handleTagClick, post, handleEdit, handleDelete }) => {
   return (
     <div className='post-card'>
       {/* <div className="card"> */}
-        <div className="post-image">
+      <div className="post-image">
           <Image
             src={ "/Images/post.jpg" }
             width={ 240 }
@@ -23,17 +23,22 @@ const PostCard = ({ handleTagClick, post, handleEdit, handleDelete }) => {
           />
       </div>
       <div className="info">
+        <div className="time">
+          <p className="time">{ post.created_at }</p>
+        </div>
         <div className="title-desc">
           <p className="title">{ post.title }</p>
           <p className="desc">{ post.description }</p>
         </div>
-        <div className="tags">
-          { tags.map((tag, id) => (
-            <span className="tag" key={id}>{ tag }</span>
-          ))}
-        </div>
-      </div>
         
+        <div className="button"><button>Read More</button></div>
+      </div>
+      <div className="tags">
+        { tags.map((tag, id) => (
+          <span className="tag" key={id}>{ tag }</span>
+        ))}
+      </div>
+      
         {/* </div> */}
     </div>
   )

@@ -1,5 +1,3 @@
-"use client";
-
 import Head from 'next/head.js';
 import Provider from '@/Provider/Provider.jsx';
 import { Inter } from 'next/font/google'

@@ -15,6 +15,7 @@
 
 :root{
   --prim-gold: #FF7A00;
-  --prim-red: #FF1F00;
+  --prim-red: rgb(255, 36, 20); /* #FF1F00 */
   --heading-font-size: 2.9em;
+  scroll-behavior: smooth;
 }
