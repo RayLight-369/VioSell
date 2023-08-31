@@ -131,6 +131,7 @@ div.post-card div.tags span.tag:hover{
 
 div.info div.button{
   z-index: 100;
+  width: fit-content;
 }
 
 div.info div.button button{
