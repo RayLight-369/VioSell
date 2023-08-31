@@ -45,3 +45,13 @@ section#main p.desc{
   position: relative;
   top: 20px;
 }
+
+hr{
+  width: 65%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ddd, transparent);
+}

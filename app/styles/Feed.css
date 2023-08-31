@@ -46,10 +46,9 @@ div#posts-list{
   position: relative;
   top: 50px;
   flex-flow: wrap;
-  background: #ddd;
   gap: 50px 100px;
   padding: 50px 0 50px 0;
-  background: linear-gradient(135deg, rgb(255, 174, 0) -5%, red 105%);
+  /* background: linear-gradient(135deg, rgb(255, 174, 0) -5%, red 105%); */
   /* background: linear-gradient(135deg, var(--prim-gold), var(--prim-red)); */
   border-radius: 30px;
 }

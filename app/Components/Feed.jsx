@@ -44,15 +44,6 @@ const Feed = ({ type }) => {
 
   return (
     <section id="feed">
-      <form>
-        <input type="text"
-          value={ searchText }
-          onChange={ handleSearchChange }
-          placeholder='Search for a tag or post...'
-          className='search-input'
-        />
-      </form>
-
       <PostCardList
         data={ posts }
         handleTagClick={ () => { } }

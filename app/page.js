@@ -12,6 +12,7 @@ const Home = () => {
         <h1 className="title"><span>VioSell: </span><br /> Your Objects, Your Marketplace.</h1>
         <p className="desc">Your premier online marketplace, offering a curated platform where you can confidently present your objects, connect with buyers, and unlock the potential for thriving sales.</p>
       </section>
+      <hr/>
       <Feed
         type={"featured"}
       />

@@ -13,7 +13,7 @@ div.post-card{
   align-items: center;
   position: relative;
   left: 95px;
-  box-shadow: 9px 8px 10px rgba(0, 0, 0, 0.3 );
+  box-shadow: 5px 6px 18px rgba(0, 0, 0, 0.3 );
   cursor: pointer;
   transition: 200ms;
 }
@@ -120,7 +120,7 @@ div.post-card div.tags{
 }
 
 div.post-card div.tags span.tag{
-  font-size: .7em;
+  font-size: .75em;
   transition: 150ms;
   border-bottom: 1px solid transparent;
 }
