@@ -14,7 +14,7 @@ const handler = NextAuth({
       const sessionUser = await getData({
         table: "users",
         where: {
-          email: "buttrafay@gmail.com"
+          email: session.user.email
         }
       }).then(users => users.data[0]);
       

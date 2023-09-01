@@ -1,4 +1,7 @@
-body{
+/* Home.module.css */
+
+/* Body */
+.bodyBackground {
   background: url("/Images/background.svg");
   background-position: center;
   background-repeat: no-repeat;
@@ -6,12 +9,13 @@ body{
   background-position-y: -5px;
 }
 
-main{
+main.main-element {
   width: 100%;
   height: 100%;
 }
 
-section#main{
+/* Main Section */
+#main {
   width: 100%;
   height: 100%;
   display: flex;
@@ -20,7 +24,8 @@ section#main{
   flex-direction: column;
 }
 
-section#main h1.title{
+/* Main Title */
+#main h1.title {
   font-family: Righteous;
   font-size: 3.5em;
   text-align: center;
@@ -28,15 +33,20 @@ section#main h1.title{
   top: -10px;
 }
 
-h1.title span{
-  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+/* Title Span */
+h1.title span.span {
+  background: linear-gradient(90deg,
+      var(--prim-red),
+      var(--prim-gold),
+      var(--prim-red) 120%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2em;
 }
 
-section#main p.desc{
+/* Main Description */
+#main p.desc {
   width: 60%;
   line-height: 1.4;
   font-size: 0.9em;
@@ -47,7 +57,8 @@ section#main p.desc{
   top: 20px;
 }
 
-hr{
+/* Horizontal Rule */
+hr.hr {
   width: 65%;
   position: relative;
   left: 50%;

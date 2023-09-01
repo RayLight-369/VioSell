@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Form from "../Components/Form";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { CldUploadButton } from 'next-cloudinary';
+import Form from "../Components/Form/Form";
 
 const CreatePost = () => {
 
@@ -16,14 +16,13 @@ const CreatePost = () => {
   const createPost = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    const date = new Date();
+    // const date = new Date();
 
     try {
       const response = await fetch("/api/posts/new", {
         method: "POST",
         body: JSON.stringify({
           ...post,
-          created_at: `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`,
           userID: session.user.id
         })
       })
@@ -42,16 +41,21 @@ const CreatePost = () => {
 
   return (
     <>
-    <Form
-      post={ post }
-      type="Create"
-      setPost={ setPost }
-      submitting={ submitting }
-      handleSubmit={ createPost }
-    />
-      {/* <CldUploadButton
-        uploadPreset="rp9nzn6b"       
-      /> */}
+      { session?.user ? (
+        <Form
+          post={ post }
+          type="Create"
+          setPost={ setPost }
+          submitting={ submitting }
+          handleSubmit={ createPost }
+        />
+          /* <CldUploadButton
+            uploadPreset="rp9nzn6b"       
+          /> */
+      ):(
+        <button onClick={ signIn('google') }>SignIn With Google</button>
+      )}
+    
       </>
   )
 }

@@ -1,7 +1,3 @@
-::placeholder{
-  font-family: Quicksand;
-}
-
 
 section#create-post{
   width: calc(100% - 30px - 30px); /* FROM LEFT AND RIGHT */
@@ -47,7 +43,7 @@ section#create-post form.form{
   border-radius: 5px;
 }
 
-form.form label{
+label.label{
   display: flex;
   flex-direction: column;
   padding: 14px 17px;
@@ -55,20 +51,20 @@ form.form label{
   font-weight: bolder;
 }
 
-form.form label > span{
+label.label > span.span{
   display: inline-block;
   padding-bottom: 8px;
   font-size: 0.9em;
 }
 
-form.form label > *:not(span){
+label.label > *:not(span.span){
   border: none;
   outline: none;
   padding: 10px;
   border-radius: 4px;
 }
 
-label textarea{
+textarea.textarea{
   font-family: "Quicksand";
   min-height: 250px;
   max-height: 350px;
@@ -77,14 +73,14 @@ label textarea{
   white-space: pre-line;
 }
 
-label.tags span span{
+span.span span.child{
   color: #757575;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
   font-size: 0.89em;
 }
 
-form.form div.submit{
+form.form div.submit-container{
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -93,7 +89,7 @@ form.form div.submit{
   right: 20px;
 }
 
-form.form div.submit a{
+form.form div.submit-container a.link{
   text-decoration: none;
   /* background: #f8f8f8; */
   padding: 8px 12px;
@@ -102,7 +98,7 @@ form.form div.submit a{
   /* box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2); */
 }
 
-form.form div.submit button{
+form.form div.submit-container button.submit-button{
   padding: 10px 20px;
   cursor: pointer;
   background: #000;
@@ -110,4 +106,9 @@ form.form div.submit button{
   border: none;
   outline: none;
   border-radius: 40px;
+  transition: 150ms;
+}
+
+form.form div.submit-container button.submit-button:hover{
+  transform: scale(1.03);
 }

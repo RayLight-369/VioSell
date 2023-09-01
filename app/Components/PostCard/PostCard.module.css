@@ -1,10 +1,11 @@
-div.post-card{
+/* PostCard.module.css */
+
+.post-card {
   width: 40%;
   min-width: 30px;
-  height: 250px;
+  height: 270px;
   min-width: 300px;
   padding: 2px;
-  /* background: linear-gradient(90deg, var(--prim-gold), var(--prim-red)); */
   background: #fff;
   border-radius: 24px;
   display: flex;
@@ -13,24 +14,16 @@ div.post-card{
   align-items: center;
   position: relative;
   left: 95px;
-  box-shadow: 5px 6px 18px rgba(0, 0, 0, 0.3 );
+  box-shadow: 5px 6px 18px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: 200ms;
 }
 
-div.post-card:hover{
+.post-card:hover {
   transform: scale(1.015);
 }
 
-
-/* div.card{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-} */
-
-div.post-card div.post-image{
+.post-card .post-image {
   position: absolute;
   width: 36%;
   min-width: 140px;
@@ -44,9 +37,8 @@ div.post-card div.post-image{
   transition: 200ms;
 }
 
-div.post-card div.post-image img{
+.post-card .post-image img {
   width: 100%;
-  /* background: #000; */
   height: 100%;
   object-fit: contain;
   border-radius: 20px;
@@ -54,12 +46,11 @@ div.post-card div.post-image img{
   transition: 200ms;
 }
 
-div.post-card div.post-image:hover{
+.post-card .post-image:hover {
   transform: scale(1.015);
 }
 
-div.post-card div.info{
-  /* background: #555; */
+.post-card .info {
   position: relative;
   left: calc(36% - 20px);
   max-height: calc(100% - 85px);
@@ -71,18 +62,18 @@ div.post-card div.info{
   width: calc(100% - 36% - 20px);
 }
 
-div.time{
+.time {
   position: relative;
   top: -5px;
 }
 
-div.time p.time{
+.time p.time {
   color: #828282;
-  font-size: .8em;
+  font-size: 0.8em;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-div.post-card div.info div.title-desc{
+.post-card .info .title-desc {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -90,24 +81,24 @@ div.post-card div.info div.title-desc{
   top: -10px;
 }
 
-div.post-card div.info div.title-desc p.title{
+.post-card .info .title-desc p.title {
   font-size: 1.2em;
   font-family: righteous;
   color: #222;
 }
 
-div.post-card div.info div.title-desc p.desc{
+.post-card .info .title-desc p.desc {
   white-space: pre-wrap;
-  font-size: .76em;
+  font-size: 0.76em;
   line-height: 1.3;
   color: #555;
   font-family: Arial, Helvetica, sans-serif;
-  height: 40px;
+  height: 50px;
   overflow-y: auto;
   padding-right: 5px;
 }
 
-div.post-card div.tags{
+.post-card .tags {
   display: flex;
   justify-content: flex-end;
   position: absolute;
@@ -119,46 +110,33 @@ div.post-card div.tags{
   color: rgb(255, 68, 0);
 }
 
-div.post-card div.tags span.tag{
-  font-size: .75em;
+.post-card .tags span.tag {
+  font-size: 0.75em;
   transition: 150ms;
   border-bottom: 1px solid transparent;
 }
 
-div.post-card div.tags span.tag:hover{
+.post-card .tags span.tag:hover {
   border-color: rgb(255, 68, 0);
 }
 
-div.info div.button{
+.info .button {
   z-index: 100;
   width: fit-content;
 }
 
-div.info div.button button{
+.info .button button {
   background: linear-gradient(100deg, var(--prim-gold), var(--prim-red));
   padding: 7px 23px;
   border: none;
   outline: none;
   border-radius: 50px;
-  font-size: .8em;
+  font-size: 0.8em;
   color: white;
   transition: 200ms;
   cursor: pointer;
 }
 
-div.info div.button button:hover{
+.info .button button:hover {
   transform: scale(1.07);
 }
-
-::-webkit-scrollbar {
-  width: 10px;
-  background: #ddd;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(255, 58, 44);
-  border-radius: 5px;
-  min-height: 30px;
-}
-

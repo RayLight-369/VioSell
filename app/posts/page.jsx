@@ -1,5 +1,5 @@
 import React from 'react'
-import Feed from '../Components/Feed'
+import Feed from '../Components/Feed/Feed'
 
 import "../PageCss/posts.css"
 

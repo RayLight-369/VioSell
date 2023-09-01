@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import PostCard from './PostCard';
+import PostCard from '../PostCard/PostCard';
 
-import "../styles/Feed.css";
+import styles from "./Feed.module.css";
 
 const PostCardList = ({ data, handleTagClick }) => {
   return (
-    <div id="posts-list">
+    <div id={styles["posts-list"]}>
       { data.map(post => (
         <PostCard
           key={ post.id }
@@ -19,7 +19,7 @@ const PostCardList = ({ data, handleTagClick }) => {
   )
 }
 
-const Feed = ({ type }) => {
+const Feed = ({ type, user_ID }) => {
 
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
@@ -31,10 +31,15 @@ const Feed = ({ type }) => {
   useEffect(() => {
     const fetchPosts = async () => {
 
-      const response = await fetch(`api/posts?type=${type}`);
+      const response = await fetch(`api/posts`, {
+        method: "POST",
+        body: JSON.stringify({
+          type,
+          user_ID: !isNaN(user_ID) ? parseInt(user_ID) : undefined
+        })
+      });
       const data = await response.json();
       setPosts(data);
-      console.log(data)
 
     };
 
@@ -43,7 +48,7 @@ const Feed = ({ type }) => {
   }, []);
 
   return (
-    <section id="feed">
+    <section id={styles.feed}>
       <PostCardList
         data={ posts }
         handleTagClick={ () => { } }
@@ -52,4 +57,4 @@ const Feed = ({ type }) => {
   )
 }
 
-export default Feed
+export default Feed;
