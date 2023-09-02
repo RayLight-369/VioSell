@@ -8,14 +8,21 @@ const Home = () => {
 
   useEffect(() => {
     // Apply the background class to the body element only for the home page
-    document.body.classList.add(styles.bodyBackground);
-    document.querySelector("main").classList.add(styles["main-element"]);
+    if(typeof window !== "undefined" && typeof document !== "undefined"){
+    
+      document.body.classList.add(styles.bodyBackground);
+      document.querySelector("main").classList.add(styles["main-element"]);
 
+    }
+    
     // Clean up the class when the component unmounts (optional)
     return () => {
-      document.body.classList.remove(styles.bodyBackground);
-      document.querySelector("main").classList.remove(styles["main-element"]);
-    };
+      if (typeof window !== "undefined" && typeof document !== "undefined") {
+        
+        document.body.classList.remove(styles.bodyBackground);
+        document.querySelector("main").classList.remove(styles["main-element"]);
+    
+      }};
   }, []);
 
   return (
