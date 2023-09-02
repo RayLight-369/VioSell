@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { CldUploadButton } from 'next-cloudinary';
+// import { CldUploadButton } from 'next-cloudinary';
 import Form from "../Components/Form/Form";
 
 const CreatePost = () => {
@@ -42,6 +42,7 @@ const CreatePost = () => {
   return (
     <>
       { session?.user ? (
+        <>
         <Form
           post={ post }
           type="Create"
@@ -49,9 +50,10 @@ const CreatePost = () => {
           submitting={ submitting }
           handleSubmit={ createPost }
         />
-          /* <CldUploadButton
+          {/* <CldUploadButton
             uploadPreset="rp9nzn6b"       
-          /> */
+      /> */}
+        </>
       ):(
         <button onClick={ signIn('google') }>SignIn With Google</button>
       )}
