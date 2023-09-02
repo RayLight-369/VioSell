@@ -15,7 +15,7 @@ export const POST = async (req, res) => {
     object.where = {};
   }
 
-  if (type) { 
+  if (type && type != "all") { 
     object.where.type = type;
   }
 
