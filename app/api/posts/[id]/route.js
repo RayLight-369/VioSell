@@ -65,3 +65,24 @@ export const PUT = async (req, { params }) => {
 
 
 // DELETE
+
+export const DELETE = async (req, { params }) => { 
+
+  try {
+
+    await deleteData({
+      table: "posts",
+      where: {
+        id: params.id
+      }
+    })
+
+    return new Response("Success", { status: 200 });
+    
+  } catch (err) {
+
+    return new Response("Failed to Delete Post.", { status: 500 });
+
+  }
+
+};

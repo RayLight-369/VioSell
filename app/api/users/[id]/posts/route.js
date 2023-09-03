@@ -10,10 +10,14 @@ export const GET = async (req, { params }) => {
       }
     });
 
-    if(!body?.data?.length) return new Response("Posts Not Found", { status: 404 })
+    if (!body?.data?.length) return new Response("Posts Not Found", { status: 404 })
+    
+    return new Response(JSON.stringify(body.data), { status: 200 });
 
   } catch (err) {
 
+    console.log(err);
+    return new Response("Failed to get Posts", { status: 500 });
 
   }
 }

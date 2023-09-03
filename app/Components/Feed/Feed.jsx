@@ -2,10 +2,37 @@
 
 import React, { useEffect, useState } from 'react';
 import PostCard from '../PostCard/PostCard';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 import styles from "./Feed.module.css";
 
 const PostCardList = ({ data, handleTagClick }) => {
+
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const handleEdit = (post) => {
+    if (session?.user.id === post.userID) {
+      router.push(`/edit-post/${post.id}`);
+    }
+  }
+
+  const handleDelete = async (post) => { 
+    const hasConfirmed = confirm("Are you sure you want to delete this Post?");
+    
+    if (hasConfirmed) {
+      console.log(hasConfirmed, post.id)
+      const req = await fetch(`/api/posts/${post.id}`, {
+        method: "DELETE"
+      })
+
+      if (req.ok) {
+        router.refresh();
+      }
+    }
+  }
+
   return (
     <div id={styles["posts-list"]}>
       { data.map(post => (
@@ -13,6 +40,8 @@ const PostCardList = ({ data, handleTagClick }) => {
           key={ post.id }
           handleTagClick={ handleTagClick }
           post={ post }
+          handleDelete={ handleDelete }
+          handleEdit={ handleEdit }
         />
       )) }
     </div>

@@ -23,6 +23,10 @@
   transform: scale(1.015);
 }
 
+.post-card:hover div.edit-delete{
+  opacity: 1;
+}
+
 .post-card .post-image {
   position: absolute;
   width: 36%;
@@ -139,4 +143,39 @@
 
 .info .button button:hover {
   transform: scale(1.07);
+}
+
+div.edit-delete {
+  position: absolute;
+  right: 30px;
+  top: 35px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  transition: 100ms;
+  width: fit-content;
+  opacity: 0;
+  z-index: 50;
+}
+
+div.edit-delete span.edit,
+div.edit-delete span.delete {
+  font-size: 0.65em;
+  transition: 100ms;
+
+}
+
+span.edit{
+  color: rgb(0, 140, 255);
+}
+
+span.delete{
+  color: red;
+}
+
+span.edit:hover, span.delete:hover{
+  transform: scale(1.05);
+  font-weight: bold;
 }

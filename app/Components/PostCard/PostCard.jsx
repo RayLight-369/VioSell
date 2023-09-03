@@ -1,3 +1,5 @@
+"use client";
+
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react'
@@ -7,12 +9,30 @@ import styles from "./PostCard.module.css"; // Import the CSS module
 
 const PostCard = ({ handleTagClick, post, handleEdit, handleDelete }) => {
 
+  const { data: session } = useSession();
+
   let { tags } = post;
 
   tags = tags.split(" ").map(tag => tag.trim());
 
   return (
-    <div className={styles['post-card']}>
+    <div className={ styles['post-card'] }>
+      { session?.user?.id == post.userID && (
+
+        <div className={ styles["edit-delete"] }>
+          <span className={ styles["edit"] } onClick={ () => {
+            handleEdit(post);
+          } }>
+            Edit
+          </span>
+          <span className={ styles["delete"] } onClick={ () => {
+            handleDelete(post);
+          } }>
+            Delete
+          </span>
+        </div>
+
+      )}
       <div className={styles['post-image']}>
           <Image
             src={"/Images/post.jpg"}
