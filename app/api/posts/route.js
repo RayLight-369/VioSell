@@ -1,28 +1,13 @@
 import { getData } from "@/app/Supabase/Supabase";
 
-export const POST = async (req, res) => { 
+export const GET = async (req, res) => { 
   
-  let { type, user_ID } = await req.json();
-
-  let object = {
-    table: "posts"
-  };
-
-  if (type || user_ID) {
-    object.where = {};
-  }
-
-  if (type && type != "all") { 
-    object.where.type = type;
-  }
-
-  if (user_ID) {
-    object.where.userID = user_ID;
-  }
-
   try {
     
-    const data = await getData(object);
+    const data = await getData({
+      table: "posts"
+    });
+
     const date = new Date();
 
     // const data = {

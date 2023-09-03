@@ -60,14 +60,12 @@ const Feed = ({ type, user_ID }) => {
   useEffect(() => {
     const fetchPosts = async () => {
 
-      const response = await fetch(`api/posts`, {
-        method: "POST",
-        body: JSON.stringify({
-          type,
-          user_ID: !isNaN(user_ID) ? parseInt(user_ID) : undefined
-        })
-      });
+      let url = user_ID ? `api/users/${user_ID}/posts` : `api/posts`;
+
+      const response = await fetch(url)
+
       const data = await response.json();
+
       setPosts(data);
 
     };

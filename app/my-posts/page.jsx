@@ -12,7 +12,7 @@ const page = () => {
   return (
     <section id={styles['my-posts']}>
       <h1 className={styles['title']}>My Posts</h1>
-      { !session ? (
+      { session ? (
         <Feed
           user_ID={session?.user.id}
         />
