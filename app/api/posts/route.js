@@ -2,9 +2,6 @@ import { getData } from "@/app/Supabase/Supabase";
 
 export const POST = async (req, res) => { 
   
-  // let { searchParams } = new URL(req.url);
-  // let type = searchParams.get("type");
-
   let { type, user_ID } = await req.json();
 
   let object = {
@@ -24,10 +21,9 @@ export const POST = async (req, res) => {
   }
 
   try {
-
+    
     const data = await getData(object);
-
-    // const date = new Date();
+    const date = new Date();
 
     // const data = {
     //   data: [{
@@ -35,7 +31,7 @@ export const POST = async (req, res) => {
     //     description: "Description of the Post Description of the Post Description of the Post Description of the PostDescription of the Post Description of the Post Description of the Post Description of the PostDescription of the PostDescription of the Post" ,
     //     tags: "#tag1 #tag2",
     //     userID: 2,
-    //     id: 1,
+    //     id: 5,
     //     created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
     //   },{
     //     title: "Title of the Post",
@@ -48,7 +44,7 @@ export const POST = async (req, res) => {
     //     title: "Title of the Post",
     //     description: "Description of the Post Description of the Post Description of the Post Description of the PostDescription of the Post Description of the Post Description of the Post Description of the PostDescription of the PostDescription of the Post",
     //     tags: "#tag1 #tag2",
-    //     userID: 2,
+    //     userID: 5,
     //     id: 1,
     //     created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
     //   },{
@@ -67,14 +63,8 @@ export const POST = async (req, res) => {
 
   } catch (e) {
 
-    return new Response("Failed", { status: 500 });
+    return new Response(JSON.stringify({error: "Failed"}), { status: 500 });
 
   }
 
 };
-
-
-// export const POST = async (req, res) => { 
-//   let { ID } = req.json();
-//   console.log(ID)
-// };

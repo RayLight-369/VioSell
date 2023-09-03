@@ -1,0 +1,19 @@
+home -> /
+
+posts -> /posts
+|
+|-------/posts/[id]
+
+my-posts -> /my-posts
+|
+|-------/my-posts
+
+create-posts -> /create-posts
+
+edit-posts -> /edit-post
+|
+|--------/edit-post/[id]
+
+profile -> /users
+|
+|--------/users/[id]

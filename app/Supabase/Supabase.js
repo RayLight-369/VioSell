@@ -87,7 +87,8 @@ export const updateData = async ({
     let Data = await supabase
       .from(table)
       .update(object)
-      .match(where);
+      .match(where)
+      .select();
     
     
     return Data.data;

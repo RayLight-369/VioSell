@@ -1,0 +1,17 @@
+section#my-posts{
+  position: relative;
+  top: 110px;
+  left: 30px;
+  width: calc(100% - 30px - 30px);
+}
+
+section#my-posts h1.title{
+  text-transform: capitalize;
+    font-family: Righteous;
+    font-size: 3em;
+    display: inline-block;
+    background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
