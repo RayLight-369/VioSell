@@ -10,7 +10,7 @@ import { uploadFile } from "../Supabase/Supabase";
 const CreatePost = () => {
 
   const [ submitting, setSubmitting ] = useState(false);
-  const [ post, setPost ] = useState({ description: "", tags: "", title: "" });
+  const [post, setPost] = useState({ description: "", tags: "", title: "", location: "" });
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -56,7 +56,7 @@ const CreatePost = () => {
           submitting={ submitting }
           handleSubmit={ createPost }
           />
-          
+
           {/* <CldUploadButton
             uploadPreset="rp9nzn6b"       
       /> */}

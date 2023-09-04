@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const page = ({ params }) => {
 
   const { postID } = params;
-  const [post, setPost] = useState({ title: "", description: "", tags: "" });
+  const [post, setPost] = useState({ title: "", description: "", tags: "", location: "" });
   const [submitting, setSubmitting] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
@@ -28,7 +28,7 @@ const page = ({ params }) => {
 
         if (response.ok) {
           if (body.userID == session?.user.id) {
-            setPost({ title: body.title, description: body.description, tags: body.tags });
+            setPost({ title: body.title, description: body.description, tags: body.tags, location: body.location });
           }
         }
       

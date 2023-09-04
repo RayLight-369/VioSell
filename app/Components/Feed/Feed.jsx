@@ -18,20 +18,23 @@ const PostCardList = ({ data, handleTagClick }) => {
     }
   }
 
-  const handleDelete = async (post) => { 
+  const handleDelete = (post) => { 
+
     const hasConfirmed = confirm("Are you sure you want to delete this Post?");
     
     if (hasConfirmed) {
 
       console.log(hasConfirmed, post.id);
 
-      const req = await fetch(`/api/posts/${post.id}`, {
-        method: "DELETE"
-      })
+      fetch(`/api/posts/${post.id}`, {
 
-      if (req.ok) {
+        method: "DELETE"
+
+      }).then(() => {
+
         router.refresh();
-      }
+
+      })
 
     }
   }

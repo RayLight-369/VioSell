@@ -36,6 +36,13 @@ const Form = ({ post, type, setPost, submitting, handleSubmit }) => {
         
         </label>
 
+        <label className={ styles["label"] }>
+
+          <span className={ styles["span"] }>Location</span>
+          <input type="text" required placeholder='Location' value={ post.location } onChange={ (e) => setPost(prev => ({ ...prev, location: e.target.value })) } />
+
+        </label>
+
         <div className={ styles["submit-container"] }>
           
           <Link href={ "/" } className={styles['link']}>Cancel</Link>
