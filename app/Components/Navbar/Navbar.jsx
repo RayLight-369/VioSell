@@ -15,7 +15,7 @@ import styles from "./Navbar.module.css"; // Import the CSS module
 
 const Navbar = () => {
   const [provider, setProvider] = useState(null);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const Navbar = () => {
                   <Link href={"/create-post"} onClick={hideDropdown}>
                     Create Post
                   </Link>
-                  <Link href={"/my-posts"} onClick={hideDropdown}>
+                  <Link href={`/users/${session?.user.id}/posts`} onClick={hideDropdown}>
                     My Posts
                   </Link>
                 </div>

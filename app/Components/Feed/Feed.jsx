@@ -60,7 +60,7 @@ const Feed = ({ type, user_ID }) => {
   useEffect(() => {
     const fetchPosts = async () => {
 
-      let url = user_ID ? `api/users/${user_ID}/posts` : `api/posts`;
+      let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
 
       const response = await fetch(url)
 

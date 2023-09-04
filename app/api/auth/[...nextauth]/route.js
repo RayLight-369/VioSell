@@ -35,13 +35,16 @@ const handler = NextAuth({
         })
 
         if (!userExist) {
+
+          const date = new Date();
           
           let newUser = await insertData({
             table: "users",
             object: {
               email: profile.email,
               name: profile.name.toLowerCase(),
-              image: profile.picture
+              image: profile.picture,
+              created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
             }
           })
 
