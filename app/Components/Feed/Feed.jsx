@@ -22,7 +22,9 @@ const PostCardList = ({ data, handleTagClick }) => {
     const hasConfirmed = confirm("Are you sure you want to delete this Post?");
     
     if (hasConfirmed) {
-      console.log(hasConfirmed, post.id)
+
+      console.log(hasConfirmed, post.id);
+
       const req = await fetch(`/api/posts/${post.id}`, {
         method: "DELETE"
       })
@@ -30,6 +32,7 @@ const PostCardList = ({ data, handleTagClick }) => {
       if (req.ok) {
         router.refresh();
       }
+
     }
   }
 
@@ -58,6 +61,7 @@ const Feed = ({ type, user_ID }) => {
   }
 
   useEffect(() => {
+    
     const fetchPosts = async () => {
 
       let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;

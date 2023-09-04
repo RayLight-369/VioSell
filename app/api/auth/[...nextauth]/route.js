@@ -3,19 +3,25 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
+
   providers: [
+    
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
+
   ],
   callbacks: {
+
     async session ({ session, user, token }) {
+
       const sessionUser = await getData({
         table: "users",
         where: {
           email: session.user.email
         }
+
       }).then(users => users.data[0]);
       
       session.user.id = sessionUser.id;
@@ -26,6 +32,7 @@ const handler = NextAuth({
     async signIn ({ profile }) {
 
       try {
+
         const userExist = await exists({
           table: "users",
           where: {
@@ -38,7 +45,7 @@ const handler = NextAuth({
 
           const date = new Date();
           
-          let newUser = await insertData({
+          await insertData({
             table: "users",
             object: {
               email: profile.email,
@@ -53,8 +60,10 @@ const handler = NextAuth({
         return true;
         
       } catch (e) {
+
         console.log(e);
         return false;
+
       }
 
     }

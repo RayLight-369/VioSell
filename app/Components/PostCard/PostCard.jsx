@@ -9,14 +9,30 @@ import styles from "./PostCard.module.css"; // Import the CSS module
 
 const PostCard = ({ handleTagClick, post, handleEdit, handleDelete }) => {
 
+  const [imageLoading, setImageLoading] = useState(true);
+  const [cardLoading, setCardLoading] = useState(true);
+
   const { data: session } = useSession();
 
   let { tags } = post;
 
   tags = tags.split(" ").map(tag => tag.trim());
 
+  useEffect(() => {
+
+
+    // other operations
+
+    setTimeout(() => {
+      setCardLoading(false);
+    }, 1000);
+
+  }, [])
+
   return (
-    <div className={ styles['post-card'] }>
+    <div className={ styles['post-card'] } style={ {
+      filter: cardLoading ? 'blur(4px)' : "none"
+    }}>
       { session?.user?.id == post.userID && (
 
         <div className={ styles["edit-delete"] }>
@@ -39,6 +55,10 @@ const PostCard = ({ handleTagClick, post, handleEdit, handleDelete }) => {
             width={240}
             height={150}
             alt='post image'
+            // style={ {
+            //   filter: imageLoading ? "blur(4px)" : "none",
+            // }}
+            // onLoadingComplete={() => setImageLoading(false)}
           />
       </div>
       <div className={styles['info']}>

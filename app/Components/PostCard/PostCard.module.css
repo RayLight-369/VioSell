@@ -47,7 +47,7 @@
   object-fit: contain;
   border-radius: 20px;
   background: linear-gradient(135deg, var(--prim-gold), var(--prim-red));
-  transition: 200ms;
+  transition: 200ms ease-in-out;
 }
 
 .post-card .post-image:hover {

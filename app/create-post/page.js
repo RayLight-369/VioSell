@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 // import { CldUploadButton } from 'next-cloudinary';
 import Form from "../Components/Form/Form";
+import { uploadFile } from "../Supabase/Supabase";
 
 const CreatePost = () => {
 
   const [ submitting, setSubmitting ] = useState(false);
-  const [post, setPost] = useState({ description: "", tags: "", title: "" });
+  const [ post, setPost ] = useState({ description: "", tags: "", title: "" });
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -19,6 +20,7 @@ const CreatePost = () => {
     // const date = new Date();
 
     try {
+      
       const response = await fetch("/api/posts/new", {
         method: "POST",
         body: JSON.stringify({
@@ -32,9 +34,13 @@ const CreatePost = () => {
       }
       
     } catch (e) {
+
       console.log(e);
+
     } finally {
+
       setSubmitting(false);
+
     }
 
   };
@@ -49,13 +55,17 @@ const CreatePost = () => {
           setPost={ setPost }
           submitting={ submitting }
           handleSubmit={ createPost }
-        />
+          />
+          {/* <input type="file" accept="image/*" min={ 1 } max={ 9 } onChange={ async e => {
+            let file = e.target.files[0];
+            console.log(URL.createObjectURL(file));
+          }} /> */}
           {/* <CldUploadButton
             uploadPreset="rp9nzn6b"       
       /> */}
         </>
       ):(
-        <button onClick={ signIn('google') }>SignIn With Google</button>
+        <button onClick={ () => signIn('google') }>SignIn With Google</button>
       )}
     
       </>

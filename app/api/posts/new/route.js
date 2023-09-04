@@ -1,8 +1,10 @@
 import { insertData } from "@/app/Supabase/Supabase";
 
-export const POST = async (req, res) => {
+export const POST = async (req) => {
+
   const DATA = await req.json();
   const date = new Date();
+
   try {
     
     let data = await insertData({

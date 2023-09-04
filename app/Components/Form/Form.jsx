@@ -8,36 +8,46 @@ const Form = ({ post, type, setPost, submitting, handleSubmit }) => {
 
 
   return (
-    <section id={styles['create-post']}>
+    <section id={ styles['create-post'] }>
+      
       <h1 className={ styles['title'] }>{ type } Post</h1>
       <p className={styles["desc"]}>{ desc }</p>
 
-      <form className={styles['form']} onSubmit={handleSubmit}>
-        <label className={styles["label"]}>
+      <form className={ styles['form'] } onSubmit={ handleSubmit }>
+        
+        <label className={ styles["label"] }>
+          
           <span className={styles['span']}>Your Title</span>
-          <input type="text" required placeholder='Title' value={post.title} onChange={(e) => setPost(prev => ({...prev, title: e.target.value}))} />
+          <input type="text" required placeholder='Title' value={ post.title } onChange={ (e) => setPost(prev => ({ ...prev, title: e.target.value })) } />
+          
         </label>
 
-        <label className={styles["label"]}>
+        <label className={ styles["label"] }>
+          
           <span className={styles['span']}>Description</span>
-          <textarea className={styles['textarea']} value={post.description} required placeholder='Write Description...' onChange={(e) => setPost(prev => ({...prev, description: e.target.value}))} />
+          <textarea className={ styles['textarea'] } value={ post.description } required placeholder='Write Description...' onChange={ (e) => setPost(prev => ({ ...prev, description: e.target.value })) } />
+          
         </label>
 
-        <label className={styles["label"]}>
+        <label className={ styles["label"] }>
+          
           <span className={`${styles['span']}`}>Tags <span className={styles['child']}>e.g. (#mobile, #laptop)</span></span>
           <input required type="text" placeholder='tag' value={post.tags} onChange={(e) => setPost(prev => ({...prev, tags: e.target.value}))} />
+        
         </label>
 
-        <div className={styles["submit-container"]}>
+        <div className={ styles["submit-container"] }>
+          
           <Link href={ "/" } className={styles['link']}>Cancel</Link>
 
           <button type="submit" className={styles['submit-button']} disabled={submitting}>
             {submitting ? `${type}...` : type}
           </button>
+
         </div>
       </form>
     </section>
   )
 }
 
-export default Form
+export default Form;

@@ -5,7 +5,12 @@ export const GET = async (req, res) => {
   try {
     
     const data = await getData({
-      table: "posts"
+      table: "posts",
+      range: [0, 4],
+      orderBy: {
+        property: "id",
+        ascending: false
+      }
     });
 
     const date = new Date();

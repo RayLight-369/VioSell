@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = 'https://lmxqvapkmczkpcfheiun.supabase.co'
 const supabaseKey = process.env.SUPABASE_KEY
-export const supabase = createClient(supabaseUrl, supabaseKey, {
+export const supabase = createClient(supabaseUrl, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxteHF2YXBrbWN6a3BjZmhlaXVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMwNDgwMDMsImV4cCI6MjAwODYyNDAwM30.AHSfUIjmcxqOr4OHfbv3qDg27Fp80H51zGHffZpogbg", {
   auth: { persistSession : false }
 });
 
@@ -12,7 +12,11 @@ export const getData = async ({
   table,
   range,
   columns = [],
-  where = {}
+  where = {},
+  orderBy = {
+    property: 'id',
+    ascending: true
+  }
 }) => {
 
   try {
@@ -29,14 +33,16 @@ export const getData = async ({
         .from(table)
         .select(columns)
         .match(where)
-        .range(range[0], range[1]);
+        .range(range[0], range[1])
+        .order(orderBy.property, { ascending: orderBy.ascending });
       
     } else {
 
       Data = await supabase
         .from(table)
         .select(columns)
-        .match(where);
+        .match(where)
+        .order(orderBy.property, { ascending: orderBy.ascending });
       
     }
     
@@ -87,8 +93,7 @@ export const updateData = async ({
     let Data = await supabase
       .from(table)
       .update(object)
-      .match(where)
-      .select();
+      .match(where);
     
     
     return Data.data;
@@ -144,4 +149,23 @@ export const deleteData = async ({
   }
 
   return false;
+};
+
+export const uploadFile = async (name, file) => {
+
+  try {
+    
+    await supabase.storage
+      .from("images")
+      .upload(`users/${name}`, file, {
+        cacheControl: '3600',
+        upsert: false
+    })
+
+  } catch (e) { 
+
+    console.log(e)
+
+  }
+
 }
