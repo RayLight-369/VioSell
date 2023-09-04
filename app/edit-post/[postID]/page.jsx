@@ -18,6 +18,7 @@ const page = ({ params }) => {
   useEffect(() => {
 
     const fetchPost = async () => { 
+      
       try{
         
         const response = await fetch(`/api/posts/${postID}`);

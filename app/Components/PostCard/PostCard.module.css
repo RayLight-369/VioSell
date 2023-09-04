@@ -3,7 +3,7 @@
 .post-card {
   width: 40%;
   min-width: 30px;
-  height: 270px;
+  height: 300px;
   min-width: 300px;
   padding: 2px;
   background: #fff;
@@ -58,7 +58,7 @@
   position: relative;
   left: calc(36% - 20px);
   max-height: calc(100% - 85px);
-  top: 0;
+  top: -5px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -106,16 +106,17 @@
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  top: calc(100% - 60px);
+  top: calc(100% - 50px);
   width: 60%;
   min-width: 150px;
   right: 40px;
   gap: 10px;
   color: rgb(255, 68, 0);
+  overflow-x: auto;
 }
 
 .post-card .tags span.tag {
-  font-size: 0.75em;
+  font-size: 0.72em;
   transition: 150ms;
   border-bottom: 1px solid transparent;
 }
@@ -127,6 +128,8 @@
 .info .button {
   z-index: 100;
   width: fit-content;
+  position: relative;
+  top: -5px;
 }
 
 .info .button button {

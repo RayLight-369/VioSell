@@ -58,6 +58,11 @@
   padding: 11px 22px;
   border-radius: 50px;
   cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.register button:hover{
+  background: #323232;
 }
 
 /* Profile image */
