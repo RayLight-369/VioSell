@@ -56,10 +56,7 @@ const CreatePost = () => {
           submitting={ submitting }
           handleSubmit={ createPost }
           />
-          {/* <input type="file" accept="image/*" min={ 1 } max={ 9 } onChange={ async e => {
-            let file = e.target.files[0];
-            console.log(URL.createObjectURL(file));
-          }} /> */}
+          
           {/* <CldUploadButton
             uploadPreset="rp9nzn6b"       
       /> */}
