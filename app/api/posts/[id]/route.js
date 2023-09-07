@@ -2,10 +2,10 @@ import { getData, deleteData, updateData } from "@/app/Supabase/Supabase";
 
 // GET
 
-export const GET = async (req, {params}) => {
+export const GET = async (req, { params }) => {
 
   try {
-    
+
     const body = await getData({
       table: "posts",
       where: {
@@ -23,12 +23,12 @@ export const GET = async (req, {params}) => {
 
   }
 
-}
+};
 
 
-// PATCH
+// PUT
 
-export const PUT = async (req, { params }) => { 
+export const PUT = async (req, { params }) => {
 
   try {
 
@@ -41,7 +41,7 @@ export const PUT = async (req, { params }) => {
     });
 
     if (!(existingPost?.data?.length)) return new Response("Post Not Found", { status: 404 });
-    
+
     const updatedPost = await updateData({
       table: "posts",
       where: {
@@ -61,12 +61,12 @@ export const PUT = async (req, { params }) => {
 
   }
 
-}
+};
 
 
 // DELETE
 
-export const DELETE = async (req, { params }) => { 
+export const DELETE = async (req, { params }) => {
 
   try {
 
@@ -75,10 +75,10 @@ export const DELETE = async (req, { params }) => {
       where: {
         id: params.id
       }
-    })
+    });
 
     return new Response("Success", { status: 200 });
-    
+
   } catch (err) {
 
     return new Response("Failed to Delete Post.", { status: 500 });

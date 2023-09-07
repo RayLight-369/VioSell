@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://lmxqvapkmczkpcfheiun.supabase.co'
-const supabaseKey = process.env.SUPABASE_KEY
-export const supabase = createClient(supabaseUrl, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxteHF2YXBrbWN6a3BjZmhlaXVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMwNDgwMDMsImV4cCI6MjAwODYyNDAwM30.AHSfUIjmcxqOr4OHfbv3qDg27Fp80H51zGHffZpogbg", {
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: { persistSession : false }
 });
 
@@ -151,21 +152,37 @@ export const deleteData = async ({
   return false;
 };
 
-export const uploadFile = async (name, file) => {
+export const uploadFile = async (userID, postID, id, file) => {
 
   try {
     
-    await supabase.storage
+    supabase.storage
       .from("images")
-      .upload(`users/${name}`, file, {
+      .upload(`users/${userID}/${postID}/${id}`, file, {
         cacheControl: '3600',
         upsert: false
-    })
+    }).then(console.log)
 
   } catch (e) { 
 
     console.log(e)
 
   }
+
+};
+
+export const getFile = (FolderPath, id) => {
+
+  let { data: { publicUrl: src } } = supabase.storage.from(`images/${FolderPath}`).getPublicUrl(id);
+
+  return src;
+
+};
+
+export const deleteFile = async(path) => {
+
+  let { data } = await supabase.storage.from(`images`).remove([`${path}`]);
+
+  return data;
 
 }

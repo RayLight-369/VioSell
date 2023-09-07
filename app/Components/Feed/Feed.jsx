@@ -56,24 +56,29 @@ const PostCardList = ({ data, handleTagClick }) => {
 
 const Feed = ({ type, user_ID }) => {
 
-  const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
-
-  const handleSearchChange = e => {
-    setSearchText(e.target.value);
-  }
 
   useEffect(() => {
     
     const fetchPosts = async () => {
 
-      let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
+      try {
+        
+        let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
 
-      const response = await fetch(url)
+        const response = await fetch(url)
 
-      const data = await response.json();
+        const data = await response.json();
 
-      setPosts(data);
+        setPosts(data);
+
+        console.log(data); // console.log
+
+      } catch (e) {
+
+        console.log(e);
+
+      }
 
     };
 
@@ -83,10 +88,14 @@ const Feed = ({ type, user_ID }) => {
 
   return (
     <section id={styles.feed}>
-      <PostCardList
+      { posts?.length ? (
+        <PostCardList
         data={ posts }
         handleTagClick={ () => { } }
       />
+      ) : (
+          <p>Check Your Internet Connection</p>
+      ) }
     </section>
   )
 }

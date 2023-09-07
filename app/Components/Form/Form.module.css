@@ -4,6 +4,7 @@ section#create-post{
   position: relative;
   left: 30px;
   top: 110px;
+  padding-bottom: 100px;
   /* background: #111; BTW LOOKS GOOD */
 }
 
@@ -41,6 +42,7 @@ section#create-post form.form{
   /* background: rgba(255, 123, 0, 0.187); */
   background: rgba(204, 204, 204, 0.352);
   border-radius: 5px;
+  padding-bottom: 14px;
 }
 
 label.label{
@@ -111,4 +113,60 @@ form.form div.submit-container button.submit-button{
 
 form.form div.submit-container button.submit-button:hover{
   transform: scale(1.03);
+}
+
+.image-label{
+
+  padding: 14px 17px;
+  font-size: 0.8em;
+  background: #d9d9d9;
+  display: inline-block;
+  width: fit-content;
+  position: relative;
+  left: 17px;
+  top: 10px;
+
+}
+
+.img-container{
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 10px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 28px);
+  margin: 30px 0 30px 0;
+}
+
+.img-box{
+  position: relative;
+}
+
+.img-box .img{
+  height: 170px;
+  width: 170px;
+  object-fit: contain;
+  background: #ff3c013b;
+  border-radius: 10px;
+}
+
+.img-container .img-box .delete-img{
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  cursor: pointer;
+  transition: 100ms;
+  color: #333;
+}
+
+.delete-img:hover{
+  transform: scale(1.05);
 }
