@@ -42,7 +42,7 @@ div.img img{
 button.previous, button.next{
   position: absolute;
   /* background: #fff; */
-  background: #0000005f;
+  background: #000000ca;
   font-size: 1em;
   border: none;
   top: 50%;
