@@ -5,7 +5,7 @@ div.container{
   padding: 10px;
   border-radius: 15px;
   /* background: linear-gradient(to bottom right, var(--prim-gold), var(--prim-red)); */
-  background: #ff3c007b;
+  background: #0000007b;
   transition: 200ms;
   overflow: hidden;
   scroll-behavior: smooth; 
