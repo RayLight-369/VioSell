@@ -199,7 +199,7 @@ const ImageComponent = ({
           className={styles["close"]}
           onClick={() => setPreviewVisible(false)}
         >
-          x
+          &times;
         </button>
         <div
           className={styles["preview-image-container"]}
@@ -238,10 +238,10 @@ const ImageComponent = ({
         </div>
 
         <button className={styles["preview-previous"]} onClick={previous}>
-          {"<"}
+          {"❮"}
         </button>
         <button className={styles["preview-next"]} onClick={next}>
-          {">"}
+          {"❯"}
         </button>
       </div>
 
@@ -251,7 +251,10 @@ const ImageComponent = ({
       >
         <div
           className={styles["image-container"]}
-          style={{ left: `calc(-${current * 100}% - ${padding * current}px)` }}
+          style={{
+            left: `calc(-${current * 100}% - ${padding * current}px)`,
+            width: `calc(${pictures.length * 100}% + ${padding * 2}px)`,
+          }}
         >
           {" "}
           {/* padding is the padding of css */}
@@ -286,10 +289,10 @@ const ImageComponent = ({
         </div>
 
         <button className={styles["previous"]} onClick={previous}>
-          {"<"}
+          {"❮"}
         </button>
         <button className={styles["next"]} onClick={next}>
-          {">"}
+          {"❯"}
         </button>
       </div>
     </>
