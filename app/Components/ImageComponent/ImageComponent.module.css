@@ -4,7 +4,6 @@ div.container{
   height: 480px;
   padding: 10px 10px 25px 10px;
   border-radius: 15px;
-  /* background: linear-gradient(to bottom right, var(--prim-gold), var(--prim-red)); */
   background: #111111;
   transition: 200ms;
   overflow: hidden;
@@ -21,7 +20,7 @@ div.image-container{
   display: flex;
   flex-direction: row;
   gap: 10px;
-  transition: 400ms ease-in-out;
+  transition: 200ms ease-in-out;
   scroll-behavior: smooth;
   border-radius: 10px;
 }

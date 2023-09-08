@@ -13,6 +13,19 @@ export const GET = async (req, { params }) => {
       }
     }).then(res => res.data[0]);
 
+    // const date = new Date();
+
+    // const body = {
+    //   title: "Title of the Post",
+    //   description: "Description of the Post Description of the Post Description of the Post Description of the PostDescription of the Post Description of the Post Description of the Post Description of the PostDescription of the PostDescription of the Post",
+    //   tags: "#tag1 #tag2",
+    //   userID: 5,
+    //   id: 37,
+    //   price: 5,
+    //   images: ["/Images/post.jpg"],
+    //   created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+    // };
+
     if (!body) return new Response("Post Not Found", { status: 404 });
 
     return new Response(JSON.stringify(body), { status: 200 });
