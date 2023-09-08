@@ -17,9 +17,9 @@ const PostCardList = ({ data, handleTagClick }) => {
     }
   };
 
-  const handlePostClick = (post) => {
-    router.push(`/posts/${post.id}`);
-  };
+  //const handlePostClick = (post) => {
+   // router.push(`/posts/${post.id}`);
+  //};
 
   const handleDelete = (post) => {
     const hasConfirmed = confirm("Are you sure you want to delete this Post?");
@@ -41,7 +41,6 @@ const PostCardList = ({ data, handleTagClick }) => {
         <PostCard
           key={post.id}
           post={post}
-          handlePostClick={handlePostClick}
           handleTagClick={handleTagClick}
           handleDelete={handleDelete}
           handleEdit={handleEdit}
@@ -77,14 +76,10 @@ const Feed = ({ type, user_ID }) => {
 
   return (
     <section id={styles.feed}>
-      {posts?.length && !loading ? ( // if there are posts and the feed is not loading
+      {posts?.length ? ( // if there are posts and the feed is not loading
         <PostCardList data={posts} handleTagClick={() => {}} />
-      ) : loading ? ( // if there are posts and the feed is loading
+      ) :( // if there are posts and the feed is loading
         <p>Loading...</p>
-      ) : user_ID && posts?.length <= 0 && !loading ? ( //if its some user's post-page and there is no post and the feed is not loading
-        <p>You have no Post.</p>
-      ) : (
-        <p>Please Retry Later.</p>
       )}
     </section>
   );
