@@ -73,7 +73,12 @@ const ImageComponent = ({
         </button>
         <div
           className={styles["preview-image-container"]}
-          style={{ left: `calc(-${current * 100}% - ${padding * current}px)` }}
+          style={{
+            left: `calc(-${current * 100}% - ${padding * current}px)`,
+            width: `calc(${pictures.length * 100}% + ${
+              padding * (pictures.length - 1)
+            }px)`,
+          }}
         >
           {" "}
           {/* padding is the padding of css */}
