@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 const handler = NextAuth({
 
   providers: [
-    
+
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
@@ -23,11 +23,11 @@ const handler = NextAuth({
         }
 
       }).then(users => users.data[0]);
-      
+
       session.user.id = sessionUser.id;
-      
+
       return session;
-      
+
     },
     async signIn ({ profile }) {
 
@@ -39,26 +39,26 @@ const handler = NextAuth({
             email: profile.email
           },
           columns: "email"
-        })
+        });
 
         if (!userExist) {
 
-          const date = new Date();
-          
+          const currentDate = new Date();
+
           await insertData({
             table: "users",
             object: {
               email: profile.email,
               name: profile.name.toLowerCase(),
               image: profile.picture,
-              created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+              created_at: `${currentDate.getDate()}-${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getFullYear()}`
             }
-          })
+          });
 
         }
 
         return true;
-        
+
       } catch (e) {
 
         console.log(e);

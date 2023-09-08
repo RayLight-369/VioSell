@@ -15,14 +15,18 @@ import styles from "./Navbar.module.css"; // Import the CSS module
 
 const Navbar = () => {
   const [provider, setProvider] = useState(null);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
       const response = await getProviders();
       setProvider(response);
     };
+
+    if (typeof window !== "undefined")
+      setIsMobile(window.matchMedia("(max-width: 767px)").matches);
 
     setProviders();
   }, []);
@@ -42,11 +46,13 @@ const Navbar = () => {
         />
       </div>
       <nav id={styles.nav}>
-        <div className={styles.links}>
-          <Link href={"/"}>Home</Link>
-          <Link href={"/posts"}>Posts</Link>
-        </div>
-        {session?.user ? (
+        {!isMobile && (
+          <div className={styles.links}>
+            <Link href={"/"}>Home</Link>
+            <Link href={"/posts"}>Posts</Link>
+          </div>
+        )}
+        {session?.user && status != "loading" ? (
           <div className={styles.profile}>
             <div
               className={styles.img}
@@ -62,13 +68,26 @@ const Navbar = () => {
             {toggleDropdown && (
               <div className={styles.dropdown}>
                 <div className={styles.links}>
+                  {isMobile && (
+                    <>
+                      <Link href={"/"} onClick={hideDropdown}>
+                        Home
+                      </Link>
+                      <Link href={"/posts"} onClick={hideDropdown}>
+                        Profile
+                      </Link>
+                    </>
+                  )}
                   <Link href={"/profile"} onClick={hideDropdown}>
                     Profile
                   </Link>
                   <Link href={"/create-post"} onClick={hideDropdown}>
                     Create Post
                   </Link>
-                  <Link href={`/users/${session?.user.id}/posts`} onClick={hideDropdown}>
+                  <Link
+                    href={`/users/${session?.user.id}/posts`}
+                    onClick={hideDropdown}
+                  >
                     My Posts
                   </Link>
                 </div>
@@ -84,10 +103,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
-        ) : (
+        ) : status != "loading" ? (
           <div className={styles.register}>
             <button onClick={() => signIn(provider.google.id)}>Sign-In</button>
           </div>
+        ) : (
+          <p>Loading...</p>
         )}
       </nav>
     </header>
