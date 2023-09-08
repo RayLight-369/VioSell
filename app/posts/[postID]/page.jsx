@@ -3,6 +3,8 @@
 import ImageComponent from "@/app/Components/ImageComponent/ImageComponent";
 import { useEffect, useState } from "react";
 
+import styles from "./page.module.css";
+
 const Post = ({ params }) => {
   let { postID } = params;
   let [post, setPost] = useState({});
@@ -19,7 +21,7 @@ const Post = ({ params }) => {
   }, []);
 
   return (
-    <section className="post-page">
+    <section className={styles["post-page"]}>
       <ImageComponent
         style={{
           top: 90,

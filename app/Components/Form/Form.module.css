@@ -70,8 +70,9 @@ textarea.textarea{
   font-family: "Quicksand";
   min-height: 250px;
   max-height: 350px;
-  min-width: 100%;
-  max-width: calc(100% + 29px);
+  width: 100%;
+  min-width: 70%;
+  max-width: calc(100%);
   white-space: pre-line;
 }
 

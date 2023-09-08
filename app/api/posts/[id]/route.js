@@ -63,7 +63,7 @@ export const PUT = async (req, { params }) => {
       object: {
         ...response
       }
-    }).then(console.log);
+    }).then();
 
     return new Response(JSON.stringify(updatedPost), { status: 200 });
 
