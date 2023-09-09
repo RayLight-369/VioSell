@@ -8,7 +8,10 @@ import { useEffect, useRef, useState } from "react";
 const ImageComponent = ({
   images = [],
   padding = 10,
-  style = { top: 90, left: 30 },
+  style = { top: 0, left: 0 },
+  width = 550,
+  height = 480,
+  className,
 }) => {
   let [numberOfImages, setNumberOfImages] = useState(0);
   let [pictures, setPictures] = useState(images?.length ? [...images] : []);
@@ -121,8 +124,8 @@ const ImageComponent = ({
       </div>
 
       <div
-        className={styles["container"]}
-        style={{ top: style.top, left: style.left }}
+        className={`${styles["container"]} ${className}`}
+        style={{ top: style.top, left: style.left, width, height }}
       >
         <div
           className={styles["image-container"]}

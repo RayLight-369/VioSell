@@ -1,9 +1,9 @@
 import { getData } from "@/app/Supabase/Supabase";
 
-export const GET = async (req, res) => { 
-  
+export const GET = async (req, res) => {
+
   try {
-    
+
     const data = await getData({
       table: "posts",
       range: [0, 4],
@@ -46,14 +46,14 @@ export const GET = async (req, res) => {
     //     created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
     //   }]
     // }
-  
+
     const posts = data.data;
 
     return new Response(JSON.stringify(posts), { status: 200 });
 
   } catch (e) {
 
-    return new Response(JSON.stringify({error: "Failed"}), { status: 500 });
+    return new Response(JSON.stringify({ error: "Failed" }), { status: 500 });
 
   }
 

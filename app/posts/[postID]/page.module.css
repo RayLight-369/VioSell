@@ -1,4 +1,87 @@
 section.post-page{
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: intel, Quicksand, Arial, Helvetica, sans-serif;
 }
+
+p.title{
+  position: absolute;
+  top: 110px;
+  left: 35px;
+  width: calc(100% - 35px - 45px);
+  font-family: Righteous, Arial, Helvetica, sans-serif;
+  color: #313131;
+  font-size: 2em;
+  padding: 30px;
+  background: #ff510031;
+  border-radius: 7px;
+}
+
+section.images-info{
+  display: flex;
+  flex-direction: row;
+  /* background: #000; */
+  position: relative;
+  top: 235px;
+  width: calc(100% - 75px);
+  gap: 25px;
+}
+
+.image-component{
+  flex: 50%;
+}
+
+div.info{
+  flex: 50%;
+}
+
+div.profile{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
+
+div.image-info{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  /* background: #f5f5f5; */
+  /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.242); */
+  background: #ff510031;
+  padding: 30px;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  flex: 50%;
+}
+
+div.image-info div.pfp img{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+div.image-info div.user-info{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+p.username{
+  font-size: 1.3em;
+  font-weight: bolder;
+  color: #444;
+  text-transform: capitalize;
+  cursor: pointer;
+  user-select: none;
+}
+
+p.date{
+  font-size: .9em;
+  color: #555;
+}
+

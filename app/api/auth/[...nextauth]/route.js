@@ -51,7 +51,7 @@ const handler = NextAuth({
               email: profile.email,
               name: profile.name.toLowerCase(),
               image: profile.picture,
-              created_at: `${currentDate.getDate()}-${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getFullYear()}`
+              created_at: `${currentDate.getDate()}-${currentDate.toLocaleString('default', { month: 'long' }).substring(0, 3)} ${currentDate.getFullYear()}`
             }
           });
 

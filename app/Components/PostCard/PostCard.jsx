@@ -38,7 +38,9 @@ const PostCard = ({
       style={{
         filter: cardLoading ? "blur(4px)" : "none",
       }}
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
         handlePostClick(post);
       }}
     >

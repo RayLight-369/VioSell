@@ -4,7 +4,7 @@
 .bodyBackground {
   background: url("/Images/background.svg");
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
   background-position-y: -5px;
 }
