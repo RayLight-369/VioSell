@@ -74,7 +74,7 @@ const Navbar = () => {
                         Home
                       </Link>
                       <Link href={"/posts"} onClick={hideDropdown}>
-                        Profile
+                        Posts
                       </Link>
                     </>
                   )}

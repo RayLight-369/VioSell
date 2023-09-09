@@ -46,7 +46,8 @@ const PostCard = ({
         <div className={styles["edit-delete"]}>
           <span
             className={styles["edit"]}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               handleEdit(post);
             }}
           >
@@ -54,7 +55,8 @@ const PostCard = ({
           </span>
           <span
             className={styles["delete"]}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               handleDelete(post);
             }}
           >
@@ -72,6 +74,9 @@ const PostCard = ({
           //   filter: imageLoading ? "blur(4px)" : "none",
           // }}
           // onLoadingComplete={() => setImageLoading(false)}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
         />
       </div>
       <div className={styles["info"]}>
@@ -83,13 +88,25 @@ const PostCard = ({
           <p className={styles["desc"]}>{post.description}</p>
         </div>
 
-        <div className={styles["button"]}>
+        <div
+          className={styles["button"]}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <button>Read More</button>
         </div>
       </div>
       <div className={styles["tags"]}>
         {tags.map((tag, id) => (
-          <span className={styles["tag"]} key={id}>
+          <span
+            className={styles["tag"]}
+            key={id}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleTagClick(tag);
+            }}
+          >
             {tag}
           </span>
         ))}

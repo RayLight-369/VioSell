@@ -65,9 +65,10 @@
   width: calc(100% - 36% - 20px);
 }
 
-.time {
+div.time {
   position: relative;
-  top: -5px;
+  top: -10px;
+  width: fit-content;
 }
 
 .time p.time {
@@ -118,6 +119,7 @@
   font-size: 0.82em;
   transition: 150ms;
   border-bottom: 1px solid transparent;
+  z-index: 5;
 }
 
 .post-card .tags span.tag:hover {
@@ -141,6 +143,7 @@
   color: white;
   transition: 200ms;
   cursor: pointer;
+  z-index: 6;
 }
 
 .info .button button:hover {
@@ -166,6 +169,7 @@ div.edit-delete span.edit,
 div.edit-delete span.delete {
   font-size: 0.75em;
   transition: 100ms;
+  z-index: 10;
 
 }
 
