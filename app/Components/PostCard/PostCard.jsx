@@ -88,13 +88,15 @@ const PostCard = ({
           <p className={styles["desc"]}>{post.description}</p>
         </div>
 
-        <div
-          className={styles["button"]}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <button>Read More</button>
+        <div className={styles["button"]}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePostClick(post);
+            }}
+          >
+            Read More
+          </button>
         </div>
       </div>
       <div className={styles["tags"]}>
