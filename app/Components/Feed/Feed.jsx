@@ -17,9 +17,9 @@ const PostCardList = ({ data, handleTagClick }) => {
     }
   };
 
-  //const handlePostClick = (post) => {
-   // router.push(`/posts/${post.id}`);
-  //};
+  const handlePostClick = (post) => {
+    router.push(`/posts/${post.id}`);
+  };
 
   const handleDelete = (post) => {
     const hasConfirmed = confirm("Are you sure you want to delete this Post?");
@@ -39,6 +39,7 @@ const PostCardList = ({ data, handleTagClick }) => {
         <PostCard
           key={post.id}
           post={post}
+          handlePostClick={handlePostClick}
           handleTagClick={handleTagClick}
           handleDelete={handleDelete}
           handleEdit={handleEdit}
@@ -69,7 +70,6 @@ const Feed = ({ type, user_ID }) => {
     fetchPosts();
   }, [user_ID]);
 
-<<<<<<< HEAD
   let content;
 
   if (loading) {
@@ -85,17 +85,6 @@ const Feed = ({ type, user_ID }) => {
   }
 
   return <section id={styles.feed}>{content}</section>;
-=======
-  return (
-    <section id={styles.feed}>
-      {posts?.length ? ( // if there are posts and the feed is not loading
-        <PostCardList data={posts} handleTagClick={() => {}} />
-      ) :( // if there are posts and the feed is loading
-        <p>Loading...</p>
-      )}
-    </section>
-  );
->>>>>>> 381538af125cbfca4faeb382a8a7ef20fd062471
 };
 
 export default Feed;
