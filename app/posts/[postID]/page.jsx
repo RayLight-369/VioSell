@@ -2,6 +2,8 @@
 
 import ImageComponent from "@/app/Components/ImageComponent/ImageComponent";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./page.module.css";
 import Image from "next/image";

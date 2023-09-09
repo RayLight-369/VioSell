@@ -128,6 +128,7 @@ div.preview-container{
   height: 100%;
   padding: 10px;
   top: 100%;
+  left: 0;
   /* background: linear-gradient(to bottom right, var(--prim-gold), var(--prim-red)); */
   transition: 200ms;
   overflow: hidden;
@@ -212,6 +213,7 @@ div.preview-label {
   background: #ffffff;
   cursor: pointer;
   transition: 150ms;
+  border: 1px solid #9a9a9a;
 }
 
 div.preview-label:hover {

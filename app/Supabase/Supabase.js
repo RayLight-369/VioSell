@@ -14,9 +14,10 @@ export const getData = async ({
   range,
   columns = [],
   where = {},
+  contains = {},
   orderBy = {
     property: 'id',
-    ascending: true
+    ascending: false
   }
 }) => {
 
@@ -26,26 +27,23 @@ export const getData = async ({
       columns = columns.join(",");
     }
 
-    let Data;
+    let Data = supabase
+      .from(table)
+      .select(columns)
+      .match(where)
+      .order(orderBy.property, { ascending: orderBy.ascending });
 
-    if (range && range.length == 2) {
-
-      Data = await supabase
-        .from(table)
-        .select(columns)
-        .match(where)
-        .range(range[0], range[1])
-        .order(orderBy.property, { ascending: orderBy.ascending });
-
-    } else {
-
-      Data = await supabase
-        .from(table)
-        .select(columns)
-        .match(where)
-        .order(orderBy.property, { ascending: orderBy.ascending });
-
+    if (range && range.length === 2) {
+      Data.range(range[0], range[1]);
     }
+
+    if (Object.keys(contains).length) {
+      for (let key in contains) {
+        Data.ilike(key, `%${contains[key].join("%")}%`);
+      }
+    }
+
+    Data = await Data;
 
     return { data: Data.data, statusText: Data.statusText, error: Data.error };
 

@@ -108,7 +108,7 @@ const PostCard = ({
             key={id}
             onClick={(e) => {
               e.stopPropagation();
-              handleTagClick(tag);
+              handleTagClick([encodeURIComponent(tag)]);
             }}
           >
             {tag}

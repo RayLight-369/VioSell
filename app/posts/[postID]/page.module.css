@@ -2,20 +2,26 @@ section.post-page{
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   font-family: intel, Quicksand, Arial, Helvetica, sans-serif;
+  top: 90px;
+  gap: 24px;
+  position: relative;
+  top: 100px;
 }
 
 p.title{
-  position: absolute;
-  top: 110px;
-  left: 35px;
+  /* top: 110px; */
+  /* left: 35px; */
   width: calc(100% - 35px - 45px);
   font-family: Righteous, Arial, Helvetica, sans-serif;
   color: #313131;
   font-size: 2em;
   padding: 30px;
   background: #ff510031;
+  position: relative;
+  left: 0;
   border-radius: 7px;
 }
 
@@ -24,8 +30,8 @@ section.images-info{
   flex-direction: row;
   /* background: #000; */
   position: relative;
-  top: 235px;
-  width: calc(100% - 75px);
+  width: calc(100% - 60px);
+  left: 10px;
   gap: 25px;
 }
 

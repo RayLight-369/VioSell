@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 import styles from "./Feed.module.css";
 
-const PostCardList = ({ data, handleTagClick }) => {
+const PostCardList = ({ data }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -19,6 +19,10 @@ const PostCardList = ({ data, handleTagClick }) => {
 
   const handlePostClick = (post) => {
     router.push(`/posts/${post.id}`);
+  };
+
+  const handleTagClick = (tags) => {
+    router.push(`/posts/tags?tag=${tags.join("-")}`);
   };
 
   const handleDelete = (post) => {
