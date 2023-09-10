@@ -13,6 +13,16 @@
   src: url("/Fonts/Aharoni.ttf");
 }
 
+@font-face {
+  font-family: ABeeZee;
+  src: url("/Fonts/ABeeZee.ttf");
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("/Fonts/Roboto.ttf");
+}
+
 :root{
   --prim-gold: #FF7A00;
   --prim-red: rgb(255, 36, 20); /* #FF1F00 */

@@ -51,7 +51,7 @@ const Post = ({ params }) => {
   if (loading) {
     content = <p>Loading...</p>;
   } else {
-    content = (
+    content = post?.title ? (
       <>
         <p className={styles["title"]}>
           {post.title.length > 50
@@ -83,6 +83,11 @@ const Post = ({ params }) => {
           </div>
         </section>
       </>
+    ) : (
+      <p>
+        Either there is no post with this ID, or you have really ... really bad
+        internet connection blud.
+      </p>
     );
   }
 

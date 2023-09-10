@@ -53,7 +53,7 @@ const PostCardList = ({ data }) => {
   );
 };
 
-const Feed = ({ type, user_ID }) => {
+const Feed = ({ type, user_ID, searchBar = false }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -88,7 +88,20 @@ const Feed = ({ type, user_ID }) => {
     content = <PostCardList data={posts} handleTagClick={() => {}} />;
   }
 
-  return <section id={styles.feed}>{content}</section>;
+  return (
+    <section id={styles.feed}>
+      {searchBar && (
+        <form className={styles["form"]}>
+          <input
+            type="text"
+            placeholder="Search Post"
+            className={styles["search-input"]}
+          />
+        </form>
+      )}
+      {content}
+    </section>
+  );
 };
 
 export default Feed;

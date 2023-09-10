@@ -50,7 +50,7 @@
 }
 
 /* Register button */
-.register button {
+button.register-btn {
   outline: none;
   border: none;
   background: #000;
@@ -61,7 +61,7 @@
   transition: 300ms ease-in-out;
 }
 
-.register button:hover{
+button.register:hover{
   background: #323232;
 }
 
@@ -72,21 +72,27 @@
 }
 
 /* Profile dropdown */
-.profile .dropdown {
+.dropdown {
   position: absolute;
   right: 0;
   display: flex;
   flex-direction: column;
-  transition: 300ms;
   gap: 20px;
   width: 180px;
   box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.17);
-  border-radius: 0 0 25px 25px;
+  border-radius: 0 0 19px 19px;
   background: white;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.dropdown.open {
+  max-height: 95vh;
 }
 
 /* Dropdown button */
-.dropdown button {
+button.signout {
   width: 100%;
   padding: 13px 15px;
   background: #000;
@@ -98,14 +104,25 @@
 }
 
 /* Dropdown links */
-.profile .dropdown .links {
+.dropdown .links {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
 /* Dropdown link hover */
-.profile .dropdown .links a:hover {
+.dropdown .links a:hover {
   font-size: 0.99em;
   font-weight: bold;
+}
+
+@media (max-width: 767px){
+
+  .dropdown{
+    gap: 15px;
+  }
+  .dropdown .links a {
+    font-size: 0.75em;
+  }
+
 }
