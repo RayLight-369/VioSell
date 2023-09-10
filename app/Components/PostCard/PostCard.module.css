@@ -197,6 +197,19 @@ span.edit:hover, span.delete:hover{
     border-radius: 18px;
     align-items: normal;
     padding: 0;
+    user-select: none;
+    touch-action: manipulation;
+  }
+  .post-card:focus, .post-card:active{
+    background: linear-gradient(135deg, var(--prim-gold), var(--prim-red));
+    outline: none;
+    user-select: none;
+    touch-action: manipulation;
+    color: #fff;
+  }
+  .post-card:focus *, .post-card:active *{
+    color: white;
+    touch-action: manipulation;
   }
   .post-card .post-image {
     width: 42%;
@@ -224,7 +237,7 @@ span.edit:hover, span.delete:hover{
     gap: 10px;
   }
   .post-card .info .title-desc p.title{
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   .post-card .info .title-desc p.desc{
     font-size: .75em;
@@ -237,14 +250,14 @@ span.edit:hover, span.delete:hover{
     right: 30px;
   }
   .post-card .tags span.tag{
-    font-size: 0.76em;
+    font-size: 0.75em;
   }
   .info .button{
     position: absolute;
-    top: calc(100% - 20px);
+    top: calc(100% - 10px);
   }
   .info .button button{
     padding: 6px 18px;
-    font-size: .8em;
+    font-size: .7em;
   }
 }

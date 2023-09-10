@@ -53,11 +53,16 @@ const PostCardList = ({ data }) => {
   );
 };
 
-const Feed = ({ type, user_ID, searchBar = false }) => {
+const Feed = ({ type, user_ID, searchBar = false, data }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (data?.length) {
+      setPosts(data);
+      setLoading(false);
+      return true;
+    }
     const fetchPosts = async () => {
       try {
         let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
