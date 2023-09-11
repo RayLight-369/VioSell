@@ -4,6 +4,7 @@ import ImageComponent from "@/app/Components/ImageComponent/ImageComponent";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faUser } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uid } from "uuid";
 
 import styles from "./page.module.css";
 import Image from "next/image";
@@ -51,7 +52,7 @@ const Post = ({ params }) => {
   if (loading) {
     content = <p>Loading...</p>;
   } else {
-    content = post?.title ? (
+    content = post.title ? (
       <>
         <p className={styles["title"]}>
           {post.title.length > 50
@@ -64,6 +65,7 @@ const Post = ({ params }) => {
             width={ImageComponentWidth}
             height={ImageComponentHeight}
             className={styles["image-component"]}
+            key={uid()}
           />
 
           <div className={styles["info"]}>
@@ -84,10 +86,7 @@ const Post = ({ params }) => {
         </section>
       </>
     ) : (
-      <p>
-        Either there is no post with this ID, or you have really ... really bad
-        internet connection blud.
-      </p>
+      <p>No Post with this ID.</p>
     );
   }
 

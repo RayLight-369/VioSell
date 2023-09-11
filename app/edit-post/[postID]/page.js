@@ -54,9 +54,9 @@ const Page = ({ params }) => {
     return imagesArray.filter((image) => !objKeysSet.has(image));
   };
 
-  const setImages = async (images, post) => {
+  const setImages = async (images, Post) => {
     const imageArray = [];
-    const deletedImages = getMissingImages(post.images, images);
+    const deletedImages = getMissingImages(Post.images, images);
 
     for (let image in images) {
       if (typeof images[image] !== "string") {
@@ -84,6 +84,9 @@ const Page = ({ params }) => {
         await deleteFile(`users/${session?.user.id}/${postID}/${fileID}`);
       }
     }
+
+    let _post = post;
+    _post.images = imageArray;
 
     setPost((prev) => ({ ...prev, images: [...imageArray] }));
   };

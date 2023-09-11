@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import styles from "./ImageComponent.module.css";
 import { useEffect, useRef, useState } from "react";
+import { v4 as uid } from "uuid";
 
 const ImageComponent = ({
   images = [],
@@ -97,6 +98,7 @@ const ImageComponent = ({
                   filter: imageLoading ? "blur(5px)" : "none",
                 }}
                 onClick={handleImageClick}
+                key={image}
               />
             </div>
           ))}
@@ -150,6 +152,7 @@ const ImageComponent = ({
                   filter: imageLoading ? "blur(5px)" : "none",
                 }}
                 onClick={handleImageClick}
+                key={image}
               />
             </div>
           ))}

@@ -68,7 +68,7 @@ const PostCard = ({
       )}
       <div className={styles["post-image"]}>
         <Image
-          src={"/Images/post.jpg"}
+          src={post.images[0]}
           width={240}
           height={150}
           alt="post image"

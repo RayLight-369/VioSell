@@ -23,10 +23,11 @@ const page = ({ searchParams }) => {
       });
 
       const data = await response.json();
+      console.log(data);
       setPost(data);
     };
     fetchPosts();
-  }, []);
+  }, [tag]);
 
   return (
     <section className={styles["tags-feed"]}>

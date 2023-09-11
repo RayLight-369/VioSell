@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import PostCard from "../PostCard/PostCard";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import styles from "./Feed.module.css";
+import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
 
-const PostCardList = ({ data }) => {
+const PostCardList = ({ data, setPosts }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -32,6 +33,10 @@ const PostCardList = ({ data }) => {
       fetch(`/api/posts/${post.id}`, {
         method: "DELETE",
       })
+        .then(async () => {
+          setPosts((prev) => [...prev.filter((p) => p.id != post.id)]);
+          await deleteAllFiles(`users/${session?.user.id}/${post.id}`);
+        })
         .then(() => router.refresh())
         .catch((error) => console.error("Error deleting post:", error));
     }
@@ -53,45 +58,129 @@ const PostCardList = ({ data }) => {
   );
 };
 
-const Feed = ({ type, user_ID, searchBar = false, data }) => {
+// const Feed = ({ type, user_ID, searchBar = false, data = [] }) => {
+//   const [posts, setPosts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const fetchPosts = async () => {
+//       try {
+//         let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
+//         const response = await fetch(url, {
+//           cache: "no-store",
+//           next: {
+//             revalidate: 10 * 60,
+//           },
+//         });
+//         const Data = await response.json();
+//         setPosts(Data);
+//       } catch (error) {
+//         console.error("Error fetching posts:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     if (data?.length) {
+//       setPosts(data);
+//       setLoading(false);
+//     } else {
+//       fetchPosts();
+//     }
+//   }, [user_ID, searchBar, data]);
+
+//   let content;
+
+//   if (loading) {
+//     content = <p>Loading...</p>;
+//   } else if (posts.length === 0) {
+//     if (!user_ID) {
+//       content = <p>Please try again later.</p>;
+//     } else {
+//       content = <p>User has no posts.</p>;
+//     }
+//   } else {
+//     content = (
+//       <PostCardList
+//         setPosts={setPosts}
+//         data={posts}
+//         handleTagClick={() => {}}
+//       />
+//     );
+//   }
+
+//   return (
+//     <section id={styles.feed}>
+//       {searchBar && (
+//         <form className={styles["form"]}>
+//           <input
+//             type="text"
+//             placeholder="Search Post"
+//             className={styles["search-input"]}
+//           />
+//         </form>
+//       )}
+//       {content}
+//     </section>
+//   );
+// };
+
+const Feed = ({ type, user_ID, searchBar = false, data = [] }) => {
+  const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchPosts = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const Data = await response.json();
+      setPosts(Data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      setError("An error occurred while fetching posts.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (data?.length) {
-      setPosts(data);
-      setLoading(false);
-      return true;
-    }
-    const fetchPosts = async () => {
-      try {
-        let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
-        const response = await fetch(url);
-        const data = await response.json();
-        setPosts(data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [user_ID]);
-
-  let content;
-
-  if (loading) {
-    content = <p>Loading...</p>;
-  } else if (posts.length === 0) {
-    if (!user_ID) {
-      content = <p>Please try again later.</p>;
+    if (!data.length) {
+      fetchPosts();
     } else {
-      content = <p>User has no posts.</p>;
+      setPosts(data);
     }
-  } else {
-    content = <PostCardList data={posts} handleTagClick={() => {}} />;
-  }
+  }, [user_ID, searchBar]);
+
+  const content = useMemo(() => {
+    if (loading) {
+      return <p>Loading...</p>;
+    } else if (error) {
+      return <p>{error}</p>;
+    } else if (posts.length === 0) {
+      if (!user_ID) {
+        return <p>Please try again later.</p>;
+      } else {
+        return <p>User has no posts.</p>;
+      }
+    } else {
+      return (
+        <PostCardList
+          setPosts={setPosts}
+          data={posts}
+          handleTagClick={() => {}}
+        />
+      );
+    }
+  }, [loading, error, user_ID, posts]);
 
   return (
     <section id={styles.feed}>

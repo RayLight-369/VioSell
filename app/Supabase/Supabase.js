@@ -184,3 +184,10 @@ export const deleteFile = async (path) => {
   return data;
 
 };
+
+export const deleteAllFiles = async (FolderPath) => {
+  let { data: list } = await supabase.storage.from(`images`).list(FolderPath);
+  const filesToDelete = list.map(file => `${FolderPath}/${file.name}`);
+  const { data, error } = await supabase.storage.from("images").remove(filesToDelete);
+  return data;
+};
