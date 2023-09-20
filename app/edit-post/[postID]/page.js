@@ -7,118 +7,119 @@ import { deleteFile, updateData, uploadFile } from "@/app/Supabase/Supabase";
 import { v4 as uuidv4 } from "uuid";
 import Form from "@/app/Components/Form/Form";
 
-const Page = ({ params }) => {
+const Page = ( { params } ) => {
   const { postID } = params;
-  const [post, setPost] = useState({
+  const [ post, setPost ] = useState( {
     title: "",
     description: "",
     tags: "",
     location: "",
     price: 0,
     images: [],
-  });
-  const [submitting, setSubmitting] = useState(false);
+    contact: ""
+  } );
+  const [ submitting, setSubmitting ] = useState( false );
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [ error, setError ] = useState( "" );
 
-  useEffect(() => {
+  useEffect( () => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/posts/${postID}`);
+        const response = await fetch( `/api/posts/${ postID }` );
         const body = await response.json();
 
-        if (response.ok && body.userID == session?.user.id) {
-          setPost({
+        if ( response.ok && body.userID == session?.user.id ) {
+          setPost( {
             title: body.title,
             description: body.description,
             tags: body.tags,
             location: body.location,
             price: +body.price,
-            images: [...body.images],
-          });
+            images: [ ...body.images ],
+          } );
         }
-      } catch (e) {
-        console.error(e);
-        if (e.message === "You are not allowed to Edit this Post") {
-          setError("You are not allowed to Edit this Post");
+      } catch ( e ) {
+        console.error( e );
+        if ( e.message === "You are not allowed to Edit this Post" ) {
+          setError( "You are not allowed to Edit this Post" );
         }
       }
     };
 
     fetchPost();
-  }, [postID, session?.user]);
+  }, [ postID, session?.user ] );
 
-  const getMissingImages = (imagesArray, obj) => {
-    const objKeysSet = new Set(Object.keys(obj));
-    return imagesArray.filter((image) => !objKeysSet.has(image));
+  const getMissingImages = ( imagesArray, obj ) => {
+    const objKeysSet = new Set( Object.keys( obj ) );
+    return imagesArray.filter( ( image ) => !objKeysSet.has( image ) );
   };
 
-  const setImages = async (images, Post) => {
+  const setImages = async ( images, Post ) => {
     const imageArray = [];
-    const deletedImages = getMissingImages(Post.images, images);
+    const deletedImages = getMissingImages( Post.images, images );
 
-    for (let image in images) {
-      if (typeof images[image] !== "string") {
+    for ( let image in images ) {
+      if ( typeof images[ image ] !== "string" ) {
         const fileId = uuidv4();
-        const extension = images[image].type.replace("image/", "").toLowerCase();
+        const extension = images[ image ].type.replace( "image/", "" ).toLowerCase();
 
         imageArray.push(
-          `https://lmxqvapkmczkpcfheiun.supabase.co/storage/v1/object/public/images/users/${session?.user.id}/${postID}/${fileId}.${extension}`
+          `https://lmxqvapkmczkpcfheiun.supabase.co/storage/v1/object/public/images/users/${ session?.user.id }/${ postID }/${ fileId }.${ extension }`
         );
         await uploadFile(
           session?.user.id,
           postID,
-          `${fileId}.${extension}`,
-          images[image]
+          `${ fileId }.${ extension }`,
+          images[ image ]
         );
       } else {
-        imageArray.push(image);
+        imageArray.push( image );
       }
     }
 
-    if (deletedImages.length) {
-      for (const image of deletedImages) {
-        const url = image.split("/");
-        const fileID = url[url.length - 1];
-        await deleteFile(`users/${session?.user.id}/${postID}/${fileID}`);
+    if ( deletedImages.length ) {
+      for ( const image of deletedImages ) {
+        const url = image.split( "/" );
+        const fileID = url[ url.length - 1 ];
+        await deleteFile( `users/${ session?.user.id }/${ postID }/${ fileID }` );
       }
     }
 
     let _post = post;
     _post.images = imageArray;
 
-    setPost((prev) => ({ ...prev, images: [...imageArray] }));
+    setPost( ( prev ) => ( { ...prev, images: [ ...imageArray ] } ) );
   };
 
-  const editPost = async (e, images, data) => {
+  const editPost = async ( e, images, data ) => {
     e.preventDefault();
-    setSubmitting(true);
-    await setImages(images, data);
+    setSubmitting( true );
+    await setImages( images, data );
 
     try {
-      const request = await fetch(`/api/posts/${postID}`, {
+      const request = await fetch( `/api/posts/${ postID }`, {
         method: "PUT",
-        body: JSON.stringify({ ...data }),
-      });
+        body: JSON.stringify( { ...data } ),
+      } );
 
-      if (request.ok) {
-        router.push("/");
+      if ( request.ok ) {
+        router.push( "/" );
       }
-    } catch (e) {
-      console.error(e);
+    } catch ( e ) {
+      console.error( e );
     } finally {
-      setSubmitting(false);
+      setSubmitting( false );
     }
   };
 
-  if (error.length > 1) {
+  if ( error.length > 1 ) {
     return <h1>{ error }</h1>;
   }
 
   return (
     <>
-      { session?.user ? (
+      { session?.user && status != "loading" ? (
         <Form
           type="Edit"
           post={ post }
@@ -126,6 +127,8 @@ const Page = ({ params }) => {
           handleSubmit={ editPost }
           submitting={ submitting }
         />
+      ) : status == "loading" ? (
+        <p>Loading...</p>
       ) : (
         <p>User not Signed In.</p>
       ) }

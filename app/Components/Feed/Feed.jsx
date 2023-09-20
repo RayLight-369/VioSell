@@ -4,56 +4,58 @@ import React, { useEffect, useState, useMemo } from "react";
 import PostCard from "../PostCard/PostCard";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import styles from "./Feed.module.css";
 import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
 
-const PostCardList = ({ data, setPosts }) => {
+const PostCardList = ( { data, setPosts } ) => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const handleEdit = (post) => {
-    if (session?.user.id === post.userID) {
-      router.push(`/edit-post/${post.id}`);
+  const handleEdit = ( post ) => {
+    if ( session?.user.id === post.userID ) {
+      router.push( `/edit-post/${ post.id }` );
     }
   };
 
-  const handlePostClick = (post) => {
-    router.push(`/posts/${post.id}`);
+  const handlePostClick = ( post ) => {
+    router.push( `/posts/${ post.id }` );
   };
 
-  const handleTagClick = (tags) => {
-    router.push(`/posts/tags?tag=${tags.join("-")}`);
+  const handleTagClick = ( tags ) => {
+    router.push( `/posts/tags?tag=${ tags.join( "-" ) }` );
   };
 
-  const handleDelete = (post) => {
-    const hasConfirmed = confirm("Are you sure you want to delete this Post?");
+  const handleDelete = ( post ) => {
+    const hasConfirmed = confirm( "Are you sure you want to delete this Post?" );
 
-    if (hasConfirmed) {
-      fetch(`/api/posts/${post.id}`, {
+    if ( hasConfirmed ) {
+      fetch( `/api/posts/${ post.id }`, {
         method: "DELETE",
-      })
-        .then(async () => {
-          setPosts((prev) => [...prev.filter((p) => p.id != post.id)]);
-          await deleteAllFiles(`users/${session?.user.id}/${post.id}`);
-        })
-        .then(() => router.refresh())
-        .catch((error) => console.error("Error deleting post:", error));
+      } )
+        .then( async () => {
+          setPosts( ( prev ) => [ ...prev.filter( ( p ) => p.id != post.id ) ] );
+          await deleteAllFiles( `users/${ session?.user.id }/${ post.id }` );
+        } )
+        .then( () => router.refresh() )
+        .catch( ( error ) => console.error( "Error deleting post:", error ) );
     }
   };
 
   return (
-    <div id={styles["posts-list"]}>
-      {data.map((post) => (
+    <div id={ styles[ "posts-list" ] }>
+      { data.map( ( post ) => (
         <PostCard
-          key={post.id}
-          post={post}
-          handlePostClick={handlePostClick}
-          handleTagClick={handleTagClick}
-          handleDelete={handleDelete}
-          handleEdit={handleEdit}
+          key={ post.id }
+          post={ post }
+          handlePostClick={ handlePostClick }
+          handleTagClick={ handleTagClick }
+          handleDelete={ handleDelete }
+          handleEdit={ handleEdit }
         />
-      ))}
+      ) ) }
     </div>
   );
 };
@@ -125,48 +127,58 @@ const PostCardList = ({ data, setPosts }) => {
 //   );
 // };
 
-const Feed = ({ type, user_ID, searchBar = false, data = [] }) => {
-  const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
+const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
+  const [ loading, setLoading ] = useState( false );
+  const [ posts, setPosts ] = useState( [] );
+  const [ error, setError ] = useState( null );
+  const [ ref, inView ] = useInView( {
+    triggerOnce: false, // Trigger animation only once
+    threshold: 0.2, // When 20% of the element is in view
+  } );
+
+  const fadeInAnimation = {
+    hidden: { opacity: 0, transform: "translateY(50px)" },
+    visible: { opacity: 1, transform: "translateY(0)" },
+  };
+
 
   const fetchPosts = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading( true );
+    setError( null );
 
     try {
-      let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
-      const response = await fetch(url);
+      let url = user_ID ? `/api/users/${ user_ID }/posts` : `/api/posts`;
+      const response = await fetch( url );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      if ( !response.ok ) {
+        throw new Error( `HTTP error! Status: ${ response.status }` );
       }
 
       const Data = await response.json();
-      setPosts(Data);
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-      setError("An error occurred while fetching posts.");
+      setPosts( Data );
+    } catch ( error ) {
+      console.error( "Error fetching posts:", error );
+      setError( "An error occurred while fetching posts." );
     } finally {
-      setLoading(false);
+      setLoading( false );
     }
   };
 
-  useEffect(() => {
-    if (!data.length) {
+  useEffect( () => {
+    if ( !data.length ) {
       fetchPosts();
     } else {
-      setPosts(data);
+      setPosts( data );
     }
-  }, [user_ID, searchBar]);
+  }, [ user_ID, searchBar ] );
 
-  const content = useMemo(() => {
-    if (loading) {
+  const content = useMemo( () => {
+    if ( loading ) {
       return <p>Loading...</p>;
-    } else if (error) {
-      return <p>{error}</p>;
-    } else if (posts.length === 0) {
-      if (!user_ID) {
+    } else if ( error ) {
+      return <p>{ error }</p>;
+    } else if ( posts.length === 0 ) {
+      if ( !user_ID ) {
         return <p>Please try again later.</p>;
       } else {
         return <p>User has no posts.</p>;
@@ -174,27 +186,37 @@ const Feed = ({ type, user_ID, searchBar = false, data = [] }) => {
     } else {
       return (
         <PostCardList
-          setPosts={setPosts}
-          data={posts}
-          handleTagClick={() => {}}
+          setPosts={ setPosts }
+          data={ posts }
+          handleTagClick={ () => { } }
         />
       );
     }
-  }, [loading, error, user_ID, posts]);
+  }, [ loading, error, user_ID, posts ] );
 
   return (
-    <section id={styles.feed}>
-      {searchBar && (
-        <form className={styles["form"]}>
-          <input
-            type="text"
-            placeholder="Search Post"
-            className={styles["search-input"]}
-          />
-        </form>
-      )}
-      {content}
-    </section>
+    <motion.div
+      ref={ ref }
+      initial="hidden"
+      animate={ inView ? "visible" : "hidden" }
+      variants={ fadeInAnimation }
+      style={ {
+        position: "relative"
+      } }
+    >
+      <section id={ styles.feed }>
+        { searchBar && (
+          <form className={ styles[ "form" ] }>
+            <input
+              type="text"
+              placeholder="Search Post"
+              className={ styles[ "search-input" ] }
+            />
+          </form>
+        ) }
+        { content }
+      </section>
+    </motion.div>
   );
 };
 

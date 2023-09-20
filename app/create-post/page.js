@@ -10,44 +10,44 @@ import Form from "../Components/Form/Form";
 
 const CreatePost = () => {
 
-  const [submitting, setSubmitting] = useState(false);
+  const [ submitting, setSubmitting ] = useState( false );
 
-  const [post, setPost] = useState({
-    description: "", tags: "", title: "", location: "", price: 0, images: []
-  });
+  const [ post, setPost ] = useState( {
+    description: "", tags: "", title: "", location: "", price: 0, images: [], contact: ""
+  } );
 
   const { data: session } = useSession();
   const router = useRouter();
 
-  const SetImages = async (images, Post) => {
+  const SetImages = async ( images, Post ) => {
 
     let imageArray = [];
 
-    for (let image in images) {
+    for ( let image in images ) {
 
       let fileId = uid();
-      let extension = images[image].type.replace("image/", "").toLowerCase();
+      let extension = images[ image ].type.replace( "image/", "" ).toLowerCase();
 
       imageArray.push(
-        `https://lmxqvapkmczkpcfheiun.supabase.co/storage/v1/object/public/images/users/${session?.user.id}/${Post.id}/${fileId}.${extension}`
+        `https://lmxqvapkmczkpcfheiun.supabase.co/storage/v1/object/public/images/users/${ session?.user.id }/${ Post.id }/${ fileId }.${ extension }`
       );
 
       await uploadFile(
         session?.user.id,
         Post.id,
         fileId + "." + extension,
-        images[image]
+        images[ image ]
       );
     };
 
     let _post = post;
-    _post.images = [...imageArray];
+    _post.images = [ ...imageArray ];
 
-    setPost(prev => ({ ...prev, images: [...prev.images, ...imageArray] }));
+    setPost( prev => ( { ...prev, images: [ ...prev.images, ...imageArray ] } ) );
 
     try {
 
-      await updateData({
+      await updateData( {
         table: "posts",
         where: {
           id: Post.id
@@ -56,43 +56,43 @@ const CreatePost = () => {
           ...post,
           userID: session.user.id
         }
-      }).then(console.log);
+      } ).then( console.log );
 
-    } catch (e) {
-      console.log(e);
+    } catch ( e ) {
+      console.log( e );
     }
   };
 
-  const createPost = async (e, images) => {
+  const createPost = async ( e, images ) => {
 
     e.preventDefault();
-    setSubmitting(true);
+    setSubmitting( true );
 
     try {
 
-      const response = await fetch("/api/posts/new", {
+      const response = await fetch( "/api/posts/new", {
         method: "POST",
-        body: JSON.stringify({
+        body: JSON.stringify( {
           ...post,
           userID: session.user.id
-        })
-      });
+        } )
+      } );
 
       let data = await response.json();
 
-      await SetImages(images, data);
+      await SetImages( images, data );
 
-      if (response.ok) {
-        router.push("/");
+      if ( response.ok ) {
+        router.push( "/" );
       }
 
-    } catch (e) {
+    } catch ( e ) {
 
-      console.log(e);
+      console.log( e );
 
     } finally {
 
-      setSubmitting(false);
+      setSubmitting( false );
 
     }
 
@@ -111,7 +111,7 @@ const CreatePost = () => {
           />
         </>
       ) : (
-        <button onClick={ () => signIn('google') }>SignIn With Google</button>
+        <button onClick={ () => signIn( 'google' ) }>SignIn With Google</button>
       ) }
 
     </>

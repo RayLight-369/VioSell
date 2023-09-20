@@ -1,4 +1,4 @@
-section.post-page{
+section.post-page {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -11,7 +11,7 @@ section.post-page{
   top: 100px;
 }
 
-p.title{
+p.title {
   /* top: 110px; */
   /* left: 35px; */
   width: calc(100% - 35px - 45px);
@@ -26,7 +26,7 @@ p.title{
   box-shadow: 5px 5px 7px #0000001a;
 }
 
-section.images-info{
+section.images-info {
   display: flex;
   flex-direction: row;
   /* background: #000; */
@@ -36,22 +36,22 @@ section.images-info{
   gap: 25px;
 }
 
-.image-component{
+.image-component {
+  flex: 70%;
+}
+
+div.info {
   flex: 50%;
 }
 
-div.info{
-  flex: 50%;
-}
-
-div.profile{
+div.profile {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-div.image-info{
+div.image-info {
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -64,19 +64,19 @@ div.image-info{
   flex: 50%;
 }
 
-div.image-info div.pfp img{
+div.image-info div.pfp img {
   height: 45px;
   width: 45px;
   border-radius: 50%;
 }
 
-div.image-info div.user-info{
+div.image-info div.user-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-p.username{
+p.username {
   font-size: 1.3em;
   font-weight: bolder;
   color: #444;
@@ -85,8 +85,12 @@ p.username{
   user-select: none;
 }
 
-p.date{
+p.date {
   font-size: .9em;
   color: #555;
 }
 
+p.contact {
+  position: relative;
+  top: 10px;
+}
