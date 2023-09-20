@@ -50,7 +50,7 @@ div.profile {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 20px;
 }
 
 div.image-info {
@@ -63,7 +63,6 @@ div.image-info {
   padding: 30px;
   border-radius: 5px;
   width: calc(100% - 20px);
-  flex: 50%;
 }
 
 div.image-info div.pfp img {
@@ -95,4 +94,102 @@ p.date {
 p.contact {
   position: relative;
   top: 10px;
+  font-weight: bold;
+  font-size: 1.3em;
+  text-decoration: underline;
+  color: #ffa500;
+  cursor: pointer;
+}
+
+button.contact-display-btn {
+  border: none;
+  outline: none;
+  padding: 8px 25px;
+  background: orange;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  top: 15px;
+  transition: 300ms;
+}
+
+button.contact-display-btn:hover {
+  background: #dd9309;
+}
+
+.phone-icon {
+  position: relative;
+  left: -20px;
+}
+
+div.location {
+  box-shadow: 0px 0px 7px #0000001a;
+  padding: 30px;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+}
+
+div.location p.location {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+p.location span {
+  color: #444;
+  font-size: 1.2em;
+}
+
+p.location .location-icon {
+  font-size: 2em;
+  color: orange;
+}
+
+div.price {
+  box-shadow: 0px 0px 7px #0000001a;
+  padding: 30px;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+}
+
+div.price p.price {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+p.price span {
+  color: #444;
+  font-size: 1.2em;
+}
+
+p.price .price-icon {
+  font-size: 2em;
+  color: orange;
+}
+
+div.ad-id {
+  /* box-shadow: 0px 0px 7px #0000001a; */
+  padding: 30px 0;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+}
+
+div.ad-id p.ad-id {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+p.ad-id span {
+  color: #444;
+  font-size: 1em;
+}
+
+p.ad-id .ad-id-icon {
+  font-size: 1em;
+  color: rgb(78, 78, 78);
 }
