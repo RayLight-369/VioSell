@@ -1,14 +1,14 @@
 section.post-page {
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: intel, Quicksand, Arial, Helvetica, sans-serif;
-  top: 120px;
   gap: 70px;
   position: relative;
   top: 100px;
+  padding-bottom: 50px;
 }
 
 p.title {
@@ -192,4 +192,36 @@ p.ad-id span {
 p.ad-id .ad-id-icon {
   font-size: 1em;
   color: rgb(78, 78, 78);
+}
+
+section.description {
+  width: calc(100% - 60px);
+  position: relative;
+  left: 10px;
+}
+
+div.description {
+  box-shadow: 0px 0px 7px #0000001a;
+  padding: 30px;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+}
+
+@media (max-width: 767px) {
+  section.images-info {
+    flex-direction: column;
+    position: relative;
+    width: calc(100% - 20px);
+    justify-content: center;
+    gap: 25px;
+  }
+
+  section.description {
+    width: calc(100% - 20px);
+  }
+
+  .image-component {
+    position: relative;
+    width: calc(100% - 20px) !important;
+  }
 }

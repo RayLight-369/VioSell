@@ -23,9 +23,10 @@
   src: url("/Fonts/Roboto.ttf");
 }
 
-:root{
+:root {
   --prim-gold: #FF7A00;
-  --prim-red: rgb(255, 36, 20); /* #FF1F00 */
+  --prim-red: rgb(255, 36, 20);
+  /* #FF1F00 */
   --heading-font-size: 2.9em;
   scroll-behavior: smooth;
 }
@@ -37,7 +38,8 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-body{
+/* html, */
+body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100vw;
@@ -45,11 +47,11 @@ body{
   font-family: Inter, Quicksand, Arial, Helvetica, sans-serif;
 }
 
-main{
+main {
 
   width: 100%;
   height: 100%;
-    
+
 }
 
 ::-webkit-scrollbar {

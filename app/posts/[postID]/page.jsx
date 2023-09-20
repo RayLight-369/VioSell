@@ -175,10 +175,17 @@ const Post = ( { params } ) => {
               <div className={ styles[ "ad-id" ] }>
                 <p className={ styles[ "ad-id" ] }>
                   <FontAwesomeIcon icon={ faIdCard } className={ styles[ "ad-id-icon" ] } />
-                  <span>AD-ID: { post.id }</span>
+                  <span>AD-ID: { " " + post.id }</span>
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+        <section className={ styles[ "description" ] }>
+          <div className={ styles[ "description" ] }>
+            <p className="description">
+              { post.description }
+            </p>
           </div>
         </section>
       </>
