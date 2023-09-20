@@ -9,7 +9,7 @@ import Swipeable from "react-swipeable";
 
 const ImageComponent = ( {
   images = [],
-  padding = 10,
+  padding = 0,
   style = { top: 0, left: 0 },
   width = 550,
   height = 480,
@@ -137,8 +137,6 @@ const ImageComponent = ( {
               }px)`,
           } }
         >
-          { " " }
-          {/* padding is the padding of css */ }
           { pictures.map( ( image, i ) => (
             <div className={ styles[ "img" ] } key={ i }>
               <Image

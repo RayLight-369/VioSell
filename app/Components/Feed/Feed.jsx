@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 
 import styles from "./Feed.module.css";
 import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
+import MotionController from "../MotionController/MotionController";
 
 const PostCardList = ( { data, setPosts } ) => {
   const { data: session } = useSession();
@@ -131,15 +132,7 @@ const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
   const [ loading, setLoading ] = useState( false );
   const [ posts, setPosts ] = useState( [] );
   const [ error, setError ] = useState( null );
-  const [ ref, inView ] = useInView( {
-    triggerOnce: false, // Trigger animation only once
-    threshold: 0.2, // When 20% of the element is in view
-  } );
 
-  const fadeInAnimation = {
-    hidden: { opacity: 0, transform: "translateY(50px)" },
-    visible: { opacity: 1, transform: "translateY(0)" },
-  };
 
 
   const fetchPosts = async () => {
@@ -195,15 +188,7 @@ const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
   }, [ loading, error, user_ID, posts ] );
 
   return (
-    <motion.div
-      ref={ ref }
-      initial="hidden"
-      animate={ inView ? "visible" : "hidden" }
-      variants={ fadeInAnimation }
-      style={ {
-        position: "relative"
-      } }
-    >
+    <MotionController>
       <section id={ styles.feed }>
         { searchBar && (
           <form className={ styles[ "form" ] }>
@@ -216,7 +201,7 @@ const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
         ) }
         { content }
       </section>
-    </motion.div>
+    </MotionController >
   );
 };
 

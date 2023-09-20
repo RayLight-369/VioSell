@@ -1,8 +1,14 @@
-div.container{
+div.container {
   position: relative;
-  padding: 10px 10px 25px 10px;
+  /* padding: 10px 10px 25px 10px; */
   border-radius: 15px;
-  background: #111111;
+  /* background: #111111; */
+  /* border: 2px solid;
+  border-color: orange; */
+
+  /* border-image: linear-gradient(white, orange, #fff) 100; */
+
+  box-shadow: 0 0 10px #00000030;
   transition: 200ms;
   overflow: hidden;
   scroll-behavior: smooth;
@@ -11,19 +17,20 @@ div.container{
 
 /* smooth */
 
-div.image-container{
-  width: calc(300% + 20px); /* 20px = 2 * container's padding, 300% = number of children * 100 */
+div.image-container {
+  width: calc(300% + 20px);
+  /* 20px = 2 * container's padding, 300% = number of children * 100 */
   position: relative;
   height: 100%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 0;
   transition: 200ms ease-in-out;
   scroll-behavior: smooth;
   border-radius: 10px;
 }
 
-div.img{
+div.img {
   border-radius: 10px;
   width: 100%;
   height: 100%;
@@ -31,13 +38,14 @@ div.img{
   overflow: hidden;
 }
 
-div.img img{
+div.img img {
   object-fit: contain;
   width: 100%;
   height: 100%;
 }
 
-button.previous, button.next{
+button.previous,
+button.next {
   position: absolute;
   background: transparent;
   text-shadow: 0 0 10px #00000078;
@@ -56,23 +64,23 @@ button.previous, button.next{
   border-radius: 50%;
 }
 
-div.container button:hover{
+div.container button:hover {
   transform: scale(1.1) translateY(-49%);
 }
 
 /* button.previous{
   border-radius: 0 20px 20px 0;
 } */
-button.previous{
+button.previous {
   left: 32px;
 }
 
-button.next{
+button.next {
   /* border-radius: 20px 0 0 20px; */
   right: 32px;
 }
 
-div.labels{
+div.labels {
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -83,7 +91,7 @@ div.labels{
   width: fit-content;
 }
 
-div.label{
+div.label {
   width: 8px;
   height: 8px;
   border-radius: 5px;
@@ -92,11 +100,11 @@ div.label{
   transition: 150ms;
 }
 
-div.label:hover{
+div.label:hover {
   transform: scale(1.2);
 }
 
-div.preview{
+div.preview {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -108,7 +116,7 @@ div.preview{
 
 }
 
-img.preview-img{
+img.preview-img {
   width: 88%;
   height: 80%;
   object-fit: contain;
@@ -121,7 +129,7 @@ img.preview-img{
   align-items: center;
 }
 
-div.preview-container{
+div.preview-container {
   background: #000000be;
   position: fixed;
   width: 100%;
@@ -139,27 +147,27 @@ div.preview-container{
   display: inline-block;
 }
 
-div.preview-image-container{
+div.preview-image-container {
   position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 0;
   transition: 200ms ease-in-out;
   scroll-behavior: smooth;
   align-items: center;
 
 }
 
-div.preview-img{
+div.preview-img {
   width: 100%;
   height: 100%;
   /* background: #ffffff1e; */
   overflow: hidden;
 }
 
-div.preview-img img{
+div.preview-img img {
   /* width: calc(100vw - 20px);
   height: calc(100vh - 10px); */
   width: 100%;
@@ -220,7 +228,7 @@ div.preview-label:hover {
   transform: scale(1.2);
 }
 
-button.close{
+button.close {
   position: absolute;
   font-size: 1.8em;
   font-weight: bold;
@@ -236,10 +244,10 @@ button.close{
   outline: none;
   width: 1.9em;
   height: 1.9em;
-  transition: 100ms ;
+  transition: 100ms;
 }
 
-button.close:hover{
+button.close:hover {
   background: #fff;
   color: #444;
 }
@@ -267,4 +275,3 @@ button.previous::after{
   border-radius: 0 0 0 50px;
   transform: rotate(180deg);
 } */
-
