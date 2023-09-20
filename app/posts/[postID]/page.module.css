@@ -208,6 +208,11 @@ div.description {
 }
 
 @media (max-width: 767px) {
+
+  section.post-page {
+    gap: 28px;
+  }
+
   section.images-info {
     flex-direction: column;
     position: relative;
