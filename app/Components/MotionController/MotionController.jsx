@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const MotionController = ( { children } ) => {
+const MotionController = ( { children, className } ) => {
 
   const [ ref, inView ] = useInView( {
     triggerOnce: false, // Trigger animation only once
@@ -20,8 +20,9 @@ const MotionController = ( { children } ) => {
       animate={ inView ? "visible" : "hidden" }
       variants={ fadeInAnimation }
       style={ {
-        position: "relative"
+        position: "relative",
       } }
+      className={ className }
     >
       { children }
     </motion.div>

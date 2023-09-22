@@ -213,6 +213,11 @@ div.description {
     gap: 28px;
   }
 
+  p.title {
+    font-size: 2em;
+    width: 100%;
+  }
+
   section.images-info {
     flex-direction: column;
     position: relative;

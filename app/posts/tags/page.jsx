@@ -6,32 +6,32 @@ import { useEffect, useState } from "react";
 
 import styles from "./page.module.css";
 
-const page = ({ searchParams }) => {
+const page = ( { searchParams } ) => {
   const { tag } = searchParams;
   // const tags = tag.split("-");
   const tags = tag;
-  const [loading, setLoading] = useState(true);
-  const [post, setPost] = useState([]);
+  const [ loading, setLoading ] = useState( true );
+  const [ post, setPost ] = useState( [] );
 
-  useEffect(() => {
+  useEffect( () => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/posts/tags`, {
+      const response = await fetch( `/api/posts/tags`, {
         method: "POST",
-        body: JSON.stringify({
+        body: JSON.stringify( {
           tags,
-        }),
-      });
+        } ),
+      } );
 
       const data = await response.json();
-      console.log(data);
-      setPost(data);
+      console.log( data );
+      setPost( data );
     };
     fetchPosts();
-  }, [tag]);
+  }, [ tag ] );
 
   return (
-    <section className={styles["tags-feed"]}>
-      <Feed data={post} />
+    <section className={ styles[ "tags-feed" ] }>
+      <Feed data={ post } />
     </section>
   );
 };

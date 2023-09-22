@@ -128,11 +128,10 @@ const PostCardList = ( { data, setPosts } ) => {
 //   );
 // };
 
-const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
+const Feed = ( { className, range, type, user_ID, searchBar = false, data = [] } ) => {
   const [ loading, setLoading ] = useState( false );
   const [ posts, setPosts ] = useState( [] );
   const [ error, setError ] = useState( null );
-
 
 
   const fetchPosts = async () => {
@@ -141,7 +140,9 @@ const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
 
     try {
       let url = user_ID ? `/api/users/${ user_ID }/posts` : `/api/posts`;
-      const response = await fetch( url );
+      const response = await fetch( `${ url }${ range?.length ? "?range=" + range[ 0 ] + "_to_" + range[ 1 ] : "" }` );
+
+
 
       if ( !response.ok ) {
         throw new Error( `HTTP error! Status: ${ response.status }` );
@@ -189,7 +190,7 @@ const Feed = ( { type, user_ID, searchBar = false, data = [] } ) => {
 
   return (
     <MotionController>
-      <section id={ styles.feed }>
+      <section id={ styles.feed } className={ className }>
         { searchBar && (
           <form className={ styles[ "form" ] }>
             <input

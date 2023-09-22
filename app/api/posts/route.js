@@ -1,17 +1,24 @@
 import { getData } from "@/app/Supabase/Supabase";
 
-export const GET = async (req, res) => {
+export const GET = async ( req, res ) => {
+  const query = new URL( await req.url ).searchParams;
+  const limit = query.has( "range" ) ? ( query.get( "range" ) ).split( "_to_" ).map( item => parseInt( item ) ) : null;
+
+  const object = {
+    table: "posts",
+    orderBy: {
+      property: "id",
+      ascending: false
+    }
+  };
+
+  console.log( object );
+
+  if ( limit?.length ) object[ "range" ] = limit;
 
   try {
 
-    const data = await getData({
-      table: "posts",
-      range: [0, 4],
-      orderBy: {
-        property: "id",
-        ascending: false
-      }
-    });
+    const data = await getData( object );
 
     const date = new Date();
 
@@ -49,11 +56,11 @@ export const GET = async (req, res) => {
 
     const posts = data.data;
 
-    return new Response(JSON.stringify(posts), { status: 200 });
+    return new Response( JSON.stringify( posts ), { status: 200 } );
 
-  } catch (e) {
+  } catch ( e ) {
 
-    return new Response(JSON.stringify({ error: "Failed" }), { status: 500 });
+    return new Response( JSON.stringify( { error: "Failed" } ), { status: 500 } );
 
   }
 

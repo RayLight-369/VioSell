@@ -45,15 +45,14 @@
   justify-content: center;
 }
 
-
-@media (max-width:767px){
-  #feed form.form{
+@media (max-width:767px) {
+  #feed form.form {
     width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  #feed form.form input.search-input{
+  #feed form.form input.search-input {
     width: calc(100% - 28px - 28px);
     height: 35px;
     color: #333;

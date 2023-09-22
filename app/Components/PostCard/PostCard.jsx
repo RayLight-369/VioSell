@@ -6,114 +6,115 @@ import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 import styles from "./PostCard.module.css"; // Import the CSS module
+import MotionController from "../MotionController/MotionController";
 
-const PostCard = ({
+const PostCard = ( {
   handleTagClick,
   post,
   handleEdit,
   handleDelete,
   handlePostClick,
-}) => {
-  const [imageLoading, setImageLoading] = useState(true);
-  const [cardLoading, setCardLoading] = useState(true);
+} ) => {
+  const [ imageLoading, setImageLoading ] = useState( true );
+  const [ cardLoading, setCardLoading ] = useState( true );
   const router = useRouter();
 
   const { data: session } = useSession();
 
   let { tags } = post;
 
-  tags = tags.split(" ").map((tag) => tag.trim());
+  tags = tags.split( " " ).map( ( tag ) => tag.trim() );
 
-  useEffect(() => {
+  useEffect( () => {
     // other operations
 
-    setTimeout(() => {
-      setCardLoading(false);
-    }, 1000);
-  }, []);
+    setTimeout( () => {
+      setCardLoading( false );
+    }, 1000 );
+  }, [] );
 
   return (
     <div
-      className={styles["post-card"]}
-      style={{
+      className={ styles[ "post-card" ] }
+      style={ {
         filter: cardLoading ? "blur(4px)" : "none",
-      }}
-      onClick={(e) => {
+      } }
+      onClick={ ( e ) => {
         e.stopPropagation();
         e.preventDefault();
-        handlePostClick(post);
-      }}
+        handlePostClick( post );
+      } }
     >
-      {session?.user?.id == post.userID && (
-        <div className={styles["edit-delete"]}>
+      { session?.user?.id == post.userID && (
+        <div className={ styles[ "edit-delete" ] }>
           <span
-            className={styles["edit"]}
-            onClick={(e) => {
+            className={ styles[ "edit" ] }
+            onClick={ ( e ) => {
               e.stopPropagation();
-              handleEdit(post);
-            }}
+              handleEdit( post );
+            } }
           >
             Edit
           </span>
           <span
-            className={styles["delete"]}
-            onClick={(e) => {
+            className={ styles[ "delete" ] }
+            onClick={ ( e ) => {
               e.stopPropagation();
-              handleDelete(post);
-            }}
+              handleDelete( post );
+            } }
           >
             Delete
           </span>
         </div>
-      )}
-      <div className={styles["post-image"]}>
+      ) }
+      <div className={ styles[ "post-image" ] }>
         <Image
-          src={post.images[0]}
-          width={240}
-          height={150}
+          src={ post.images[ 0 ] }
+          width={ 240 }
+          height={ 150 }
           alt="post image"
           // style={ {
           //   filter: imageLoading ? "blur(4px)" : "none",
           // }}
           // onLoadingComplete={() => setImageLoading(false)}
-          onClick={(e) => {
+          onClick={ ( e ) => {
             e.stopPropagation();
-          }}
+          } }
         />
       </div>
-      <div className={styles["info"]}>
-        <div className={styles["time"]}>
-          <p className={styles["time"]}>{post.created_at}</p>
+      <div className={ styles[ "info" ] }>
+        <div className={ styles[ "time" ] }>
+          <p className={ styles[ "time" ] }>{ post.created_at }</p>
         </div>
-        <div className={styles["title-desc"]}>
-          <p className={styles["title"]}>{post.title}</p>
-          <p className={styles["desc"]}>{post.description}</p>
+        <div className={ styles[ "title-desc" ] }>
+          <p className={ styles[ "title" ] }>{ post.title }</p>
+          <p className={ styles[ "desc" ] }>{ post.description }</p>
         </div>
 
-        <div className={styles["button"]}>
+        <div className={ styles[ "button" ] }>
           <button
-            onClick={(e) => {
+            onClick={ ( e ) => {
               e.stopPropagation();
-              handlePostClick(post);
-            }}
+              handlePostClick( post );
+            } }
           >
             Read More
           </button>
         </div>
       </div>
-      <div className={styles["tags"]}>
-        {tags.map((tag, id) => (
+      <div className={ styles[ "tags" ] }>
+        { tags.map( ( tag, id ) => (
           <span
-            className={styles["tag"]}
-            key={id}
-            onClick={(e) => {
+            className={ styles[ "tag" ] }
+            key={ id }
+            onClick={ ( e ) => {
               e.stopPropagation();
-              handleTagClick([encodeURIComponent(tag)]);
-            }}
+              handleTagClick( [ encodeURIComponent( tag ) ] );
+            } }
           >
-            {tag}
+            { tag }
           </span>
-        ))}
+        ) ) }
       </div>
     </div>
   );

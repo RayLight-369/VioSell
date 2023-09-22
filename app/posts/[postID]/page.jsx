@@ -9,6 +9,7 @@ import useSWR from "swr";
 
 import styles from "./page.module.css";
 import Image from "next/image";
+import Feed from "@/app/Components/Feed/Feed";
 
 
 
@@ -51,6 +52,12 @@ const ContactSection = memo( ( { post } ) => {
 
 } );
 
+
+const fetcher = url => fetch( url ).then( res => res.json() );
+
+const relatedFetcher = ( [ url, options ] ) => fetch( url, options ).then( res => res.json() );
+
+
 const Post = ( { params } ) => {
   const { postID } = params;
   // const [ post, setPost ] = useState( {} );
@@ -61,14 +68,21 @@ const Post = ( { params } ) => {
   const [ ImageComponentWidth, setImageComponentWidth ] = useState( 0 );
   const [ ImageComponentHeight, setImageComponentHeight ] = useState( 0 );
 
-  const fetcher = url => fetch( url ).then( res => res.json() );
-
   const { data: post, error: postError, isLoading: postLoading } = useSWR( `/api/posts/${ postID }`, fetcher );
   // Only fetch user data if post data is available
   const { data: user, error: userError, isLoading: userLoading } = useSWR(
     post ? `/api/users/${ post.userID }` : null, // Pass null if post data is not available
     fetcher
   );
+
+  const { data: relatedPosts } = useSWR( post ? [ `/api/posts/tags`, {
+    method: "POST",
+    body: JSON.stringify( {
+      tags: post.tags.split( " " ).join( "-" ),
+      range: [ 0, 5 ]
+    } )
+  } ] : null, relatedFetcher );
+
 
   useEffect( () => {
     setImageComponentWidth( 550 );
@@ -77,6 +91,7 @@ const Post = ( { params } ) => {
     if ( user?.image ) {
       setPfp( user.image );
     }
+    console.log( relatedPosts );
   }, [ user ] );
 
   // useEffect( () => {
@@ -188,6 +203,7 @@ const Post = ( { params } ) => {
             </p>
           </div>
         </section>
+        <Feed data={ relatedPosts } className={ styles[ "feed" ] } />
       </>
     ) : (
       <p>No Post with this ID.</p>
