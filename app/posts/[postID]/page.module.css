@@ -105,7 +105,7 @@ p.contact {
 button.contact-display-btn {
   border: none;
   outline: none;
-  padding: 8px 25px;
+  padding: 13px 35px;
   background: linear-gradient(45deg, #ff5010, #ff8235);
   color: white;
   cursor: pointer;
@@ -116,6 +116,7 @@ button.contact-display-btn {
 
 button.contact-display-btn:hover {
   transform: scale(1.03);
+  /* padding: 15px 40px; */
 }
 
 .phone-icon {
@@ -218,13 +219,28 @@ div.description p.description {
   overflow-y: auto;
 }
 
+h1.desc-title {
+  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: capitalize;
+  font-family: Righteous;
+  font-size: 1.8em;
+  position: relative;
+  top: -12px;
+  left: -3px;
+  width: fit-content;
+}
+
 h1.related-posts-title {
   text-transform: capitalize;
   font-family: Righteous;
   font-size: 3.5em;
   position: relative;
+  text-decoration: underline;
   top: 15px;
-  width: calc(100% - 75px);
+  width: fit-content;
   text-align: left;
   display: inline-block;
   background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);

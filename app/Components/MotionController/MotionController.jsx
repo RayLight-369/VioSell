@@ -5,7 +5,7 @@ const MotionController = ( { children, className } ) => {
 
   const [ ref, inView ] = useInView( {
     triggerOnce: false, // Trigger animation only once
-    threshold: 0.5, // When 40% of the element is in view
+    threshold: 0.4, // When 40% of the element is in view
   } );
 
   const fadeInAnimation = {

@@ -197,6 +197,7 @@ const Post = ( { params } ) => {
         </section>
         <section className={ styles[ "description" ] }>
           <div className={ styles[ "description" ] }>
+            <h1 className={ styles[ "desc-title" ] }>Description</h1>
             <p className="description">
               { post.description }
             </p>
