@@ -189,7 +189,7 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data = [] }
   }, [ loading, error, user_ID, posts ] );
 
   return (
-    <MotionController>
+    <MotionController className={ styles[ "motion" ] }>
       <section id={ styles.feed } className={ className }>
         { searchBar && (
           <form className={ styles[ "form" ] }>

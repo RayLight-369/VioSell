@@ -45,6 +45,10 @@
   justify-content: center;
 }
 
+.motion {
+  width: 100%;
+}
+
 @media (max-width:767px) {
   #feed form.form {
     width: 100%;

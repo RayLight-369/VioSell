@@ -158,7 +158,6 @@ const Post = ( { params } ) => {
             width={ ImageComponentWidth }
             height={ ImageComponentHeight }
             className={ styles[ "image-component" ] }
-            key={ uid() }
           />
 
           <div className={ styles[ "info" ] }>
@@ -203,7 +202,8 @@ const Post = ( { params } ) => {
             </p>
           </div>
         </section>
-        <Feed data={ relatedPosts } className={ styles[ "feed" ] } />
+
+        { relatedPosts && <Feed data={ relatedPosts } /> }
       </>
     ) : (
       <p>No Post with this ID.</p>
