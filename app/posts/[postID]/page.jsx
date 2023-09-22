@@ -142,7 +142,7 @@ const Post = ( { params } ) => {
   //   }
   // }, [ contactAppear ] );
 
-  if ( postLoading || userLoading ) {
+  if ( ( postLoading || userLoading ) && !post ) {
     content = <p>Loading...</p>;
   } else {
     content = post.title ? (
@@ -202,8 +202,8 @@ const Post = ( { params } ) => {
             </p>
           </div>
         </section>
-
-        { relatedPosts && <Feed data={ relatedPosts } /> }
+        <h1 className={ styles[ "related-posts-title" ] }>Related Posts</h1>
+        { relatedPosts && <Feed data={ relatedPosts } className={ styles[ "feed" ] } /> }
       </>
     ) : (
       <p>No Post with this ID.</p>

@@ -24,7 +24,7 @@ p.title {
   /* box-shadow: 5px 5px 7px #0000001a; */
   border-bottom: 2px solid;
   text-align: center;
-  border-image: linear-gradient(90deg, white 20%, orange, white 80%) 1;
+  border-image: linear-gradient(90deg, white 20%, #ff5010, white 80%) 1;
 }
 
 section.images-info {
@@ -97,15 +97,16 @@ p.contact {
   font-weight: bold;
   font-size: 1.3em;
   text-decoration: underline;
-  color: #ffa500;
+  color: #ff5010;
   cursor: pointer;
+  user-select: none;
 }
 
 button.contact-display-btn {
   border: none;
   outline: none;
   padding: 8px 25px;
-  background: orange;
+  background: linear-gradient(45deg, #ff5010, #ff8235);
   color: white;
   cursor: pointer;
   position: relative;
@@ -114,7 +115,7 @@ button.contact-display-btn {
 }
 
 button.contact-display-btn:hover {
-  background: #dd9309;
+  transform: scale(1.03);
 }
 
 .phone-icon {
@@ -143,7 +144,7 @@ p.location span {
 
 p.location .location-icon {
   font-size: 2em;
-  color: orange;
+  color: #ff5010;
 }
 
 div.price {
@@ -161,13 +162,17 @@ div.price p.price {
 }
 
 p.price span {
-  color: #444;
+  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 1.2em;
+  font-weight: bold;
 }
 
 p.price .price-icon {
   font-size: 2em;
-  color: orange;
+  color: #ff5010;
 }
 
 div.ad-id {
@@ -205,6 +210,32 @@ div.description {
   padding: 30px;
   border-radius: 5px;
   width: calc(100% - 20px);
+  white-space: pre-wrap;
+}
+
+div.description p.description {
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+h1.related-posts-title {
+  text-transform: capitalize;
+  font-family: Righteous;
+  font-size: 3.5em;
+  position: relative;
+  top: 15px;
+  width: calc(100% - 75px);
+  text-align: left;
+  display: inline-block;
+  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feed {
+  position: relative;
+  top: -60px;
 }
 
 @media (max-width: 767px) {
@@ -216,6 +247,17 @@ div.description {
   p.title {
     font-size: 2em;
     width: 100%;
+  }
+
+  h1.related-posts-title {
+    font-size: 2em;
+    text-align: center;
+    width: fit-content;
+    top: 30px;
+  }
+
+  .feed {
+    top: -10px;
   }
 
   section.images-info {
