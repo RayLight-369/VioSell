@@ -16,12 +16,13 @@ p.title {
   font-family: Aharoni, Righteous, Arial, Helvetica, sans-serif;
   color: #313131;
   font-size: 3em;
-  padding: 30px;
-  /* background: #ffa0732e; */
+  text-overflow: ellipsis;
+  padding: 30px 15px;
+  max-height: 200px;
+  overflow-x: hidden;
   position: relative;
   left: 0;
   border-radius: 7px;
-  /* box-shadow: 5px 5px 7px #0000001a; */
   border-bottom: 2px solid;
   text-align: center;
   border-image: linear-gradient(90deg, white 20%, #ff5010, white 80%) 1;
