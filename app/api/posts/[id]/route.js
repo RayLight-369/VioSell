@@ -2,16 +2,16 @@ import { getData, deleteData, updateData } from "@/app/Supabase/Supabase";
 
 // GET
 
-export const GET = async (req, { params }) => {
+export const GET = async ( req, { params } ) => {
 
   try {
 
-    const body = await getData({
+    const body = await getData( {
       table: "posts",
       where: {
         id: params.id
       }
-    }).then(res => res.data[0]);
+    } ).then( res => res.data[ 0 ] );
 
     const date = new Date();
 
@@ -26,13 +26,13 @@ export const GET = async (req, { params }) => {
     //   created_at: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
     // };
 
-    if (!body) return new Response("Post Not Found", { status: 404 });
+    if ( !body ) return new Response( "Post Not Found", { status: 404 } );
 
-    return new Response(JSON.stringify(body), { status: 200 });
+    return new Response( JSON.stringify( body ), { status: 200 } );
 
-  } catch (err) {
+  } catch ( err ) {
 
-    return new Response("Failed to Fetch", { status: 500 });
+    return new Response( "Failed to Fetch", { status: 500 } );
 
   }
 
@@ -41,21 +41,21 @@ export const GET = async (req, { params }) => {
 
 // PUT
 
-export const PUT = async (req, { params }) => {
+export const PUT = async ( req, { params } ) => {
 
   try {
 
     const response = await req.json();
-    const existingPost = await getData({
+    const existingPost = await getData( {
       table: "posts",
       where: {
         id: params.id
       }
-    });
+    } );
 
-    if (!(existingPost?.data?.length)) return new Response("Post Not Found", { status: 404 });
+    if ( !( existingPost?.data?.length ) ) return new Response( "Post Not Found", { status: 404 } );
 
-    const updatedPost = await updateData({
+    const updatedPost = await updateData( {
       table: "posts",
       where: {
         id: params.id
@@ -63,14 +63,14 @@ export const PUT = async (req, { params }) => {
       object: {
         ...response
       }
-    }).then();
+    } ).then();
 
-    return new Response(JSON.stringify(updatedPost), { status: 200 });
+    return new Response( JSON.stringify( updatedPost ), { status: 200 } );
 
-  } catch (err) {
+  } catch ( err ) {
 
-    console.log(err);
-    return new Response(JSON.stringify({ error: "Failed to Update Post." }), { status: 500 });
+    console.log( err );
+    return new Response( JSON.stringify( { error: "Failed to Update Post." } ), { status: 500 } );
 
   }
 
@@ -79,22 +79,22 @@ export const PUT = async (req, { params }) => {
 
 // DELETE
 
-export const DELETE = async (req, { params }) => {
+export const DELETE = async ( req, { params } ) => {
 
   try {
 
-    await deleteData({
+    await deleteData( {
       table: "posts",
       where: {
         id: params.id
       }
-    });
+    } );
 
-    return new Response("Success", { status: 200 });
+    return new Response( "Success", { status: 200 } );
 
-  } catch (err) {
+  } catch ( err ) {
 
-    return new Response("Failed to Delete Post.", { status: 500 });
+    return new Response( "Failed to Delete Post.", { status: 500 } );
 
   }
 

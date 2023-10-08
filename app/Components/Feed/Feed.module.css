@@ -50,6 +50,7 @@
 }
 
 @media (max-width:767px) {
+
   #feed form.form {
     width: 100%;
     display: flex;

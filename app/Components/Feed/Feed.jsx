@@ -189,20 +189,20 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data = [] }
   }, [ loading, error, user_ID, posts ] );
 
   return (
-    <MotionController className={ styles[ "motion" ] }>
-      <section id={ styles.feed } className={ className }>
-        { searchBar && (
-          <form className={ styles[ "form" ] }>
-            <input
-              type="text"
-              placeholder="Search Post"
-              className={ styles[ "search-input" ] }
-            />
-          </form>
-        ) }
-        { content }
-      </section>
-    </MotionController >
+    // <MotionController className={ styles[ "motion" ] }>
+    <section id={ styles.feed } className={ className }>
+      { searchBar && (
+        <form className={ styles[ "form" ] }>
+          <input
+            type="text"
+            placeholder="Search Post"
+            className={ styles[ "search-input" ] }
+          />
+        </form>
+      ) }
+      { content }
+    </section>
+    // </MotionController >
   );
 };
 
