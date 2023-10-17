@@ -1,0 +1,62 @@
+section#profile {
+  position: relative;
+  top: 110px;
+  left: 30px;
+  width: calc(100% - 30px - 30px);
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  /* background: #333; */
+}
+
+h1.title {
+  text-transform: capitalize;
+  font-family: Righteous;
+  font-size: 3em;
+  display: inline-block;
+  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+div.user-info {
+  position: relative;
+  /* height: 70%; */
+  width: 18%;
+  min-width: 250px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+div.posts {
+  /* background: #999; */
+  position: relative;
+  width: 100%;
+  /* left: 20%; */
+}
+
+/* .feed {
+  background: #000;
+} */
+
+div.img-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-family: Righteous;
+  color: #393939;
+}
+
+div.img-name img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

@@ -57,7 +57,6 @@ const fetcher = url => fetch( url ).then( res => res.json() );
 
 const relatedFetcher = ( [ url, options ] ) => fetch( url, options ).then( res => res.json() );
 
-
 const Post = ( { params } ) => {
   const { postID } = params;
   // const [ post, setPost ] = useState( {} );
