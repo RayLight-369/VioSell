@@ -5,7 +5,7 @@ section#profile {
   width: calc(100% - 30px - 30px);
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 30px;
   /* background: #333; */
 }
 
@@ -21,7 +21,8 @@ h1.title {
 }
 
 div.user-info {
-  position: relative;
+  position: fixed;
+  /* height: fit-content; */
   /* height: 70%; */
   width: 18%;
   min-width: 250px;
@@ -32,13 +33,14 @@ div.user-info {
   flex-direction: column;
   align-items: center;
   padding: 20px 10px;
+  gap: 20px;
 }
 
 div.posts {
   /* background: #999; */
   position: relative;
-  width: 100%;
-  /* left: 20%; */
+  width: calc(100% - 18% - 50px);
+  left: calc(18% + 50px);
 }
 
 /* .feed {
@@ -49,14 +51,44 @@ div.img-name {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   font-size: 14px;
   font-family: Righteous;
   color: #393939;
+}
+
+hr.hr {
+  border: none;
+  height: 1px;
+  /* position: relative; */
+  width: 100%;
+  /* top: 20px; */
+  /* background: #000; */
+  background: linear-gradient(90deg, white 5%, #f47a34, white 95%);
 }
 
 div.img-name img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
+}
+
+button.delete-btn {
+  width: 70%;
+  height: 30px;
+  color: white;
+  font-family: abeezee;
+  font-size: 11px;
+  border: none;
+  outline: none;
+  position: relative;
+  top: calc(100% - 20px);
+  transition: 150ms ease-out;
+  cursor: pointer;
+  border-radius: 64px;
+  background: linear-gradient(90deg, #FF000F -40.14%, #FF8A00 136.39%);
+}
+
+button.delete-btn:hover {
+  transform: scale(1.04);
 }

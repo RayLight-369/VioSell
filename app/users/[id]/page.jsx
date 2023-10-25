@@ -43,6 +43,11 @@ const Profile = ( { params } ) => {
           />
           <p className={ styles[ "name" ] }>{ params.id == session?.user.id ? session?.user.name : user.name }</p>
         </div>
+        <hr className={ styles[ 'hr' ] } />
+        <div className={ styles[ "stats" ] }>
+        </div>
+        <hr className={ styles[ 'hr' ] } />
+        <button className={ styles[ 'delete-btn' ] }>Delete my account</button>
       </div>
       <div className={ styles[ "posts" ] }>
         <h1 className={ styles[ "title" ] }>
