@@ -140,7 +140,7 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data = [] }
 
     try {
       let url = user_ID ? `/api/users/${ user_ID }/posts` : `/api/posts`;
-      const response = await fetch( `${ url }${ range?.length ? "?range=" + range[ 0 ] + "_to_" + range[ 1 ] : "" }` );
+      const response = await fetch( `${ url }${ range?.length > 0 ? "?range=" + range[ 0 ] + "_to_" + range[ 1 ] : "" }` );
 
 
 

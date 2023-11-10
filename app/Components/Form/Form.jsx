@@ -7,6 +7,7 @@ import Image from "next/image";
 import { v4 as uid } from "uuid";
 import { deleteData, deleteFile, uploadFile } from "@/app/Supabase/Supabase";
 import { getSession, useSession } from "next-auth/react";
+import { getUser } from "@/Provider/Provider";
 
 const Form = ( { post, type, setPost, submitting, handleSubmit } ) => {
   let desc =
@@ -14,16 +15,28 @@ const Form = ( { post, type, setPost, submitting, handleSubmit } ) => {
       ? "Effortlessly refine your posted items. Edit your content to ensure your products are presented at their best, maintaining an enticing display for potential buyers."
       : "Craft compelling posts showcasing your items for sale. Present your products in an engaging way, inviting others to explore and make a purchase if they find something they desire.";
 
-  let IMG_OBJECT =
-    type.toLowerCase().trim() == "edit"
-      ? [ ...post.images ].reduce( ( p, c ) => {
-        p[ c ] = c;
-        return p;
-      }, {} )
-      : {};
-
-  const [ images, setImages ] = useState( IMG_OBJECT );
+  const [ images, setImages ] = useState( {} );
   const { data: session } = useSession();
+
+  const [ userSession, setUserSession ] = useState( {} );
+
+  useEffect( () => {
+
+    ( async () => {
+      setUserSession( await ( await getUser() ).session );
+    } );
+
+    let IMG_OBJECT =
+      type.toLowerCase().trim() == "edit"
+        ? [ ...post.images ].reduce( ( p, c ) => {
+          p[ c ] = c;
+          return p;
+        }, {} )
+        : {};
+
+    setImages( IMG_OBJECT );
+
+  }, [] );
 
   useEffect( () => {
     if ( type.toLowerCase().trim() == "edit" ) {
@@ -34,9 +47,8 @@ const Form = ( { post, type, setPost, submitting, handleSubmit } ) => {
         }, {} ),
       } );
     }
-  }, [ session, images ] );
-
-  console.log( "this is images object: ", images );
+    console.log( post );
+  }, [ userSession, post ] );
 
   function deleteEntry ( obj, indexToDelete ) {
     const keys = Object.keys( obj );

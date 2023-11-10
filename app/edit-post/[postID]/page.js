@@ -48,7 +48,7 @@ const Page = ( { params } ) => {
     };
 
     fetchPost();
-  }, [ postID, session?.user ] );
+  }, [ session?.user ] );
 
   const getMissingImages = ( imagesArray, obj ) => {
     const objKeysSet = new Set( Object.keys( obj ) );
