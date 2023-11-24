@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Feed from "../Components/Feed/Feed";
 
 import styles from "./posts.module.css";
@@ -29,9 +29,15 @@ const page = () => {
     }
   };
 
+  useEffect( () => {
+    if ( !query.length ) {
+      setData( [] );
+    }
+  }, [ query ] );
+
   return (
     <section id={ styles[ "feed" ] }>
-      <Feed type={ "all" } data={ data } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
+      <Feed type={ "all" } data={ data.length ? data : null } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
     </section>
   );
 };

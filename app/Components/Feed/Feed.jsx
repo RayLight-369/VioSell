@@ -128,7 +128,7 @@ const PostCardList = ( { data, setPosts } ) => {
 //   );
 // };
 
-const Feed = ( { className, range, type, user_ID, searchBar = false, data = [], query, setQuery, handleSearch } ) => {
+const Feed = ( { className, range, type, user_ID, searchBar = false, data, query, setQuery, handleSearch } ) => {
   const [ loading, setLoading ] = useState( false );
   const [ posts, setPosts ] = useState( [] );
   const [ error, setError ] = useState( null );
@@ -159,7 +159,7 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data = [], 
   };
 
   useEffect( () => {
-    if ( !data.length ) {
+    if ( !data ) {
       fetchPosts();
     } else {
       setPosts( data );
