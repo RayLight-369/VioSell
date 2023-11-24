@@ -39,6 +39,7 @@ const Form = ( { post, type, setPost, submitting, handleSubmit } ) => {
   }, [] );
 
   useEffect( () => {
+
     if ( type.toLowerCase().trim() == "edit" ) {
       setImages( {
         ...[ ...post.images ].reduce( ( p, c ) => {
@@ -48,6 +49,7 @@ const Form = ( { post, type, setPost, submitting, handleSubmit } ) => {
       } );
     }
     console.log( post );
+
   }, [ userSession, post ] );
 
   function deleteEntry ( obj, indexToDelete ) {
