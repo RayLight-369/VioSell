@@ -24,18 +24,21 @@ const page = ( { params } ) => {
       if ( request.ok ) {
         let body = await request.json();
         console.log( body );
-        setData( prev => body.data );
+        setData( body.data );
       }
 
     }
   };
 
   useEffect( () => {
-    handleSearch( null, true );
+    let timeout = setTimeout( () => {
+      handleSearch( null, true );
+      clearTimeout( timeout );
+    }, 500 );
   }, [] );
 
   useEffect( () => {
-    if ( !query.length ) {
+    if ( !query.length && !data.length ) {
       setData( [] );
     }
   }, [ query ] );
