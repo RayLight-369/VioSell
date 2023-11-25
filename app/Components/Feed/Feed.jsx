@@ -6,10 +6,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
 
 import styles from "./Feed.module.css";
-import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
-import MotionController from "../MotionController/MotionController";
 
 const PostCardList = ( { data, setPosts } ) => {
   const { data: session } = useSession();
@@ -61,77 +62,11 @@ const PostCardList = ( { data, setPosts } ) => {
   );
 };
 
-// const Feed = ({ type, user_ID, searchBar = false, data = [] }) => {
-//   const [posts, setPosts] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const fetchPosts = async () => {
-//       try {
-//         let url = user_ID ? `/api/users/${user_ID}/posts` : `/api/posts`;
-//         const response = await fetch(url, {
-//           cache: "no-store",
-//           next: {
-//             revalidate: 10 * 60,
-//           },
-//         });
-//         const Data = await response.json();
-//         setPosts(Data);
-//       } catch (error) {
-//         console.error("Error fetching posts:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     if (data?.length) {
-//       setPosts(data);
-//       setLoading(false);
-//     } else {
-//       fetchPosts();
-//     }
-//   }, [user_ID, searchBar, data]);
-
-//   let content;
-
-//   if (loading) {
-//     content = <p>Loading...</p>;
-//   } else if (posts.length === 0) {
-//     if (!user_ID) {
-//       content = <p>Please try again later.</p>;
-//     } else {
-//       content = <p>User has no posts.</p>;
-//     }
-//   } else {
-//     content = (
-//       <PostCardList
-//         setPosts={setPosts}
-//         data={posts}
-//         handleTagClick={() => {}}
-//       />
-//     );
-//   }
-
-//   return (
-//     <section id={styles.feed}>
-//       {searchBar && (
-//         <form className={styles["form"]}>
-//           <input
-//             type="text"
-//             placeholder="Search Post"
-//             className={styles["search-input"]}
-//           />
-//         </form>
-//       )}
-//       {content}
-//     </section>
-//   );
-// };
-
 const Feed = ( { className, range, type, user_ID, searchBar = false, data, query, setQuery, handleSearch } ) => {
   const [ loading, setLoading ] = useState( false );
   const [ posts, setPosts ] = useState( [] );
   const [ error, setError ] = useState( null );
+  const [ filterOpen, setFilterOpen ] = useState( false );
 
 
   const fetchPosts = async () => {
@@ -166,6 +101,11 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
     }
   }, [ user_ID, searchBar, data ] );
 
+  const handleFilterToggle = () => {
+    setFilterOpen( prev => !prev );
+  };
+
+
   const content = useMemo( () => {
     if ( loading ) {
       return <p>Loading...</p>;
@@ -192,18 +132,26 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
     // <MotionController className={ styles[ "motion" ] }>
     <section id={ styles.feed } className={ className }>
       { searchBar && (
-        <form className={ styles[ "form" ] } onSubmit={ e => e.preventDefault() }>
-          <input
-            type="text"
-            placeholder="Search Post"
-            className={ styles[ "search-input" ] }
-            value={ query }
-            onChange={ e => setQuery( e.target.value ) }
-            onKeyDown={ e => {
-              handleSearch( e );
-            } }
-          />
+        <form className={ !filterOpen ? `${ styles[ "form" ] }` : `${ styles[ "form" ] } ${ styles[ "active" ] }` } onSubmit={ e => e.preventDefault() }>
+          <div className={ styles[ "search-section" ] }>
+            <input
+              type="text"
+              placeholder="Search Post"
+              className={ styles[ "search-input" ] }
+              value={ query }
+              onChange={ e => setQuery( e.target.value ) }
+              onKeyDown={ e => {
+                handleSearch( e );
+              } }
+            />
+            <button onClick={ handleFilterToggle } className={ !filterOpen ? `${ styles[ "filter" ] }` : `${ styles[ "filter" ] } ${ styles[ "active" ] }` } type="button"><FontAwesomeIcon icon={ faBars } /></button>
+
+          </div>
+          <div className={ filterOpen ? `${ styles[ "filter-section" ] }` : `${ styles[ "filter-section" ] } ${ styles[ "active" ] }` }>
+            <p>FILTER SECTION GOES HERE!</p>
+          </div>
         </form>
+
       ) }
       { content }
     </section>

@@ -12,8 +12,64 @@
 /* Form within Feed Section */
 #feed form.form {
   width: 100%;
+  height: 70px;
   display: flex;
+  gap: 40px;
+  border-radius: 10px;
+  align-items: center;
+  flex-direction: column;
+  transition: 200ms;
+  overflow: hidden;
+}
+
+#feed form.form div.search-section {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  gap: 40px;
   justify-content: center;
+  transition: 200ms;
+}
+
+#feed form.form div.filter-section {
+  transition: 200ms;
+  transform: translateY(0);
+}
+
+#feed form.form div.filter-section.active {
+  transform: translateY(calc(100% + 200px));
+}
+
+#feed form.form.active {
+  height: 300px;
+}
+
+#feed form.form button.filter {
+  width: 50px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 250ms;
+}
+
+button.filter.active {
+  transform: rotate(90deg);
+}
+
+div.filter-box {
+  position: absolute;
+  z-index: 1000000;
+  transform: translateX(300%);
+  top: 55px;
+  background: white;
+  width: 300px;
+  height: 400px;
+  transition: 300ms;
+}
+
+div.filter-box.active {
+  transform: translateX(450px);
 }
 
 /* Search Input within Form */
