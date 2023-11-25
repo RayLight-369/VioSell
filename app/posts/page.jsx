@@ -2,19 +2,29 @@
 
 import { useEffect, useState } from "react";
 import Feed from "../Components/Feed/Feed";
-import { useRouter } from "next/navigation";
+
 import styles from "./posts.module.css";
 
 const page = () => {
 
   const [ query, setQuery ] = useState( "" );
   const [ data, setData ] = useState( [] );
-  const router = useRouter();
 
   const handleSearch = async e => {
     if ( e.key == "Enter" && query.trim().length ) {
 
-      router.push( `/posts/search/${ query }` );
+      const request = await fetch( "/api/posts/search", {
+        method: "POST",
+        body: JSON.stringify( {
+          query
+        } ),
+      } );
+
+      if ( request.ok ) {
+        let body = await request.json();
+        console.log( body );
+        setData( prev => body.data );
+      }
 
     }
   };
@@ -27,7 +37,7 @@ const page = () => {
 
   return (
     <section id={ styles[ "feed" ] }>
-      <Feed type={ "all" } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
+      <Feed type={ "all" } data={ data.length ? data : null } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
     </section>
   );
 };

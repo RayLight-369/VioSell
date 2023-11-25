@@ -1,17 +1,19 @@
-section#my-posts{
+section#my-posts {
   position: relative;
   top: 110px;
-  left: 30px;
-  width: calc(100% - 30px - 30px);
+  /* left: 30px; */
+  width: 100%;
 }
 
-section#my-posts h1.title{
+section#my-posts h1.title {
   text-transform: capitalize;
-    font-family: Righteous;
-    font-size: 3em;
-    display: inline-block;
-    background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-family: Righteous;
+  font-size: 3em;
+  display: inline-block;
+  position: relative;
+  left: 30px;
+  background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
