@@ -37,7 +37,7 @@ const page = () => {
 
   return (
     <section id={ styles[ "feed" ] }>
-      <Feed type={ "all" } data={ data.length ? data : null } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
+      <Feed type={ "all" } data={ data.length ? data : null } range={ [ 0, 19 ] } newPostsWhileScrolling={ true } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
     </section>
   );
 };

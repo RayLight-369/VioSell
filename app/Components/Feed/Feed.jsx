@@ -62,36 +62,62 @@ const PostCardList = ( { data, setPosts } ) => {
   );
 };
 
-const Feed = ( { className, range, type, user_ID, searchBar = false, data, query, setQuery, handleSearch } ) => {
+const Feed = ( { className, range, type, user_ID, searchBar = false, data, query, setQuery, handleSearch, newPostsWhileScrolling = false } ) => {
   const [ loading, setLoading ] = useState( false );
   const [ posts, setPosts ] = useState( [] );
   const [ error, setError ] = useState( null );
   const [ filterOpen, setFilterOpen ] = useState( false );
+  const [ pause, setPause ] = useState( false );
+  const [ lastIndex, setLastIndex ] = useState( 0 );
 
-
-  const fetchPosts = async () => {
-    setLoading( true );
+  const fetchPosts = async ( Range ) => {
+    // if()
     setError( null );
+    setPause( true );
 
     try {
       let url = user_ID ? `/api/users/${ user_ID }/posts` : `/api/posts`;
-      const response = await fetch( `${ url }${ range?.length > 0 ? "?range=" + range[ 0 ] + "_to_" + range[ 1 ] : "" }` );
+      // const response = await fetch( `${ url }${ range?.length > 0 ? "?range=" + range[ 0 ] + "_to_" + range[ 1 ] : "" }` );
 
+      let obj = {};
 
+      if ( Range?.length ) {
+        obj.range = Range;
+      } else if ( range?.length ) {
+        obj.range = range;
+      }
+
+      const response = await fetch( url, {
+        method: "POST",
+        body: JSON.stringify( obj )
+      } );
 
       if ( !response.ok ) {
         throw new Error( `HTTP error! Status: ${ response.status }` );
       }
 
       const Data = await response.json();
-      setPosts( Data );
+
+      let newPosts = [ ...posts, ...Data ];
+      setPosts( [ ...newPosts ] );
+
     } catch ( error ) {
+
       console.error( "Error fetching posts:", error );
       setError( "An error occurred while fetching posts." );
+
     } finally {
+
       setLoading( false );
+      setPause( false );
+
     }
   };
+
+  useEffect( () => {
+    setLastIndex( posts.length );
+    console.log( posts?.map( i => i.id ) );
+  }, [ posts ] );
 
   useEffect( () => {
     if ( !data ) {
@@ -105,6 +131,21 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
     setFilterOpen( prev => !prev );
   };
 
+  useEffect( () => {
+
+    const handleScroll = e => {
+      if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 60 ) && !pause ) {
+        fetchPosts( [ lastIndex, lastIndex + 19 ] );
+      };
+    };
+
+    window.addEventListener( "scroll", handleScroll );
+
+    return () => {
+      window.removeEventListener( "scroll", handleScroll );
+    };
+
+  }, [ lastIndex, newPostsWhileScrolling ] );
 
   const content = useMemo( () => {
     if ( loading ) {
