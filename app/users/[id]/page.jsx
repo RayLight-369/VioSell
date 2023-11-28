@@ -13,22 +13,22 @@ const Profile = ( { params } ) => {
   const [ user, setUser ] = useState( { name: "", email: "", image: "", id: 0, created_at: "" } );
 
   useEffect( () => {
-    if ( session?.user.id != params.id ) {
-      const getUser = async () => {
-        const body = await ( await fetch( `/api/users/${ params.id }` ) ).json();
-        // {cache: "no-store"}
+    // if ( session?.user.id != params.id ) {
+    const getUser = async () => {
+      const body = await ( await fetch( `/api/users/${ params.id }` ) ).json();
+      // {cache: "no-store"}
 
-        setUser( {
-          name: body.name,
-          email: body.email,
-          image: body.image,
-          id: parseInt( body.id ),
-          created_at: body.created_at
-        } );
-      };
+      setUser( {
+        name: body.name,
+        email: body.email,
+        image: body.image,
+        id: parseInt( body.id ),
+        created_at: body.created_at
+      } );
+    };
 
-      getUser();
-    }
+    getUser();
+    // }
   }, [] );
 
 
@@ -63,7 +63,9 @@ const Profile = ( { params } ) => {
             <span>{ user.created_at }</span>
           </div>
           <hr className={ styles[ 'hr' ] } />
-          <button className={ styles[ 'delete-btn' ] }>Delete my account</button>
+          { session?.user.id == user.id && (
+            <button className={ styles[ 'delete-btn' ] }>Delete my account</button>
+          ) }
         </div>
         <div className={ styles[ "posts" ] }>
           <h1 className={ styles[ "title" ] }>
