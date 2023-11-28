@@ -1,10 +1,10 @@
-import { getData } from "@/app/Supabase/Supabase";
+import { getData, insertData } from "@/app/Supabase/Supabase";
 
 export const POST = async ( req, res ) => {
   // const query = new URL( await req.url ).searchParams;
   // const limit = query.has( "range" ) ? ( query.get( "range" ) ).split( "_to_" ).map( item => parseInt( item ) ) : null;
 
-  const { range } = await req.json();
+  const { range, filter } = await req.json();
   const object = {
     table: "posts",
     orderBy: {
@@ -14,6 +14,21 @@ export const POST = async ( req, res ) => {
   };
 
   if ( range?.length ) object[ "range" ] = range;
+  if ( filter ) {
+    switch ( filter.toLowerCase() ) {
+      case "oldest": {
+        object.orderBy.ascending = true;
+        break;
+      }
+      case "newest": {
+        object.orderBy.ascending = false;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
 
   console.log( object );
 

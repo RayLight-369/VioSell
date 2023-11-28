@@ -132,16 +132,28 @@ export const exists = async ( {
   return false;
 };
 
-export const search = async ( { table, colums, query, filters } ) => {
+export const search = async ( { table, colums, query, filter, range, orderBy = {
+  property: 'id',
+  ascending: false
+} } ) => {
 
   try {
 
     let formattedQuery = query.split( ' ' ).join( "%" );
 
-    const { data, error } = await supabase.
+    let formattedString = colums.map( col => `${ col }.ilike.%${ formattedQuery }%` ).join( ", " );
+
+    const Data = supabase.
       from( table )
       .select()
-      .or( `title.ilike.%${ formattedQuery }%, description.ilike.%${ formattedQuery }%, tags.ilike.%${ formattedQuery }%` );
+      .or( formattedString )
+      .order( orderBy.property, { ascending: orderBy.ascending } );
+
+    if ( range && range.length == 2 ) {
+      Data.range( range[ 0 ], range[ 1 ] );
+    }
+
+    const { data, error } = await Data;
 
     const resultArray = data.map( item => {
       let formattedArray = query.split( " " );

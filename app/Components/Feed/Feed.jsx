@@ -69,9 +69,12 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
   const [ filterOpen, setFilterOpen ] = useState( false );
   const [ pause, setPause ] = useState( false );
   const [ lastIndex, setLastIndex ] = useState( 0 );
+  const [ AppliedFilter, setAppliedFilter ] = useState( "" );
 
-  const fetchPosts = async ( Range ) => {
-    // if()
+  const fetchPosts = async ( Range, filter, firstTimeFilters, query ) => {
+    if ( lastIndex <= 0 ) {
+      setLoading( true );
+    }
     setError( null );
     setPause( true );
 
@@ -87,6 +90,15 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
         obj.range = range;
       }
 
+      if ( filter ) {
+        obj.filter = filter;
+      }
+
+      if ( query ) {
+        url += "/search";
+        obj.query = query;
+      }
+
       const response = await fetch( url, {
         method: "POST",
         body: JSON.stringify( obj )
@@ -96,9 +108,18 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
         throw new Error( `HTTP error! Status: ${ response.status }` );
       }
 
-      const Data = await response.json();
+      let Data = await response.json();
 
-      let newPosts = [ ...posts, ...Data ];
+      if ( Data?.data ) Data = Data.data;
+
+      let newPosts = [];
+
+      if ( firstTimeFilters ) {
+        newPosts = [ ...Data ];
+      } else {
+        newPosts = [ ...posts, ...Data ];
+      }
+
       setPosts( [ ...newPosts ] );
 
     } catch ( error ) {
@@ -134,8 +155,9 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
   useEffect( () => {
 
     const handleScroll = e => {
-      if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 60 ) && !pause ) {
-        fetchPosts( [ lastIndex, lastIndex + 19 ] );
+      console.log( AppliedFilter );
+      if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 30 ) && !pause ) {
+        fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
       };
     };
 
@@ -145,7 +167,35 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
       window.removeEventListener( "scroll", handleScroll );
     };
 
-  }, [ lastIndex, newPostsWhileScrolling ] );
+  }, [ lastIndex, newPostsWhileScrolling, AppliedFilter ] );
+
+  const filters = useMemo( () => [
+    {
+      name: "By Relevance",
+      click: () => {
+
+      }
+    }, {
+      name: "Oldest first",
+      click: () => {
+        setLastIndex( 0 );
+        // let filteredPosts = posts.sort( ( a, b ) => ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) );
+        setAppliedFilter( "oldest" );
+
+        fetchPosts( [ 0, 19 ], "oldest", true, query.length ? query : undefined );
+        // setPosts( [ ...filteredPosts ] );
+      }
+    }, {
+      name: "Newest first",
+      click: () => {
+        setLastIndex( 0 );
+        // let filteredPosts = posts.sort( ( a, b ) => ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) );
+        setAppliedFilter( "newest" );
+
+        fetchPosts( [ 0, 19 ], "newest", true, query.length ? query : undefined );
+        // setPosts( [ ...filteredPosts ] );
+      }
+    } ], [ posts, AppliedFilter, query ] );
 
   const content = useMemo( () => {
     if ( loading ) {
@@ -182,14 +232,17 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
               value={ query }
               onChange={ e => setQuery( e.target.value ) }
               onKeyDown={ e => {
-                handleSearch( e );
+                setLastIndex( 0 );
+                handleSearch( e, [ 0, 19 ], AppliedFilter );
               } }
             />
             <button onClick={ handleFilterToggle } className={ !filterOpen ? `${ styles[ "filter" ] }` : `${ styles[ "filter" ] } ${ styles[ "active" ] }` } type="button"><FontAwesomeIcon icon={ faBars } /></button>
 
           </div>
           <div className={ filterOpen ? `${ styles[ "filter-section" ] }` : `${ styles[ "filter-section" ] } ${ styles[ "active" ] }` }>
-            <p>FILTER SECTION GOES HERE!</p>
+            { filters.map( ( filter, key ) => (
+              <button key={ key } onClick={ filter.click }>{ filter.name }</button>
+            ) ) }
           </div>
         </form>
 

@@ -10,13 +10,15 @@ const page = () => {
   const [ query, setQuery ] = useState( "" );
   const [ data, setData ] = useState( [] );
 
-  const handleSearch = async e => {
+  const handleSearch = async ( e, Range, filter ) => {
     if ( e.key == "Enter" && query.trim().length ) {
 
       const request = await fetch( "/api/posts/search", {
         method: "POST",
         body: JSON.stringify( {
-          query
+          query,
+          range: Range,
+          filter: filter ? filter : "relevance"
         } ),
       } );
 
@@ -30,14 +32,14 @@ const page = () => {
   };
 
   useEffect( () => {
-    if ( !query.length ) {
+    if ( !query.trim().length ) {
       setData( [] );
     }
   }, [ query ] );
 
   return (
     <section id={ styles[ "feed" ] }>
-      <Feed type={ "all" } data={ data.length ? data : null } range={ [ 0, 19 ] } newPostsWhileScrolling={ true } searchBar query={ query } setQuery={ setQuery } handleSearch={ handleSearch } />
+      <Feed type={ "all" } data={ data.length ? data : null } range={ [ 0, 19 ] } newPostsWhileScrolling={ true } searchBar query={ query.trim() } setQuery={ setQuery } handleSearch={ handleSearch } />
     </section>
   );
 };
