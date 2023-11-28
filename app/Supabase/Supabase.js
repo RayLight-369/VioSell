@@ -160,10 +160,8 @@ export const search = async ( { table, colums, query, filter, range, orderBy = {
     }
 
     const resultArray = data.map( item => {
+
       let formattedArray = query.split( " " );
-      // const titleScore = item.title.toLowerCase().includes( keyword.toLowerCase() ) ? 5 : 0;
-      // const descriptionScore = item.description.toLowerCase().includes( keyword.toLowerCase() ) ? 3 : 0;
-      // const tagsScore = item.tags.toLowerCase().includes( keyword.toLowerCase() ) ? 1 : 0;
 
       const titleScore = item.title.toLowerCase().replaceAll( "\n", " " ).split( " " ).filter( value => formattedArray.includes( value ) ).length * 3;
       const descriptionScore = item.description.toLowerCase().replaceAll( "\n", " " ).split( " " ).filter( value => formattedArray.includes( value ) ).length * 2;

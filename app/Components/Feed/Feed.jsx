@@ -170,35 +170,41 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
 
   const filters = useMemo( () => [
     {
-      name: "Relevanct",
+      name: "Relevant",
       click: () => {
-        setLastIndex( 0 );
-        // let filteredPosts = posts.sort( ( a, b ) => ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) );
-        setAppliedFilter( "relevance" );
+        if ( AppliedFilter != "relevance" ) {
+          setLastIndex( 0 );
+          // let filteredPosts = posts.sort( ( a, b ) => ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) );
+          setAppliedFilter( "relevance" );
 
-        fetchPosts( [ 0, 19 ], "relevance", true, query.length ? query : undefined );
-        // setPosts( [ ...filteredPosts ] );
+          fetchPosts( [ 0, 19 ], "relevance", true, query.length ? query : undefined );
+          // setPosts( [ ...filteredPosts ] );
+        }
       }
     },
     {
       name: "Oldest first",
       click: () => {
-        setLastIndex( 0 );
-        // let filteredPosts = posts.sort( ( a, b ) => ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) );
-        setAppliedFilter( "oldest" );
+        if ( AppliedFilter != "oldest" ) {
+          setLastIndex( 0 );
+          // let filteredPosts = posts.sort( ( a, b ) => ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) );
+          setAppliedFilter( "oldest" );
 
-        fetchPosts( [ 0, 19 ], "oldest", true, query.length ? query : undefined );
-        // setPosts( [ ...filteredPosts ] );
+          fetchPosts( [ 0, 19 ], "oldest", true, query.length ? query : undefined );
+          // setPosts( [ ...filteredPosts ] );
+        }
       }
     }, {
       name: "Newest first",
       click: () => {
-        setLastIndex( 0 );
-        // let filteredPosts = posts.sort( ( a, b ) => ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) );
-        setAppliedFilter( "newest" );
+        if ( AppliedFilter != "newest" ) {
+          setLastIndex( 0 );
+          // let filteredPosts = posts.sort( ( a, b ) => ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) );
+          setAppliedFilter( "newest" );
 
-        fetchPosts( [ 0, 19 ], "newest", true, query.length ? query : undefined );
-        // setPosts( [ ...filteredPosts ] );
+          fetchPosts( [ 0, 19 ], "newest", true, query.length ? query : undefined );
+          // setPosts( [ ...filteredPosts ] );
+        }
       }
     } ], [ posts, AppliedFilter, query ] );
 
@@ -245,9 +251,11 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
 
           </div>
           <div className={ filterOpen ? `${ styles[ "filter-section" ] }` : `${ styles[ "filter-section" ] } ${ styles[ "active" ] }` }>
-            { filters.map( ( filter, key ) => (
-              <button key={ key } onClick={ filter.click }>{ filter.name }</button>
-            ) ) }
+            <div className={ styles[ "filter-options" ] }>
+              { filters.map( ( filter, key ) => (
+                <button key={ key } onClick={ filter.click }>{ filter.name }</button>
+              ) ) }
+            </div>
           </div>
         </form>
 
