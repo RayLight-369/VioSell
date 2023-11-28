@@ -155,7 +155,6 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
   useEffect( () => {
 
     const handleScroll = e => {
-      console.log( AppliedFilter );
       if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 30 ) && !pause ) {
         fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
       };
@@ -171,11 +170,6 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
 
   const filters = useMemo( () => [
     {
-      name: "By Relevance",
-      click: () => {
-
-      }
-    }, {
       name: "Oldest first",
       click: () => {
         setLastIndex( 0 );
