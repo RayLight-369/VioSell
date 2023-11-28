@@ -19,13 +19,16 @@ export const POST = async ( req ) => {
     switch ( filter.toLowerCase() ) {
       case "oldest": {
         object.orderBy.ascending = true;
+        object.filter = "oldest";
         break;
       }
       case "newest": {
         object.orderBy.ascending = false;
+        object.filter = "newest";
         break;
       }
       default: {
+        object.filter = "relevance";
         object.orderBy = {
           property: "id",
           ascending: false

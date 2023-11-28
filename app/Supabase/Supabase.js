@@ -155,6 +155,10 @@ export const search = async ( { table, colums, query, filter, range, orderBy = {
 
     const { data, error } = await Data;
 
+    if ( filter && filter != "relevance" ) {
+      return data;
+    }
+
     const resultArray = data.map( item => {
       let formattedArray = query.split( " " );
       // const titleScore = item.title.toLowerCase().includes( keyword.toLowerCase() ) ? 5 : 0;

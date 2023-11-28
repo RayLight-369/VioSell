@@ -170,6 +170,17 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
 
   const filters = useMemo( () => [
     {
+      name: "Relevanct",
+      click: () => {
+        setLastIndex( 0 );
+        // let filteredPosts = posts.sort( ( a, b ) => ( new Date( a.created_at.split( "-" ).reverse().join( "-" ) ) ) - ( new Date( b.created_at.split( "-" ).reverse().join( "-" ) ) ) );
+        setAppliedFilter( "relevance" );
+
+        fetchPosts( [ 0, 19 ], "relevance", true, query.length ? query : undefined );
+        // setPosts( [ ...filteredPosts ] );
+      }
+    },
+    {
       name: "Oldest first",
       click: () => {
         setLastIndex( 0 );
