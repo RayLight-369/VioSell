@@ -11,7 +11,7 @@ export const metadata = {
   title: 'VioSell: Your Market',
   description: 'VioSell: Your Marketplace.',
   openGraph: {
-    images: [ "https://viosell.vercel.app/images/favicon.svg" ]
+    images: [ "https://viosell.vercel.app/Images/favicon.svg" ]
   }
   // icons: {
   //   icon: "favicon.ico"
