@@ -29,7 +29,7 @@ export const getData = async ( {
 
     let Data = supabase
       .from( table )
-      .select( columns )
+      .select( columns, { count: "exact" } )
       .match( where )
       .order( orderBy.property, { ascending: orderBy.ascending } );
 
@@ -43,9 +43,9 @@ export const getData = async ( {
       }
     }
 
-    Data = await Data;
+    let { data, error, statusText, count } = await Data;
 
-    return { data: Data.data, statusText: Data.statusText, error: Data.error };
+    return { data, statusText, error, remaining: count - ( data ? data.length : 0 ) };
 
   } catch ( error ) {
 

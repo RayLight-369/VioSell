@@ -34,12 +34,11 @@ export const POST = async ( req, res ) => {
 
   try {
 
-    const data = await getData( object );
+    const { data, remaining } = await getData( object );
+    // const posts = data.data;
+    console.log( remaining );
 
-    const posts = data.data;
-    console.log( posts?.map( item => item.id ) );
-
-    return new Response( JSON.stringify( posts ), { status: 200 } );
+    return new Response( JSON.stringify( { data, remaining } ), { status: 200 } );
 
   } catch ( e ) {
 

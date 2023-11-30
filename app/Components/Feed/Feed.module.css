@@ -131,6 +131,25 @@ div.filter-box.active {
   justify-content: center;
 }
 
+button.load-btn {
+  position: relative;
+  top: 100px;
+  width: 160px;
+  height: 40px;
+  text-align: center;
+  padding: 5px;
+  background: linear-gradient(90deg, rgb(255, 55, 0), rgb(255, 85, 0));
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  left: 50%;
+  font-size: 14px;
+  margin-bottom: 40px;
+  font-family: abeezee;
+  transform: translateX(-50%);
+}
+
 .motion {
   width: 100%;
 }

@@ -69,6 +69,7 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
   const [ filterOpen, setFilterOpen ] = useState( false );
   const [ pause, setPause ] = useState( false );
   const [ lastIndex, setLastIndex ] = useState( 0 );
+  const [ pendingPosts, setPendingPosts ] = useState( 0 );
   const [ AppliedFilter, setAppliedFilter ] = useState( "" );
 
   const fetchPosts = async ( Range, filter, firstTimeFilters, query ) => {
@@ -112,6 +113,8 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
 
       if ( Data?.data ) Data = Data.data;
 
+      setPendingPosts( Data.remaining );
+
       let newPosts = [];
 
       if ( firstTimeFilters ) {
@@ -152,21 +155,21 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
     setFilterOpen( prev => !prev );
   };
 
-  useEffect( () => {
+  // useEffect( () => {
 
-    const handleScroll = e => {
-      if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 30 ) && !pause ) {
-        fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
-      };
-    };
+  //   const handleScroll = e => {
+  //     if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 30 ) && !pause ) {
+  //       fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
+  //     };
+  //   };
 
-    window.addEventListener( "scroll", handleScroll );
+  //   window.addEventListener( "scroll", handleScroll );
 
-    return () => {
-      window.removeEventListener( "scroll", handleScroll );
-    };
+  //   return () => {
+  //     window.removeEventListener( "scroll", handleScroll );
+  //   };
 
-  }, [ lastIndex, newPostsWhileScrolling, AppliedFilter ] );
+  // }, [ lastIndex, newPostsWhileScrolling, AppliedFilter ] );
 
   const filters = useMemo( () => [
     {
@@ -221,11 +224,23 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
       }
     } else {
       return (
-        <PostCardList
-          setPosts={ setPosts }
-          data={ posts }
-          handleTagClick={ () => { } }
-        />
+        <>
+          <PostCardList
+            setPosts={ setPosts }
+            data={ posts }
+            handleTagClick={ () => { } }
+          />
+          {
+            pendingPosts > 0 && (
+              <button type="button" className={ styles[ "load-btn" ] } onClick={ ( e ) => {
+                if ( newPostsWhileScrolling && !pause ) {
+                  fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
+                  setPause( true );
+                };
+              } }>Load More</button>
+            )
+          }
+        </>
       );
     }
   }, [ loading, error, user_ID, posts, data ] );
