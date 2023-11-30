@@ -42,6 +42,27 @@ const Navbar = () => {
 
   let navContent;
 
+  useEffect( () => {
+    let event = ( e ) => {
+      let pfp = document.querySelector( `div.${ styles.img }` );
+      let bars = document.querySelector( `div.${ styles.bars }` );
+
+      if ( pfp && !pfp.contains( e.target ) ) {
+        setToggleDropdown( false );
+      }
+
+      if ( bars && !bars.contains( e.target ) ) {
+        setToggleDropdown( false );
+      }
+    };
+
+    document.addEventListener( "click", event );
+
+    return () => {
+      document.removeEventListener( "click", event );
+    };
+  }, [] );
+
   if ( isMobile ) {
     navContent = (
       <div className={ styles[ "menu-bar" ] }>
