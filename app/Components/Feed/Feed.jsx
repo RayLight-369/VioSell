@@ -231,7 +231,7 @@ const Feed = ( { className, range, type, user_ID, searchBar = false, data, query
             handleTagClick={ () => { } }
           />
           {
-            pendingPosts > 0 && (
+            pendingPosts > 0 && newPostsWhileScrolling && (
               <button type="button" className={ styles[ "load-btn" ] } onClick={ ( e ) => {
                 if ( newPostsWhileScrolling && !pause ) {
                   fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
