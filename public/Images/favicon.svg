@@ -1,22 +1,22 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_21_2)">
+<g clip-path="url(#clip0_36_15)">
 <rect width="512" height="512" rx="256" fill="white"/>
-<g filter="url(#filter0_f_21_2)">
+<g filter="url(#filter0_f_36_15)">
 <ellipse cx="249.5" cy="271" rx="39.5" ry="40" fill="#FF1F00"/>
 </g>
-<path d="M53 216L221.358 452.063C227.009 459.986 239.5 455.989 239.5 446.256V51M256 417.5V108.008C256 74.565 289.687 50.7191 319.533 65.8081C380.834 96.7995 448.026 150.987 446 254C443.805 365.642 365.761 432.229 302.753 455.786C277.922 465.07 256 444.01 256 417.5Z" stroke="url(#paint0_linear_21_2)" stroke-width="26" stroke-linecap="round"/>
+<path d="M53 216L221.358 452.063C227.009 459.986 239.5 455.988 239.5 446.256M256 417.5V108.008C256 74.565 289.687 50.7191 319.533 65.8081C380.834 96.7995 448.026 150.987 446 254C443.805 365.642 365.761 432.229 302.753 455.786C277.922 465.069 256 444.01 256 417.5Z" stroke="url(#paint0_linear_36_15)" stroke-width="36" stroke-linecap="round"/>
 </g>
 <defs>
-<filter id="filter0_f_21_2" x="-90" y="-69" width="679" height="680" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_f_36_15" x="-90" y="-69" width="679" height="680" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feGaussianBlur stdDeviation="150" result="effect1_foregroundBlur_21_2"/>
+<feGaussianBlur stdDeviation="150" result="effect1_foregroundBlur_36_15"/>
 </filter>
-<linearGradient id="paint0_linear_21_2" x1="-117.5" y1="209" x2="652" y2="212.5" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_36_15" x1="-117.5" y1="209" x2="652" y2="212.5" gradientUnits="userSpaceOnUse">
 <stop stop-color="#FF7A00"/>
 <stop offset="1" stop-color="#FF1F00"/>
 </linearGradient>
-<clipPath id="clip0_21_2">
+<clipPath id="clip0_36_15">
 <rect width="512" height="512" rx="256" fill="white"/>
 </clipPath>
 </defs>
