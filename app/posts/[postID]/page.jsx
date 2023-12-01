@@ -3,8 +3,7 @@
 import ImageComponent from "@/app/Components/ImageComponent/ImageComponent";
 import { memo, useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIdCard, faLocationDot, faPhone, faRupeeSign } from "@fortawesome/free-solid-svg-icons";
-import { v4 as uid } from "uuid";
+import { faIdCard, faLocationDot, faMoneyBill1, faPhone } from "@fortawesome/free-solid-svg-icons";
 import useSWR from "swr";
 
 import styles from "./page.module.css";
@@ -181,7 +180,7 @@ const Post = ( { params } ) => {
               </div>
               <div className={ styles[ "price" ] }>
                 <p className={ styles[ "price" ] }>
-                  <FontAwesomeIcon icon={ faRupeeSign } className={ styles[ "price-icon" ] } />
+                  <FontAwesomeIcon icon={ faMoneyBill1 } className={ styles[ "price-icon" ] } />
                   <span>{ post.price }</span>
                 </p>
               </div>

@@ -135,7 +135,7 @@ div.location {
 div.location p.location {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 35px;
   align-items: center;
 }
 
@@ -159,7 +159,7 @@ div.price {
 div.price p.price {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 31px;
   align-items: center;
 }
 
