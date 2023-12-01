@@ -1,0 +1,97 @@
+footer.footer a {
+  text-decoration: none;
+  color: #A4A4A4;
+}
+
+footer.footer {
+  position: relative;
+  top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+}
+
+footer.footer div.body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #181818;
+  width: 100%;
+  height: 280px;
+}
+
+footer.footer div.body div.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+footer.footer div.body div.title img {
+  width: 290px;
+  height: auto !important;
+}
+
+footer.footer div.body div.update {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 35px;
+}
+
+footer.footer div.body div.update p.title {
+  color: white;
+  font-family: abeezee;
+  font-size: 15px;
+}
+
+footer.footer div.body div.update div.inputs {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 22px;
+}
+
+footer.footer div.body div.update div.inputs input.email-input {
+  padding: 9px 5px;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #8F8F8F;
+  color: white;
+}
+
+input.email-input:active {
+  border-bottom: 1.5px solid #d6d6d6;
+}
+
+input.email-input::placeholder {
+  color: #8F8F8F;
+}
+
+footer.footer div.body div.update div.inputs input.sign-up {
+  width: 100px;
+  padding: 13px 15px;
+  font-family: abeezee;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  background: linear-gradient(98deg, #F00 -33.62%, #FF7A00 49.51%, #F00 141.31%);
+}
+
+footer.footer p.copyright {
+  background: #151515;
+  color: #A4A4A4;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
