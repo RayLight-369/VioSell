@@ -19,7 +19,7 @@ const Home = () => {
     return () => {
       if ( typeof window !== "undefined" && typeof document !== "undefined" ) {
 
-        document.body.classList.remove( styles.bodyBackground );
+        // document.body.classList.remove( styles.bodyBackground );
         document.querySelector( "main" ).classList.remove( styles[ "main-element" ] );
 
       }

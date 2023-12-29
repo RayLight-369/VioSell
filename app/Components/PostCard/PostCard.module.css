@@ -233,6 +233,10 @@ span.delete:hover {
     box-shadow: none;
   }
 
+  .post-card div.edit-delete {
+    opacity: 1;
+  }
+
   .post-card .info {
     left: 20px;
     top: 24px;

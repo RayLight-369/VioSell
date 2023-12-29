@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./Footer.module.css";
 import Image from 'next/image';
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
   return (

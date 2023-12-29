@@ -10,12 +10,15 @@ import Image from 'next/image';
 const Profile = ( { params } ) => {
 
   const { data: session } = useSession();
+  const [ isMobile, setIsMobile ] = useState( true );
   const [ user, setUser ] = useState( { name: "", email: "", image: "", id: 0, created_at: "" } );
 
   useEffect( () => {
     // if ( session?.user.id != params.id ) {
+    const abort = new AbortController();
+
     const getUser = async () => {
-      const body = await ( await fetch( `/api/users/${ params.id }` ) ).json();
+      const body = await ( await fetch( `/api/users/${ params.id }`, { signal: abort.signal } ) ).json();
       // {cache: "no-store"}
 
       setUser( {
@@ -28,22 +31,34 @@ const Profile = ( { params } ) => {
     };
 
     getUser();
+
+    const handleResize = () => setIsMobile( window.innerWidth <= 767 );
+
+    window.addEventListener( 'resize', handleResize );
+
+    return () => {
+      abort.abort();
+      window.removeEventListener( 'resize', handleResize );
+    };
     // }
   }, [] );
 
 
   return (
     <>
-      <section id={ styles[ "intro" ] }>
-        <p className={ styles[ "intro-name" ] }>{ user.name }</p>
-        <Image
-          src={ "/Images/bubbles.svg" }
-          width={ 300 }
-          height={ 150 }
-          alt='bubbles'
-          className={ styles[ 'bubbles' ] }
-        />
-      </section>
+      { !isMobile && (
+        <section id={ styles[ "intro" ] }>
+          <p className={ styles[ "intro-name" ] }>{ user.name }</p>
+          <Image
+            src={ "/Images/bubbles.svg" }
+            width={ 300 }
+            height={ 150 }
+            alt='bubbles'
+            className={ styles[ 'bubbles' ] }
+          />
+        </section>
+      ) }
+
       <section id={ styles[ "profile" ] }>
         <div className={ styles[ "user-info" ] }>
           <div className={ styles[ "img-name" ] }>

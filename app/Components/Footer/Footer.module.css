@@ -41,13 +41,13 @@ footer.footer div.body div.update {
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
-  gap: 35px;
+  gap: 28px;
 }
 
 footer.footer div.body div.update p.title {
   color: white;
   font-family: abeezee;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 footer.footer div.body div.update div.inputs {
@@ -67,8 +67,9 @@ footer.footer div.body div.update div.inputs input.email-input {
   color: white;
 }
 
-input.email-input:active {
-  border-bottom: 1.5px solid #d6d6d6;
+footer.footer div.body div.update div.inputs input.email-input:active,
+footer.footer div.body div.update div.inputs input.email-input:focus {
+  border-bottom: 2px solid #d6d6d6;
 }
 
 input.email-input::placeholder {
@@ -94,4 +95,55 @@ footer.footer p.copyright {
   text-align: center;
   padding: 20px;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  footer.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  div.body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  div.body * {
+    font-size: 12px !important;
+    text-align: center !important;
+  }
+
+  footer.footer div.body div.title img {
+    width: 210px;
+  }
+
+  footer.footer div.body div.update {
+    align-items: center;
+    gap: 10px;
+  }
+
+  footer.footer div.body div.update div.inputs {
+    align-items: center;
+  }
+
+  footer.footer p.copyright {
+    font-size: 12px;
+  }
+
+  footer.footer div.body div.update div.inputs input.sign-up {
+    width: 100px;
+    padding: 9px 12px;
+    font-family: abeezee;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    background: linear-gradient(98deg, #F00 -33.62%, #FF7A00 49.51%, #F00 141.31%);
+  }
 }

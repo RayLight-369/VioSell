@@ -72,8 +72,8 @@ div.user-info {
 div.posts {
   /* background: #999; */
   position: relative;
-  width: calc(100% - 18% - 50px);
-  left: calc(18% + 50px);
+  width: calc(100% - 18% - 80px);
+  left: calc(18% + 80px);
 }
 
 /* .feed {
@@ -138,4 +138,45 @@ button.delete-btn {
 
 button.delete-btn:hover {
   transform: scale(1.04);
+}
+
+@media (max-width:767px) {
+  section#profile {
+    position: relative;
+    top: 100px;
+    left: 0;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* background: #333; */
+  }
+
+  div.user-info {
+    position: relative;
+    /* height: fit-content; */
+    /* height: 70%; */
+    display: flex;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 10px;
+    gap: 20px;
+  }
+
+  div.posts {
+    /* background: #999; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    left: 0;
+  }
+
+  div.posts h1 {
+    font-size: 2em;
+    text-align: center;
+  }
 }

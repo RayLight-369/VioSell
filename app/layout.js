@@ -1,7 +1,7 @@
 import Provider from '@/Provider/Provider.jsx';
 import { Inter } from 'next/font/google';
 import Navbar from './Components/Navbar/Navbar.jsx';
-
+import styles from "./Home.module.css";
 
 import "./globals.css";
 import Footer from './Components/Footer/Footer.jsx';
@@ -22,7 +22,7 @@ export const metadata = {
 export default function RootLayout ( { children } ) {
   return (
     <html lang="en">
-      <body className={ inter.className }>
+      <body className={ inter.className + " " + styles.bodyBackground }>
         <Provider>
           <Navbar />
           <main>
