@@ -25,7 +25,7 @@ const MotionController = ( { children, className } ) => {
         } }
         exit={ { opacity: 0, y: 15 } }
         className={ className }
-        transition={ { delay: 0.25 } }
+        transition={ { delay: 0.25, type: "spring", stiffness: 260, damping: 10 } }
       >
         { children }
       </motion.div>
