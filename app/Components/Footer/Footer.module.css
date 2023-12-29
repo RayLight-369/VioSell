@@ -76,6 +76,11 @@ input.email-input::placeholder {
   color: #8F8F8F;
 }
 
+footer.pf {
+  position: relative !important;
+  top: 100% !important;
+}
+
 footer.footer div.body div.update div.inputs input.sign-up {
   width: 100px;
   padding: 13px 15px;

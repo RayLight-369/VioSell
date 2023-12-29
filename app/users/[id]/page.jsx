@@ -16,6 +16,8 @@ const Profile = ( { params } ) => {
   useEffect( () => {
     // if ( session?.user.id != params.id ) {
     const abort = new AbortController();
+    let footer = document.querySelector( "footer" );
+    footer.style.top = "100%";
 
     const getUser = async () => {
       const body = await ( await fetch( `/api/users/${ params.id }`, { signal: abort.signal } ) ).json();
@@ -38,6 +40,7 @@ const Profile = ( { params } ) => {
 
     return () => {
       abort.abort();
+      footer.style.top = "200px";
       window.removeEventListener( 'resize', handleResize );
     };
     // }
