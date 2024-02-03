@@ -72,18 +72,18 @@ hr.hr {
 @media (max-width: 767px) {
   /* Main Title */
   #main h1.title {
-    font-size: 2.2em;
+    font-size: 2.6em;
     top: -30px;
   }
 
   /* Title Span */
   h1.title span.span {
-    font-size: 2.3em;
+    font-size: 2.7em;
   }
 
   /* Main Description */
   #main p.desc {
-    font-size: 0.7em;
+    font-size: 1em;
     line-height: 1.3;
     width: calc(100% - 40px);
     top: 0;
