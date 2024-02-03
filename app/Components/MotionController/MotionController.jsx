@@ -1,12 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const MotionController = ( { children, className } ) => {
-
-  const [ ref, inView ] = useInView( {
-    triggerOnce: false, // Trigger animation only once
+const MotionController = ({ children, className }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Trigger animation only once
     threshold: 0.25, // When 40% of the element is in view
-  } );
+  });
 
   const fadeInAnimation = {
     hidden: { opacity: 0, y: 15 },
@@ -16,18 +15,23 @@ const MotionController = ( { children, className } ) => {
   return (
     <AnimatePresence>
       <motion.div
-        ref={ ref }
+        ref={ref}
         initial="hidden"
-        animate={ inView ? "visible" : "hidden" }
-        variants={ fadeInAnimation }
-        style={ {
+        animate={inView ? "visible" : "hidden"}
+        variants={fadeInAnimation}
+        style={{
           position: "relative",
-        } }
-        exit={ { opacity: 0, y: 15 } }
-        className={ className }
-        transition={ { delay: 0.25, type: "spring", stiffness: 260, damping: 10 } }
+        }}
+        exit={{ opacity: 0, y: 15 }}
+        className={className}
+        transition={{
+          delay: 0.25,
+          type: "spring",
+          stiffness: 260,
+          damping: 10,
+        }}
       >
-        { children }
+        {children}
       </motion.div>
     </AnimatePresence>
   );
