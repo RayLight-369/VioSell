@@ -29,6 +29,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/react": "^18.2.52",
     "encoding": "^0.1.13"
   }
 }

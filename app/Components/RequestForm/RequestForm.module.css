@@ -1,0 +1,122 @@
+div.container {
+  padding: 25px;
+  width: 350px;
+  height: 360px;
+  background: #fff;
+  font-family: AbeeZee;
+  border-radius: 10px;
+  position: relative;
+}
+
+div.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  gap: 40px;
+  position: relative;
+  top: 30px;
+}
+
+div.shows-request label,
+div.shows-message label {
+  position: relative;
+  display: flex;
+}
+
+div.shows-request label span,
+div.shows-message label span {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+  font-size: 12px;
+  transition: 150ms;
+  color: #4d3128;
+}
+
+div.shows-message {
+  height: calc(100% - 200px);
+  width: 100%;
+}
+
+div.shows-request {
+  width: 100%;
+}
+
+div.shows-message label {
+  width: 100%;
+  height: fit-content;
+}
+
+div.shows-request label input#shows-request-input,
+div.shows-message label textarea#shows-message-input {
+  border: none;
+  border-bottom: 1px solid #92714e;
+  outline: none;
+  padding: 5px 8px;
+  height: 30px;
+  width: 100%;
+}
+
+input#shows-request-input:focus ~ span,
+textarea#shows-message-input:focus ~ span,
+input#shows-request-input:not(:placeholder-shown) ~ span,
+textarea#shows-message-input:not(:placeholder-shown) ~ span {
+  top: -20px;
+  left: 2px;
+  font-size: 10px;
+  color: #92714e;
+}
+
+div.shows-message label textarea {
+  max-height: 150px;
+  min-height: 30px;
+  width: 100%;
+  min-width: 70%;
+  max-width: 100%;
+  font-family: abeezee;
+}
+
+div.buttons {
+  position: absolute;
+  right: 25px;
+  bottom: 23px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+div.buttons button.requestBtn {
+  border: none;
+  outline: none;
+  color: white;
+  background: #c95a27;
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: 150ms;
+}
+
+div.buttons button.cancelBtn {
+  border: none;
+  outline: none;
+  border: 1px solid #7a5031;
+  background: none;
+  color: #483527;
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: 150ms;
+}
+
+div.buttons button.requestBtn:hover {
+  filter: saturate(.7);
+  transform: scale(.9);
+}
+
+div.buttons button.cancelBtn:hover {
+  transform: scale(.9);
+}

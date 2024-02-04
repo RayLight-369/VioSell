@@ -24,6 +24,8 @@ const handler = NextAuth({
 
       }).then(users => users.data[0]);
 
+      console.log(`session accessed = `, JSON.stringify(sessionUser));
+
       session.user.id = sessionUser.id;
 
       return session;
