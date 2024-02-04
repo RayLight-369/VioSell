@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const RequestForm = ({ handleClose }) => {
   const [title, setTitle] = useState("");
+  const [msg, setMsg] = useState("Submit");
   const [desc, setDesc] = useState("");
 
   const handleMsgChange = (e) => {
@@ -13,6 +14,7 @@ const RequestForm = ({ handleClose }) => {
   };
 
   const handleSubmit = async () => {
+    setMsg("Sending...");
     const request = await fetch("/api/feedback", {
       method: "POST",
       body: JSON.stringify({
@@ -20,6 +22,13 @@ const RequestForm = ({ handleClose }) => {
         desc,
       }),
     });
+    if (request.ok) {
+      setMsg("Sent!");
+      let timeOut = setTimeout(() => {
+        setMsg("Submit");
+        clearTimeout(timeOut);
+      }, 4000);
+    }
   };
   return (
     <div className={Styles.container}>
@@ -53,8 +62,9 @@ const RequestForm = ({ handleClose }) => {
           type="button"
           className={Styles.requestBtn}
           onClick={handleSubmit}
+          disabled={msg == "Sending..."}
         >
-          Submit
+          {msg}
         </button>
         <button
           type="button"

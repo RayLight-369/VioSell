@@ -18,12 +18,14 @@ div.inputs {
   gap: 40px;
   position: relative;
   top: 30px;
+  font-family: abeezee !important;
 }
 
 div.shows-request label,
 div.shows-message label {
   position: relative;
   display: flex;
+  font-family: abeezee !important;
 }
 
 div.shows-request label span,
@@ -58,6 +60,7 @@ div.shows-message label textarea#shows-message-input {
   padding: 5px 8px;
   height: 30px;
   width: 100%;
+  font-family: abeezee;
 }
 
 input#shows-request-input:focus ~ span,
@@ -76,7 +79,6 @@ div.shows-message label textarea {
   width: 100%;
   min-width: 70%;
   max-width: 100%;
-  font-family: abeezee;
 }
 
 div.buttons {
