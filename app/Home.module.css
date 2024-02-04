@@ -88,4 +88,14 @@ hr.hr {
     width: calc(100% - 40px);
     top: 0;
   }
+
+  .feed{
+    position: relative;
+    top: -180px;
+  }
+
+  hr.hr{
+    position: relative;
+    top: -180px;
+  }
 }

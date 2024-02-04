@@ -93,18 +93,25 @@ const Navbar = () => {
             <Link href={"/posts"} onClick={hideDropdown}>
               Posts
             </Link>
-            <Link href={"/create-post"} onClick={hideDropdown}>
-              Create Post
-            </Link>
-            <Link
-              href={`/users/${session?.user.id}/posts`}
-              onClick={hideDropdown}
-            >
-              My Posts
-            </Link>
-            <Link href={`/users/${session?.user.id}`} onClick={hideDropdown}>
-              Profile
-            </Link>
+            {session?.user && status != "loading" && (
+              <>
+                <Link href={"/create-post"} onClick={hideDropdown}>
+                  Create Post
+                </Link>
+                <Link
+                  href={`/users/${session?.user.id}/posts`}
+                  onClick={hideDropdown}
+                >
+                  My Posts
+                </Link>
+                <Link
+                  href={`/users/${session?.user.id}`}
+                  onClick={hideDropdown}
+                >
+                  Profile
+                </Link>
+              </>
+            )}
           </div>
           {session?.user && status != "loading" ? (
             <button
@@ -160,16 +167,6 @@ const Navbar = () => {
               }`}
             >
               <div className={styles.links}>
-                {isMobile && (
-                  <>
-                    <Link href={"/"} onClick={hideDropdown}>
-                      Home
-                    </Link>
-                    <Link href={"/posts"} onClick={hideDropdown}>
-                      Posts
-                    </Link>
-                  </>
-                )}
                 <Link
                   href={`/users/${session?.user.id}`}
                   onClick={hideDropdown}
