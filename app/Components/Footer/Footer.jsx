@@ -55,7 +55,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <p className={styles["copyright"]}>Copyright © 2022 VioSell, Inc</p>
+        <p className={styles["copyright"]}>Copyright © 2024 VioSell</p>
       </footer>
     </>
   );
