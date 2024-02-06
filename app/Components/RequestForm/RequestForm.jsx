@@ -24,10 +24,6 @@ const RequestForm = ({ handleClose }) => {
     });
     if (request.ok) {
       setMsg("Sent!");
-      let timeOut = setTimeout(() => {
-        setMsg("Submit");
-        clearTimeout(timeOut);
-      }, 4000);
     }
   };
   return (
@@ -65,7 +61,7 @@ const RequestForm = ({ handleClose }) => {
           type="button"
           className={Styles.requestBtn}
           onClick={handleSubmit}
-          disabled={msg == "Sending..."}
+          disabled={["Sending...", "Sent!"].includes(msg)}
         >
           {msg}
         </button>
