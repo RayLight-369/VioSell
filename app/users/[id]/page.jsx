@@ -47,7 +47,7 @@ const Profile = ({ params }) => {
     return () => {
       abort.abort();
       footer.style.top = "200px";
-      // window.removeEventListener( 'resize', handleResize );
+      window.removeEventListener("resize", handleResize);
     };
     // }
   }, []);

@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 const MotionController = ({ children, className }) => {
   const [ref, inView] = useInView({
     triggerOnce: true, // Trigger animation only once
-    threshold: 0.08, // When 8% of the element is in view
+    threshold: 0.02, // When 2% of the element is in view
   });
 
   const fadeInAnimation = {
@@ -24,12 +24,9 @@ const MotionController = ({ children, className }) => {
         }}
         exit={{ opacity: 0, y: 15 }}
         className={className}
-        transition={{
-          delay: 0.25,
-          type: "spring",
-          stiffness: 260,
-          damping: 10,
-        }}
+        // transition={{
+        //   delay: 0.25,
+        // }}
       >
         {children}
       </motion.div>

@@ -120,7 +120,7 @@ const Feed = ({
 
       let Data = await response.json();
 
-      if (Data?.data.length) Data = Data.data;
+      if (Data?.data?.length) Data = Data.data;
 
       setPendingPosts(Data.remaining);
 
