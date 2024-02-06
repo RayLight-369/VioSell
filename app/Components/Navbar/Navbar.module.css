@@ -85,8 +85,13 @@ button.register-btn {
 }
 
 button.register-btn:hover{
-  background: #000;
+  background: #232323;
+  transform: scale(1.1);
+}
+
+button.register-btn:active{
   transform: scale(.9);
+  background: #000;
 }
 
 /* Profile image */

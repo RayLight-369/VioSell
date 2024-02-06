@@ -141,18 +141,21 @@ const Navbar = () => {
               <>
                 <Link
                   href={"/create-post"}
+                  className={setActiveLink("/create-post")}
                   // onClick={hideDropdown}
                 >
                   Create Post
                 </Link>
                 <Link
                   href={`/users/${session?.user.id}/posts`}
+                  className={setActiveLink(`/users/${session?.user.id}/posts`)}
                   // onClick={hideDropdown}
                 >
                   My Posts
                 </Link>
                 <Link
                   href={`/users/${session?.user.id}`}
+                  className={setActiveLink(`/users/${session?.user.id}`)}
                   // onClick={hideDropdown}
                 >
                   Profile
@@ -191,8 +194,12 @@ const Navbar = () => {
     navContent = (
       <>
         <div className={styles.links}>
-          <Link href={"/"}>Home</Link>
-          <Link href={"/posts"}>Posts</Link>
+          <Link href={"/"} className={setActiveLink("/")}>
+            Home
+          </Link>
+          <Link href={"/posts"} className={setActiveLink("/posts")}>
+            Posts
+          </Link>
         </div>
         {session?.user && status != "loading" ? (
           <div className={styles.profile}>
@@ -216,18 +223,21 @@ const Navbar = () => {
               <div className={styles.links}>
                 <Link
                   href={`/users/${session?.user.id}`}
+                  className={setActiveLink(`/users/${session?.user.id}`)}
                   // onClick={hideDropdown}
                 >
                   Profile
                 </Link>
                 <Link
                   href={"/create-post"}
+                  className={setActiveLink(`/create-post`)}
                   // onClick={ hideDropdown }
                 >
                   Create Post
                 </Link>
                 <Link
                   href={`/users/${session?.user.id}/posts`}
+                  className={setActiveLink(`/users/${session?.user.id}/posts`)}
                   // onClick={hideDropdown}
                 >
                   My Posts
@@ -249,7 +259,7 @@ const Navbar = () => {
           <div className={styles.register}>
             <button
               className={styles["register-btn"]}
-              onClick={() => {
+              onClick={(e) => {
                 // hideDropdown();
                 signIn(provider.google.id);
               }}

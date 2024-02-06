@@ -15,15 +15,16 @@ const PostCard = ({
   handleDelete,
   handlePostClick,
 }) => {
-  const [imageLoading, setImageLoading] = useState(true);
   const [cardLoading, setCardLoading] = useState(true);
-  const router = useRouter();
 
   const { data: session } = useSession();
 
   let { tags } = post;
 
-  tags = tags.split(" ").map((tag) => tag.trim());
+  tags = tags
+    .split(" ")
+    .map((tag) => tag.trim())
+    .filter((_) => !!_);
 
   useEffect(() => {
     // other operations

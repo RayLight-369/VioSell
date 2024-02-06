@@ -53,7 +53,7 @@ h1.title span.span {
 /* Main Description */
 #main p.desc {
   width: 60%;
-  line-height: 1.4;
+  line-height: 150%;
   font-size: 0.87em;
   font-weight: 600;
   font-family: quicksand, inter, Arial, Helvetica, sans-serif;
