@@ -56,6 +56,9 @@ const RequestForm = ({ handleClose }) => {
             <span>Description</span>
           </label>
         </div>
+        <p className={Styles.note}>
+          Note: If you accidentally close this form , the inputs will reset.
+        </p>
       </div>
       <div className={Styles.buttons}>
         <button

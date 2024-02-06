@@ -35,11 +35,11 @@ div.shows-message label span {
   top: 7px;
   font-size: 12px;
   transition: 150ms;
-  color: #8e4c36;
+  color: #915415;
 }
 
 div.shows-message {
-  height: calc(100% - 200px);
+  height: auto;
   width: 100%;
 }
 
@@ -107,7 +107,8 @@ div.buttons button.cancelBtn {
   outline: none;
   border: 1px solid #cf8957;
   background: none;
-  color: #5e3f29;
+  color: #9d531e;
+  font-weight: 600;
   padding: 10px 22px;
   border-radius: 5px;
   font-size: 12px;
@@ -121,6 +122,11 @@ div.buttons button.requestBtn:hover {
 
 div.buttons button.cancelBtn:hover {
   transform: scale(.9);
+}
+
+.note{
+  color: red;
+  font-size: 11px;
 }
 
 @media (max-width: 767px) {
