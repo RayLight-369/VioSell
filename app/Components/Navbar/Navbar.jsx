@@ -59,7 +59,7 @@ const Navbar = () => {
 
     const handleScroll = () => {
       const scrollY = document.documentElement.scrollTop;
-      const offsetY = 150;
+      const offsetY = 300;
       const header = document.querySelector("header");
 
       if (scrollY >= offsetY) {
