@@ -120,7 +120,7 @@ const Feed = ({
 
       let Data = await response.json();
 
-      if (Data?.data) Data = Data.data;
+      if (Data?.data.length) Data = Data.data;
 
       setPendingPosts(Data.remaining);
 
@@ -136,6 +136,7 @@ const Feed = ({
     } catch (error) {
       console.error("Error fetching posts:", error);
       setError("An error occurred while fetching posts.");
+      // fetchPosts()
     } finally {
       setLoading(false);
       setPause(false);

@@ -54,9 +54,10 @@ h1.title span.span {
 #main p.desc {
   width: 60%;
   line-height: 1.4;
-  font-size: 0.9em;
+  font-size: 0.87em;
+  font-weight: 600;
   font-family: quicksand, inter, Arial, Helvetica, sans-serif;
-  color: #222;
+  color: #343434;
   text-align: center;
   position: relative;
   top: 20px;

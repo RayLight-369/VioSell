@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css"; // Import the CSS module
 
 const Navbar = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
   const [icon, setIcon] = useState(faBars);
-  const router = useRouter();
+  const pathName = usePathname();
 
   useEffect(() => {
     const setProviders = async () => {
@@ -57,15 +57,34 @@ const Navbar = () => {
       }
     };
 
+    const updateHeader = (element, height, bg, filter, padding) => {
+      element.style.height = height;
+      element.style.background = bg;
+      element.style.backdropFilter = filter;
+      element.style.padding = padding;
+    };
+
     const handleScroll = () => {
       const scrollY = document.documentElement.scrollTop;
       const offsetY = 300;
       const header = document.querySelector("header");
 
       if (scrollY >= offsetY) {
-        header.style.height = `50px`;
+        updateHeader(
+          header,
+          `50px`,
+          `rgba(255, 255, 255, 0.733)`,
+          `blur(5px)`,
+          `9px 12px`
+        );
       } else {
-        header.style.height = `70px`;
+        updateHeader(
+          header,
+          `70px`,
+          `rgba(255, 255, 255)`,
+          `none`,
+          `12px 15px`
+        );
       }
     };
 
@@ -77,6 +96,9 @@ const Navbar = () => {
       // document.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const setActiveLink = (path) =>
+    pathName === path ? styles.active : undefined;
 
   if (isMobile) {
     navContent = (
@@ -101,26 +123,37 @@ const Navbar = () => {
           className={`${styles.dropdown} ${toggleDropdown ? styles.open : ""}`}
         >
           <div className={styles["links"]}>
-            <Link href={"/"} onClick={hideDropdown}>
+            <Link
+              href={"/"}
+              // onClick={hideDropdown}
+              className={setActiveLink("/")}
+            >
               Home
             </Link>
-            <Link href={"/posts"} onClick={hideDropdown}>
+            <Link
+              href={"/posts"}
+              // onClick={hideDropdown}
+              className={setActiveLink("/posts")}
+            >
               Posts
             </Link>
             {session?.user && status != "loading" && (
               <>
-                <Link href={"/create-post"} onClick={hideDropdown}>
+                <Link
+                  href={"/create-post"}
+                  // onClick={hideDropdown}
+                >
                   Create Post
                 </Link>
                 <Link
                   href={`/users/${session?.user.id}/posts`}
-                  onClick={hideDropdown}
+                  // onClick={hideDropdown}
                 >
                   My Posts
                 </Link>
                 <Link
                   href={`/users/${session?.user.id}`}
-                  onClick={hideDropdown}
+                  // onClick={hideDropdown}
                 >
                   Profile
                 </Link>
@@ -131,7 +164,7 @@ const Navbar = () => {
             <button
               className={styles.signout}
               onClick={() => {
-                hideDropdown();
+                // hideDropdown();
                 signOut();
               }}
             >
@@ -143,7 +176,7 @@ const Navbar = () => {
             <button
               className={styles["register-btn"]}
               onClick={() => {
-                hideDropdown();
+                // hideDropdown();
                 signIn(provider.google.id);
               }}
             >
@@ -183,16 +216,19 @@ const Navbar = () => {
               <div className={styles.links}>
                 <Link
                   href={`/users/${session?.user.id}`}
-                  onClick={hideDropdown}
+                  // onClick={hideDropdown}
                 >
                   Profile
                 </Link>
-                <Link href={"/create-post"} onClick={hideDropdown}>
+                <Link
+                  href={"/create-post"}
+                  // onClick={ hideDropdown }
+                >
                   Create Post
                 </Link>
                 <Link
                   href={`/users/${session?.user.id}/posts`}
-                  onClick={hideDropdown}
+                  // onClick={hideDropdown}
                 >
                   My Posts
                 </Link>
@@ -201,7 +237,7 @@ const Navbar = () => {
                 className={styles.signout}
                 onClick={() => {
                   signOut();
-                  hideDropdown();
+                  // hideDropdown();
                 }}
               >
                 Sign-Out
@@ -214,7 +250,7 @@ const Navbar = () => {
             <button
               className={styles["register-btn"]}
               onClick={() => {
-                hideDropdown();
+                // hideDropdown();
                 signIn(provider.google.id);
               }}
             >
