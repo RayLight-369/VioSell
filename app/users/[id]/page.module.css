@@ -46,6 +46,7 @@ h1.title {
   font-family: Righteous;
   font-size: 3em;
   display: inline-block;
+  text-align: center;
   background: linear-gradient(90deg, var(--prim-red), var(--prim-gold), var(--prim-red) 120%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -59,6 +60,7 @@ div.user-info {
   width: 18%;
   min-width: 250px;
   background: #fff;
+  left: 35px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -73,7 +75,9 @@ div.posts {
   /* background: #999; */
   position: relative;
   width: calc(100% - 18% - 80px);
-  left: calc(18% + 80px);
+  left: calc(18% + 110px);
+  display: flex;
+  flex-direction: column;
 }
 
 /* .feed {

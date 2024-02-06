@@ -44,7 +44,7 @@ const Navbar = () => {
   let navContent;
 
   useEffect(() => {
-    let event = (e) => {
+    const event = (e) => {
       let pfp = document.querySelector(`div.${styles.img}`);
       let bars = document.querySelector(`div.${styles.bars}`);
 
@@ -57,10 +57,24 @@ const Navbar = () => {
       }
     };
 
+    const handleScroll = () => {
+      const scrollY = document.documentElement.scrollTop;
+      const offsetY = 150;
+      const header = document.querySelector("header");
+
+      if (scrollY >= offsetY) {
+        header.style.height = `50px`;
+      } else {
+        header.style.height = `70px`;
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
     document.addEventListener("click", event);
 
     return () => {
       document.removeEventListener("click", event);
+      // document.removeEventListener("scroll", handleScroll);
     };
   }, []);
 

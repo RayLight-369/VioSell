@@ -35,7 +35,7 @@ div.shows-message label span {
   top: 7px;
   font-size: 12px;
   transition: 150ms;
-  color: #4d3128;
+  color: #8e4c36;
 }
 
 div.shows-message {
@@ -55,7 +55,7 @@ div.shows-message label {
 div.shows-request label input#shows-request-input,
 div.shows-message label textarea#shows-message-input {
   border: none;
-  border-bottom: 1px solid #92714e;
+  border-bottom: 1px solid #b27e46;
   outline: none;
   padding: 5px 8px;
   height: 30px;
@@ -70,7 +70,7 @@ textarea#shows-message-input:not(:placeholder-shown) ~ span {
   top: -20px;
   left: 2px;
   font-size: 10px;
-  color: #92714e;
+  color: #c68f54;
 }
 
 div.shows-message label textarea {
@@ -105,9 +105,9 @@ div.buttons button.requestBtn {
 div.buttons button.cancelBtn {
   border: none;
   outline: none;
-  border: 1px solid #7a5031;
+  border: 1px solid #cf8957;
   background: none;
-  color: #483527;
+  color: #5e3f29;
   padding: 10px 22px;
   border-radius: 5px;
   font-size: 12px;

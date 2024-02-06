@@ -11,13 +11,18 @@
 
 main.main-element {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  /* backdrop-filter: blur(1.5px); */
 }
 
 /* Main Section */
 #main {
   width: 100%;
-  height: 100%;
+  height: 99vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,9 +65,9 @@ h1.title span.span {
 /* Horizontal Rule */
 hr.hr {
   width: 65%;
-  position: relative;
+  /* position: relative;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
   border: none;
   height: 1px;
   background: linear-gradient(90deg, transparent, #ddd, transparent);
@@ -70,6 +75,10 @@ hr.hr {
 
 
 @media (max-width: 767px) {
+  #main{
+    height: 75vh;
+    backdrop-filter: blur(2.9px);
+  }
   /* Main Title */
   #main h1.title {
     font-size: 2.6em;
@@ -91,11 +100,11 @@ hr.hr {
 
   .feed{
     position: relative;
-    top: -180px;
+    top: -80px;
   }
 
   hr.hr{
     position: relative;
-    top: -180px;
+    top: -100px;
   }
 }

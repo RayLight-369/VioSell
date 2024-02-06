@@ -6,20 +6,20 @@ import styles from "./Home.module.css";
 import "./globals.css";
 import Footer from './Components/Footer/Footer.jsx';
 
-const inter = Inter( { subsets: [ 'latin' ] } );
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'VioSell: Your Market',
   description: 'VioSell: Your Marketplace.',
   openGraph: {
-    images: [ "https://viosell.vercel.app/Images/favicon.svg" ]
+    images: ["https://viosell.vercel.app/Images/favicon.svg"]
   }
   // icons: {
   //   icon: "favicon.ico"
   // }
 };
 
-export default function RootLayout ( { children } ) {
+export default function RootLayout ({ children }) {
   return (
     <html lang="en">
       <body className={ inter.className + " " + styles.bodyBackground }>
@@ -27,8 +27,8 @@ export default function RootLayout ( { children } ) {
           <Navbar />
           <main>
             { children }
-            <Footer />
           </main>
+          <Footer />
         </Provider>
       </body>
     </html>
