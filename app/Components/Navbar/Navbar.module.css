@@ -81,7 +81,7 @@ button.register-btn {
   padding: 11px 22px;
   border-radius: 50px;
   cursor: pointer;
-  transition: 120ms ease-in-out;
+  transition: 100ms ease-in-out;
 }
 
 button.register-btn:hover{
@@ -90,7 +90,7 @@ button.register-btn:hover{
 }
 
 button.register-btn:active{
-  transform: scale(.9);
+  transform: scale(1);
   background: #000;
 }
 

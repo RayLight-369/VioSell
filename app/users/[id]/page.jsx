@@ -66,30 +66,32 @@ const Profile = ({ params }) => {
           />
         </section>
       )}
-      <div className={styles["user-info"]}>
-        <div className={styles["img-name"]}>
-          <Image
-            alt="pfp"
-            src={
-              params.id == session?.user.id ? session?.user.image : user.image
-            }
-            width={60}
-            height={60}
-          />
-          <p className={styles["name"]}>
-            {params.id == session?.user.id ? session?.user.name : user.name}
-          </p>
+      <div className={styles["ref"]}>
+        <div className={styles["user-info"]}>
+          <div className={styles["img-name"]}>
+            <Image
+              alt="pfp"
+              src={
+                params.id == session?.user.id ? session?.user.image : user.image
+              }
+              width={60}
+              height={60}
+            />
+            <p className={styles["name"]}>
+              {params.id == session?.user.id ? session?.user.name : user.name}
+            </p>
+          </div>
+          <hr className={styles["hr"]} />
+          <div className={styles["stats"]}></div>
+          <div className={styles["account-date"]}>
+            <p>Account made on:</p>
+            <span>{user.created_at}</span>
+          </div>
+          <hr className={styles["hr"]} />
+          {session?.user.id == user.id && (
+            <button className={styles["delete-btn"]}>Delete my account</button>
+          )}
         </div>
-        <hr className={styles["hr"]} />
-        <div className={styles["stats"]}></div>
-        <div className={styles["account-date"]}>
-          <p>Account made on:</p>
-          <span>{user.created_at}</span>
-        </div>
-        <hr className={styles["hr"]} />
-        {session?.user.id == user.id && (
-          <button className={styles["delete-btn"]}>Delete my account</button>
-        )}
       </div>
       <section id={styles["profile"]}>
         <div className={styles["posts"]}>
