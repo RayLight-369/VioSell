@@ -2,7 +2,7 @@
 
 /* Body */
 .bodyBackground {
-  background: url("/Images/background.svg");
+  background: url("/Images/background2.svg");
   background-position: center;
   background-repeat: repeat-y;
   background-size: cover;
@@ -45,6 +45,8 @@ h1.title span.span {
       var(--prim-gold),
       var(--prim-red) 120%);
   background-clip: text;
+  padding: 12px;
+  display: block;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2em;

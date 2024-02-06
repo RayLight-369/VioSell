@@ -31,7 +31,8 @@ const Home = () => {
       <section id={ styles.main }>
         <h1 className={ `${styles.title}` }>
           <span className={ styles.span }>VioSell: </span>
-          <br /> Your Objects, Your Marketplace.
+          {/* <br />  */ }
+          Your Objects, Your Marketplace.
         </h1>
         <p className={ styles.desc }>
           Your premier online marketplace, offering a curated platform where you
