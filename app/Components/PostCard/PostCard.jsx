@@ -100,6 +100,7 @@ const PostCard = ({
             >
               Read More
             </button>
+            <p className={styles["price-tag"]}>{post.price} pkr.</p>
           </div>
         </div>
         <div className={styles["tags"]}>
