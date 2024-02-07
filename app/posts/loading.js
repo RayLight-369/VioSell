@@ -1,5 +1,13 @@
+import Image from "next/image";
+
 export default function Loading () {
   return (
-    <p>Loading...</p>
+    <Image
+      src={ "/Images/loading.gif" }
+      width={ 40 }
+      height={ 40 }
+      alt="loading"
+      unoptimized={ true }
+    />
   );
 };

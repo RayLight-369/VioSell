@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
 
 import styles from "./Feed.module.css";
+import Loading from "@/app/loading";
 
 const PostCardList = ({ data, setPosts }) => {
   const { data: session } = useSession();
@@ -238,12 +239,12 @@ const Feed = ({
 
   const content = useMemo(() => {
     if (loading) {
-      return <p>Loading...</p>;
+      return <Loading />;
     } else if (error) {
       return <p>{error}</p>;
     } else if (posts.length === 0) {
       if (!user_ID) {
-        return <p>Please try again later.</p>;
+        return <Loading />;
       } else {
         return <p>User has no posts.</p>;
       }

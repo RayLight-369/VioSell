@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css"; // Import the CSS module
+import Loading from "@/app/loading";
 
 const Navbar = () => {
   const [provider, setProvider] = useState(null);
@@ -268,7 +269,7 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <p>Loading...</p>
+          <Loading />
         )}
       </>
     );
