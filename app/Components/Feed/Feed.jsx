@@ -161,22 +161,6 @@ const Feed = ({
     setFilterOpen((prev) => !prev);
   };
 
-  // useEffect( () => {
-
-  //   const handleScroll = e => {
-  //     if ( newPostsWhileScrolling && ( ( window.scrollY + window.innerHeight ) >= document.body.scrollHeight - 30 ) && !pause ) {
-  //       fetchPosts( [ lastIndex, lastIndex + 19 ], AppliedFilter, false, query.length ? query : undefined );
-  //     };
-  //   };
-
-  //   window.addEventListener( "scroll", handleScroll );
-
-  //   return () => {
-  //     window.removeEventListener( "scroll", handleScroll );
-  //   };
-
-  // }, [ lastIndex, newPostsWhileScrolling, AppliedFilter ] );
-
   const filters = useMemo(
     () => [
       {
