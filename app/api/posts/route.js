@@ -1,6 +1,6 @@
 import { getData, insertData } from "@/app/Supabase/Supabase";
 
-export const POST = async ( req, res ) => {
+export const POST = async (req, res) => {
   // const query = new URL( await req.url ).searchParams;
   // const limit = query.has( "range" ) ? ( query.get( "range" ) ).split( "_to_" ).map( item => parseInt( item ) ) : null;
 
@@ -13,9 +13,9 @@ export const POST = async ( req, res ) => {
     }
   };
 
-  if ( range?.length ) object[ "range" ] = range;
-  if ( filter ) {
-    switch ( filter.toLowerCase() ) {
+  if (range?.length) object["range"] = range;
+  if (filter) {
+    switch (filter.toLowerCase()) {
       case "oldest": {
         object.orderBy.ascending = true;
         break;
@@ -30,19 +30,19 @@ export const POST = async ( req, res ) => {
     }
   }
 
-  console.log( object );
+  console.log(object);
 
   try {
 
-    const { data, remaining } = await getData( object );
+    const { data, remaining } = await getData(object);
     // const posts = data.data;
-    console.log( remaining );
+    console.log(remaining);
 
-    return new Response( JSON.stringify( { data, remaining } ), { status: 200 } );
+    return new Response(JSON.stringify({ data, remaining }), { status: 200 });
 
-  } catch ( e ) {
+  } catch (e) {
 
-    return new Response( JSON.stringify( { error: "Failed" } ), { status: 500 } );
+    return new Response(JSON.stringify({ error: "Failed" }), { status: 500 });
 
   }
 

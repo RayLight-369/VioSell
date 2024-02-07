@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, memo } from "react";
 import PostCard from "../PostCard/PostCard";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ import { deleteAllFiles, deleteFile } from "@/app/Supabase/Supabase";
 import styles from "./Feed.module.css";
 import Loading from "@/app/loading";
 
-const PostCardList = ({ data, setPosts }) => {
+const PostCardList = memo(({ data, setPosts }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -59,12 +59,12 @@ const PostCardList = ({ data, setPosts }) => {
       ))}
     </div>
   );
-};
+});
 
 const Feed = ({
   className,
   range,
-  type,
+  // type,
   user_ID,
   searchBar = false,
   data,
@@ -323,4 +323,4 @@ const Feed = ({
   );
 };
 
-export default Feed;
+export default memo(Feed);

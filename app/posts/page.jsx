@@ -23,7 +23,7 @@ const page = () => {
       if (request.ok) {
         let body = await request.json();
         console.log(body);
-        setData((prev) => body.data);
+        setData(body.data);
       }
     }
   };

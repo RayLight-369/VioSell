@@ -2,7 +2,7 @@
 
 /* Body */
 .bodyBackground {
-  background: url("/Images/background2.svg");
+  background: url("/Images/background.svg"); /*agar background2 use karun tou filter div ki transition lag karti :(*/
   background-position: center;
   background-repeat: repeat-y;
   background-size: cover;
